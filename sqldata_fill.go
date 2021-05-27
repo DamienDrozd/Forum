@@ -96,7 +96,8 @@ func createDB(tab string) error {
 	return nil
 }
 
-func (user User) InsertIntoDB() error {
+// !! A récupérer à partir de la requete http !!
+func InsertIntoDB(user User) error {
 	add, err := db.Prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)")
 	defer add.Close()
 	if err != nil {
