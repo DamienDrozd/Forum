@@ -79,15 +79,15 @@ const PostTab = `
 			image		TEXT
 		)`
 
-func data() {
+func DataMain() {
 	db, _ = sql.Open("sqlite3", "data.db")
 
-	createDB(UserTab)
-	createDB(CommentTab)
-	createDB(PostTab)
+	CreateDB(UserTab)
+	CreateDB(CommentTab)
+	CreateDB(PostTab)
 }
 
-func createDB(tab string) error {
+func CreateDB(tab string) error {
 	stmt, err := db.Prepare(tab)
 	if err != nil {
 		return err
