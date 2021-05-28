@@ -6,32 +6,9 @@ import (
 	"net/http"
 	"text/template"
 	"time"
+
+	Data "../Forum/Data"
 )
-
-/*--------------------------------------------------------------------------------------------
--------------------------------------------Structs--------------------------------------------
---------------------------------------------------------------------------------------------*/
-
-type Comment struct {
-	Message  string
-	UserName string
-	Likes    int
-	Dislikes int
-	Date     string
-	Avatar   string
-}
-
-type OutputPost struct {
-	TabComment      []Comment
-	PostName        string
-	Categories      []string
-	PostDate        string
-	UserName        string
-	PostDescription string
-	Avatar          string
-	Likes           int
-	Dislikes        int
-}
 
 /*--------------------------------------------------------------------------------------------
 ------------------------------ Func Handler Index and MainPage -------------------------------
@@ -51,6 +28,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("time1:", t.Sub(timestart))
 
 }
+
+var user Data.User
 
 func login(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
@@ -98,31 +77,31 @@ func post(w http.ResponseWriter, r *http.Request) {
 
 	//----------------------------------------------------Provisoire---------------------------------------
 
-	var Comment1 Comment
+	var Comment1 Data.Comment
 
 	Comment1.Message = "Message test"
 	Comment1.UserName = "toto"
 	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
 	Comment1.Likes = 5
 	Comment1.Dislikes = 2
-	Comment1.Date = "26/05/2021-10:42"
+	Comment1.Date = time.Now()
 
-	var Comment2 Comment
+	var Comment2 Data.Comment
 
 	Comment2.Message = "Message test 2"
 	Comment2.UserName = "toto2"
 	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
 	Comment2.Likes = 5
 	Comment2.Dislikes = 2
-	Comment2.Date = "26/05/2021-11h43"
+	Comment2.Date = time.Now()
 
-	var output OutputPost
+	var output Data.OutputPost
 
 	output.PostName = "ceci est un post"
 	output.Categories = []string{"categorie1", "categorie2"}
-	output.TabComment = []Comment{Comment1, Comment2}
+	output.TabComment = []Data.Comment{Comment1, Comment2}
 
-	output.PostDate = "26/05/2021-9h30"
+	output.PostDate = time.Now()
 	output.UserName = "toto0"
 	output.PostDescription = "Ici on peut y écrire la description de ce post"
 	output.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"

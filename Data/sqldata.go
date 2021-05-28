@@ -1,9 +1,10 @@
-package main
+package Data
 
 import (
-	"database/sql"
-	_ "go-sqlite3"
 	"time"
+
+	"database/sql"
+	// "github.com/mattn/go-sqlite3"
 )
 
 var db *sql.DB
@@ -78,7 +79,7 @@ const PostTab = `
 			image		TEXT
 		)`
 
-func main() {
+func data() {
 	db, _ = sql.Open("sqlite3", "data.db")
 
 	createDB(UserTab)

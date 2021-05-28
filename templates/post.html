@@ -79,8 +79,6 @@
 
         <div class="comments">
 
-            
-
             <!-- user name -->
             <div class="user_name_comment">
                 <h2>{{.UserName}}</h2> 
@@ -98,8 +96,10 @@
             </div>
 
             <!-- commentaire -->
-            <textarea name="comment" id="comment" cols="30" rows="10">{{.Message}}</textarea>
-
+            <div class="commentaire_user">
+                <p>{{.Message}}</p>
+            </div>
+            
             <!-- button like/dislike -->
             Dislikes:
             {{.Dislikes}}
@@ -109,8 +109,12 @@
                   
         </div>    
         {{end}}
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            <button type="submit"></button>
 
-    </div>
+
+    </ iv 
+    div>
     
 </body>
 </html>
