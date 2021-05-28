@@ -12,6 +12,27 @@ import (
 -------------------------------------------Structs--------------------------------------------
 --------------------------------------------------------------------------------------------*/
 
+type Comment struct {
+	Message  string
+	UserName string
+	Likes    int
+	Dislikes int
+	Date     string
+	Avatar   string
+}
+
+type OutputPost struct {
+	TabComment      []Comment
+	PostName        string
+	Categories      []string
+	PostDate        string
+	UserName        string
+	PostDescription string
+	Avatar          string
+	Likes           int
+	Dislikes        int
+}
+
 /*--------------------------------------------------------------------------------------------
 ------------------------------ Func Handler Index and MainPage -------------------------------
 ----------------------------------------------------------------------------------------------*/
@@ -70,27 +91,6 @@ func register(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	fmt.Println("time1:", t.Sub(timestart))
 
-}
-
-type Comment struct {
-	Message  string
-	UserName string
-	Likes    int
-	Dislikes int
-	Date     string
-	Avatar   string
-}
-
-type OutputPost struct {
-	TabComment      []Comment
-	PostName        string
-	Categories      []string
-	PostDate        string
-	UserName        string
-	PostDescription string
-	Avatar          string
-	Likes           int
-	Dislikes        int
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
