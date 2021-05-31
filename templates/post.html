@@ -1,0 +1,121 @@
+{{define "post"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Forum</title>
+    <link rel="icon" href="/static/img/icon/forum.png">
+    <link rel="stylesheet" href="/static/css/post.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>Forum</h1>
+          <ul>
+              <li>A</li>
+              <li>B</li>
+              <li><a href="/login">Connexion</a></li>
+          </ul>  
+        </nav>
+    </header>
+
+    <div class="main_content">
+        <div class="post">
+            <!-- titre du post -->
+            <div class="tittle_post"> 
+                <h1>{{.PostName}}</h1>
+            </div>
+            
+            <!-- pseudo du redacteur du post -->
+            <div class="user_post">
+                <h2>{{.UserName}}</h2>               
+            </div>
+
+            <!-- image avatar -->
+            <div class="img_user">
+                <!-- mettre template pour recup img avatar user  -->
+                <img src={{.Avatar}} alt="avatar">
+            </div>
+
+            <!-- date du post -->
+            <div class="date_post">
+                {{.PostDate}}
+            </div>
+
+            <!-- categorie du post -->
+            <div class="categories_post">
+                <ul>
+                    {{range .Categories}}
+                        <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            </div>
+
+            <!-- post -->
+            <div class="post">
+                <!-- template pour recup text du post initial -->
+                <p>{{.PostDescription}}</p>
+            </div>
+
+            <!-- button like /dislike -->
+            <button class="like"> Like  </button>
+            <!-- add counter -->
+            <span class="nbr_like">{{.Likes}}</span>
+
+            <button class="dislike"> Dislike </button>
+            <!-- add counter -->
+            <span class="nbr_dislike">{{.Dislikes}}</span>
+            
+
+            <!-- repondre par un commentaire -->
+            <!-- ajouter boutton pour créer commentaire -->
+        </div>
+
+
+        <!-- range pour les commentaires -->
+        {{range .TabComment}}
+
+        <div class="comments">
+
+            <!-- user name -->
+            <div class="user_name_comment">
+                <h2>{{.UserName}}</h2> 
+            </div>
+
+            <!-- img avatar -->
+            <div class="img_avatar_comment">
+                <!-- templates img avatar -->
+                <img src={{.Avatar}} alt="avatar">
+            </div>
+            
+            <!-- date et heure commentaire -->
+            <div class="date_comment">
+                <p>{{.Date}}</p>
+            </div>
+
+            <!-- commentaire -->
+            <div class="commentaire_user">
+                <p>{{.Message}}</p>
+            </div>
+            
+            <!-- button like/dislike -->
+            Dislikes:
+            {{.Dislikes}}
+            Likes:
+            {{.Likes}}
+                  
+        </div>    
+        {{end}}
+
+        <form action="" method="POST">
+            <div id="reponse_user">
+                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                <button type="submit">send comment</button>
+            </div>
+        </form>
+    </div> 
+</body>
+</html>
+{{end}}
