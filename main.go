@@ -178,9 +178,9 @@ func post(w http.ResponseWriter, r *http.Request) {
 		Comment.Likes = 0
 		Comment.Dislikes = 0
 		Comment.Date = time.Now().Format("2006-01-02 15:04:05")
-	}
 
-	addComment(postName)
+		addComment(postName, Comment)
+	}
 
 	CommentTab := readComment(postName)
 
@@ -241,7 +241,7 @@ func main() {
 -------------------------------------------A finir--------------------------------------------
 --------------------------------------------------------------------------------------------*/
 
-func addComment(postName string) {
+func addComment(postName string, comment Comment) {
 
 }
 
