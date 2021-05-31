@@ -77,13 +77,13 @@ const PostTab = `
 			image		TEXT
 		)`
 
-func main() {
-	db, _ = sql.Open("sqlite3", "data.db")
+// func main() {
+// 	db, _ = sql.Open("sqlite3", "data.db")
 
-	createDB(UserTab)
-	createDB(CommentTab)
-	createDB(PostTab)
-}
+// 	createDB(UserTab)
+// 	createDB(CommentTab)
+// 	createDB(PostTab)
+// }
 
 func createDB(tab string) error {
 	stmt, err := db.Prepare(tab)

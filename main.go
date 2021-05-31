@@ -13,6 +13,41 @@ import (
 -------------------------------------------Structs--------------------------------------------
 --------------------------------------------------------------------------------------------*/
 
+type User struct {
+	ID       int
+	Username string
+	Password string
+	Email    string
+	Avatar   string
+}
+
+type Comment struct {
+	ID       int
+	UserID   int
+	PostID   int
+	UserName string
+	Message  string
+	Likes    int
+	Dislikes int
+	Date     string
+	Avatar   string
+}
+
+type OutputPost struct {
+	TabComment      []Comment
+	ID              int
+	UserID          int
+	title           string
+	PostName        string
+	Categories      []string
+	PostDate        time.Time
+	UserName        string
+	PostDescription string
+	Avatar          string
+	Likes           int
+	Dislikes        int
+}
+
 /*--------------------------------------------------------------------------------------------
 ------------------------------ Func Handler Index and MainPage -------------------------------
 ----------------------------------------------------------------------------------------------*/
@@ -82,13 +117,6 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func testLogin(email, password string) User {
-
-	var user User
-
-	return user
-}
-
 func register(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
@@ -113,57 +141,6 @@ func register(w http.ResponseWriter, r *http.Request) {
 	}
 	t := time.Now()
 	fmt.Println("time1:", t.Sub(timestart))
-
-}
-
-// type Comment struct {
-// 	Message  string
-// 	UserName string
-// 	Likes    int
-// 	Dislikes int
-// 	Date     string
-// 	Avatar   string
-// }
-
-// type OutputPost struct {
-// 	TabComment      []Comment
-// 	PostName        string
-// 	Categories      []string
-// 	PostDate        string
-// 	UserName        string
-// 	PostDescription string
-// 	Avatar          string
-// 	Likes           int
-// 	Dislikes        int
-// }
-
-func addComment(postName string) {
-
-}
-
-func readComment(postName string) []Comment {
-
-	//----------------------------------------------------Provisoire---------------------------------------
-
-	var Comment1 Comment
-
-	Comment1.Message = "Message test"
-	Comment1.UserName = "toto"
-	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	Comment1.Likes = 5
-	Comment1.Dislikes = 2
-	Comment1.Date = time.Now().Format("2006-01-02 15:04:05")
-
-	var Comment2 Comment
-
-	Comment2.Message = "Message test 2"
-	Comment2.UserName = "toto2"
-	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	Comment2.Likes = 5
-	Comment2.Dislikes = 2
-	Comment2.Date = time.Now().Format("2006-01-02 15:04:05")
-
-	return []Comment{Comment1, Comment2}
 
 }
 
@@ -260,37 +237,43 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-type User struct {
-	ID       int
-	Username string
-	Password string
-	Email    string
-	Avatar   string
+/*--------------------------------------------------------------------------------------------
+-------------------------------------------A finir--------------------------------------------
+--------------------------------------------------------------------------------------------*/
+
+func addComment(postName string) {
+
 }
 
-type Comment struct {
-	ID       int
-	UserID   int
-	PostID   int
-	UserName string
-	Message  string
-	Likes    int
-	Dislikes int
-	Date     string
-	Avatar   string
+func readComment(postName string) []Comment {
+
+	//----------------------------------------------------Provisoire---------------------------------------
+
+	var Comment1 Comment
+
+	Comment1.Message = "Message test"
+	Comment1.UserName = "toto"
+	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
+	Comment1.Likes = 5
+	Comment1.Dislikes = 2
+	Comment1.Date = time.Now().Format("2006-01-02 15:04:05")
+
+	var Comment2 Comment
+
+	Comment2.Message = "Message test 2"
+	Comment2.UserName = "toto2"
+	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
+	Comment2.Likes = 5
+	Comment2.Dislikes = 2
+	Comment2.Date = time.Now().Format("2006-01-02 15:04:05")
+
+	return []Comment{Comment1, Comment2}
+
 }
 
-type OutputPost struct {
-	TabComment      []Comment
-	ID              int
-	UserID          int
-	title           string
-	PostName        string
-	Categories      []string
-	PostDate        time.Time
-	UserName        string
-	PostDescription string
-	Avatar          string
-	Likes           int
-	Dislikes        int
+func testLogin(email, password string) User {
+
+	var user User
+
+	return user
 }
