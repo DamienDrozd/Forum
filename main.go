@@ -130,6 +130,8 @@ func register(w http.ResponseWriter, r *http.Request) {
 	user.Email = email
 	user.Password = password
 
+	addLogin(user)
+
 	fmt.Println(pseudo, email, password)
 
 	templates := template.New("Label de ma template")
@@ -241,9 +243,31 @@ func main() {
 -------------------------------------------A finir--------------------------------------------
 --------------------------------------------------------------------------------------------*/
 
+//----------------------écriture----------------------------
+
 func addComment(postName string, comment Comment) {
 
+	// ID       int
+	// UserID   int
+	// PostID   int
+	// UserName string
+	// Message  string
+	// Likes    int
+	// Dislikes int
+	// Date     string
+	// Avatar   string
+
 }
+
+func addLogin(user User) {
+
+	// user.Username
+	// user.Email
+	// user.Password
+
+}
+
+//----------------------Lecture----------------------------
 
 func readComment(postName string) []Comment {
 
