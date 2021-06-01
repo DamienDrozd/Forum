@@ -102,6 +102,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	fmt.Println(r.FormValue("Categories"))
+
 	CategoryList := make([]Category, len(postmap))
 	x := 0
 
