@@ -39,13 +39,36 @@ type OutputPost struct {
 	UserID          int
 	title           string
 	PostName        string
-	Categories      []string
+	Category        []string
 	PostDate        time.Time
 	UserName        string
 	PostDescription string
 	Avatar          string
 	Likes           int
 	Dislikes        int
+}
+
+type Out struct {
+	TabList      []Post
+	CategoryList []Category
+}
+
+type Post struct {
+	UserID          int
+	UserName        string
+	UserAvatar      string
+	TabComment      []Comment
+	PostName        string
+	PostCategory    []string
+	PostDate        time.Time
+	PostDescription string
+	PostLikes       int
+	PostDislikes    int
+}
+
+type Category struct {
+	CategoryName   string
+	CategoryNumber int
 }
 
 /*--------------------------------------------------------------------------------------------
@@ -55,13 +78,52 @@ type OutputPost struct {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
+	var out Out
+
+	tablist := postlist()
+
+	out.TabList = tablist
+
+	postmap := make(map[string]int)
+
+	for i := range tablist {
+
+		for j := range tablist[i].PostCategory {
+
+			if postmap[out.TabList[i].PostCategory[j]] == 0 {
+
+				postmap[out.TabList[i].PostCategory[j]] = 1
+
+			} else {
+
+				postmap[out.TabList[i].PostCategory[j]] += 1
+			}
+
+		}
+	}
+
+	fmt.Println(r.FormValue("Categories"))
+
+	CategoryList := make([]Category, len(postmap))
+	x := 0
+
+	for i := range postmap {
+		CategoryList[x].CategoryName = i
+		CategoryList[x].CategoryNumber = postmap[i]
+		x++
+	}
+
+	out.CategoryList = CategoryList
+
+	fmt.Println(postmap)
+
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/index.html"))
-	// err := templates.ExecuteTemplate(w, "home", nil)
+	err := templates.ExecuteTemplate(w, "index", out)
 
-	// if err != nil {
-	// 	log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
-	// }
+	if err != nil {
+		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	}
 	t := time.Now()
 	fmt.Println("time1:", t.Sub(timestart))
 
@@ -189,13 +251,13 @@ func post(w http.ResponseWriter, r *http.Request) {
 	var output OutputPost
 
 	output.PostName = postName
-	output.Categories = []string{"categorie1", "categorie2"}
+	output.Category = []string{"categorie1", "categorie2"}
 	output.TabComment = CommentTab
 
 	//------------------------------------Provisoire-------------------
 
 	output.PostName = "ceci est un post"
-	output.Categories = []string{"categorie1", "categorie2"}
+	output.Category = []string{"categorie1", "categorie2"}
 	output.PostDate = time.Now()
 	output.UserName = "toto0"
 	output.PostDescription = "Ici on peut y écrire la description de ce post"
@@ -230,6 +292,7 @@ func main() {
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/register", register)
 	http.HandleFunc("/post", post)
+	http.HandleFunc("/index", indexHandler)
 
 	fmt.Println("Server is starting...\n")
 	fmt.Println("Go on http://localhost:8080/\n")
@@ -301,3 +364,58 @@ func testLogin(email, password string) User {
 
 	return user
 }
+
+func postlist() []Post { //Get a listof all posts
+
+	var post1 Post
+	post1.PostName = "Post1"
+	post1.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post1.UserName = "toto1"
+	post1.PostDescription = "Description du post"
+	post1.PostDate = time.Now()
+	post1.PostLikes = 15
+	post1.PostCategory = []string{"categorie1", "categorie2"}
+
+	var post2 Post
+	post2.PostName = "Post1"
+	post2.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post2.UserName = "toto1"
+	post2.PostDescription = "Description du post"
+	post2.PostCategory = []string{"categorie1", "categorie2"}
+	post2.PostDate = time.Now()
+	post2.PostLikes = 15
+
+	var post3 Post
+	post3.PostName = "Post1"
+	post3.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post3.UserName = "toto1"
+	post3.PostDescription = "Description du post"
+	post3.PostCategory = []string{"categorie1", "categorie2"}
+	post3.PostDate = time.Now()
+	post3.PostLikes = 15
+
+	var post4 Post
+	post4.PostName = "Post1"
+	post4.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post4.UserName = "toto1"
+	post4.PostDescription = "Description du post"
+	post4.PostCategory = []string{"categorie1", "categorie2"}
+	post4.PostDate = time.Now()
+	post4.PostLikes = 15
+
+	var post5 Post
+	post5.PostName = "Post1"
+	post5.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post5.UserName = "toto1"
+	post5.PostDescription = "Description du post"
+	post5.PostCategory = []string{"categorie1", "categorie2"}
+	post5.PostDate = time.Now()
+	post5.PostLikes = 15
+
+	return []Post{post1, post2, post3, post4, post5}
+
+}
+
+// func FindUser(ID int) User {
+
+// }
