@@ -4,11 +4,72 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"text/template"
 	"time"
-
-	Data "../Forum/Data"
 )
+
+/*--------------------------------------------------------------------------------------------
+-------------------------------------------Structs--------------------------------------------
+--------------------------------------------------------------------------------------------*/
+
+type User struct {
+	ID       int
+	Username string
+	Password string
+	Email    string
+	Avatar   string
+}
+
+type Comment struct {
+	ID       int
+	UserID   int
+	PostID   int
+	UserName string
+	Message  string
+	Likes    int
+	Dislikes int
+	Date     string
+	Avatar   string
+}
+
+type OutputPost struct {
+	TabComment      []Comment
+	ID              int
+	UserID          int
+	title           string
+	PostName        string
+	Category        []string
+	PostDate        time.Time
+	UserName        string
+	PostDescription string
+	Avatar          string
+	Likes           int
+	Dislikes        int
+}
+
+type Out struct {
+	TabList      []Post
+	CategoryList []Category
+}
+
+type Post struct {
+	UserID          int
+	UserName        string
+	UserAvatar      string
+	TabComment      []Comment
+	PostName        string
+	PostCategory    []string
+	PostDate        time.Time
+	PostDescription string
+	PostLikes       int
+	PostDislikes    int
+}
+
+type Category struct {
+	CategoryName   string
+	CategoryNumber int
+}
 
 /*--------------------------------------------------------------------------------------------
 ------------------------------ Func Handler Index and MainPage -------------------------------
@@ -17,27 +78,92 @@ import (
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
+	var out Out
+
+	tablist := postlist()
+
+	out.TabList = tablist
+
+	postmap := make(map[string]int)
+
+	for i := range tablist {
+
+		for j := range tablist[i].PostCategory {
+
+			if postmap[out.TabList[i].PostCategory[j]] == 0 {
+
+				postmap[out.TabList[i].PostCategory[j]] = 1
+
+			} else {
+
+				postmap[out.TabList[i].PostCategory[j]] += 1
+			}
+
+		}
+	}
+
+	CategoryList := make([]Category, len(postmap))
+	x := 0
+
+	for i := range postmap {
+		CategoryList[x].CategoryName = i
+		CategoryList[x].CategoryNumber = postmap[i]
+		x++
+	}
+
+	out.CategoryList = CategoryList
+
+	fmt.Println(postmap)
+
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/index.html"))
-	// err := templates.ExecuteTemplate(w, "home", nil)
+	err := templates.ExecuteTemplate(w, "index", out)
 
-	// if err != nil {
-	// 	log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
-	// }
+	if err != nil {
+		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	}
 	t := time.Now()
 	fmt.Println("time1:", t.Sub(timestart))
 
 }
 
-var user Data.User
-
 func login(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
-	pseudo := r.FormValue("user_name")
+	password := r.FormValue("user_password")
 	email := r.FormValue("user_mail")
 
-	fmt.Println(pseudo, email)
+	fmt.Println(password, email)
+	//---------------------------On vérififie si l'adresse email et le mdp sont dans la base de donnée et on connecte l'utilisateur--------------------
+
+	var user User
+
+	user = testLogin(email, password)
+
+	if user.ID != 0 {
+
+		// ID
+		// Username
+		// Email
+		// Avatar
+
+		// expiration := time.Now().Add(365 * 24 * time.Hour)
+
+		cookie := http.Cookie{Name: "ID", Value: strconv.Itoa(user.ID)} //, Expires: expiration}
+		http.SetCookie(w, &cookie)
+		cookie = http.Cookie{Name: "Username", Value: user.Username} //, Expires: expiration}
+		http.SetCookie(w, &cookie)
+		cookie = http.Cookie{Name: "Email", Value: user.Email} //, Expires: expiration}
+		http.SetCookie(w, &cookie)
+		cookie = http.Cookie{Name: "Avatar", Value: user.Avatar} //	, Expires: expiration}
+		http.SetCookie(w, &cookie)
+
+		http.Redirect(w, r, "/post", http.StatusSeeOther)
+
+	}
+
+	user.Password = password
+	user.Email = email
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/login.html"))
@@ -58,6 +184,14 @@ func register(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	password := r.FormValue("psw")
 
+	var user User
+
+	user.Username = pseudo
+	user.Email = email
+	user.Password = password
+
+	addLogin(user)
+
 	fmt.Println(pseudo, email, password)
 
 	templates := template.New("Label de ma template")
@@ -74,33 +208,54 @@ func register(w http.ResponseWriter, r *http.Request) {
 
 func post(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
+	var UserName string
+	var Avatar string
+	var ID string
+	var postName string
+	postName = "test"
 
-	//----------------------------------------------------Provisoire---------------------------------------
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			UserName = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			ID = cookie.Value
+		}
 
-	var Comment1 Data.Comment
+	}
 
-	Comment1.Message = "Message test"
-	Comment1.UserName = "toto"
-	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	Comment1.Likes = 5
-	Comment1.Dislikes = 2
-	Comment1.Date = time.Now()
+	inputcomment := r.FormValue("comment")
 
-	var Comment2 Data.Comment
+	fmt.Println(inputcomment)
 
-	Comment2.Message = "Message test 2"
-	Comment2.UserName = "toto2"
-	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	Comment2.Likes = 5
-	Comment2.Dislikes = 2
-	Comment2.Date = time.Now()
+	var Comment Comment
 
-	var output Data.OutputPost
+	if inputcomment != "" && ID != "" {
+		Comment.Message = inputcomment
+		Comment.UserName = UserName
+		Comment.Avatar = Avatar
+		Comment.Likes = 0
+		Comment.Dislikes = 0
+		Comment.Date = time.Now().Format("2006-01-02 15:04:05")
+
+		addComment(postName, Comment)
+	}
+
+	CommentTab := readComment(postName)
+
+	var output OutputPost
+
+	output.PostName = postName
+	output.Category = []string{"categorie1", "categorie2"}
+	output.TabComment = CommentTab
+
+	//------------------------------------Provisoire-------------------
 
 	output.PostName = "ceci est un post"
-	output.Categories = []string{"categorie1", "categorie2"}
-	output.TabComment = []Data.Comment{Comment1, Comment2}
-
+	output.Category = []string{"categorie1", "categorie2"}
 	output.PostDate = time.Now()
 	output.UserName = "toto0"
 	output.PostDescription = "Ici on peut y écrire la description de ce post"
@@ -108,7 +263,7 @@ func post(w http.ResponseWriter, r *http.Request) {
 	output.Likes = 50
 	output.Dislikes = 3
 
-	//----------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/post.html"))
@@ -135,6 +290,7 @@ func main() {
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/register", register)
 	http.HandleFunc("/post", post)
+	http.HandleFunc("/index", indexHandler)
 
 	fmt.Println("Server is starting...\n")
 	fmt.Println("Go on http://localhost:8080/\n")
@@ -143,3 +299,121 @@ func main() {
 	// Starting serveur
 	http.ListenAndServe(":8080", nil)
 }
+
+/*--------------------------------------------------------------------------------------------
+-------------------------------------------A finir--------------------------------------------
+--------------------------------------------------------------------------------------------*/
+
+//----------------------écriture----------------------------
+
+func addComment(postName string, comment Comment) {
+
+	// ID       int
+	// UserID   int
+	// PostID   int
+	// UserName string
+	// Message  string
+	// Likes    int
+	// Dislikes int
+	// Date     string
+	// Avatar   string
+
+}
+
+func addLogin(user User) {
+
+	// user.Username
+	// user.Email
+	// user.Password
+
+}
+
+//----------------------Lecture----------------------------
+
+func readComment(postName string) []Comment {
+
+	//----------------------------------------------------Provisoire---------------------------------------
+
+	var Comment1 Comment
+
+	Comment1.Message = "Message test"
+	Comment1.UserName = "toto"
+	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
+	Comment1.Likes = 5
+	Comment1.Dislikes = 2
+	Comment1.Date = time.Now().Format("2006-01-02 15:04:05")
+
+	var Comment2 Comment
+
+	Comment2.Message = "Message test 2"
+	Comment2.UserName = "toto2"
+	Comment1.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
+	Comment2.Likes = 5
+	Comment2.Dislikes = 2
+	Comment2.Date = time.Now().Format("2006-01-02 15:04:05")
+
+	return []Comment{Comment1, Comment2}
+
+}
+
+func testLogin(email, password string) User {
+
+	var user User
+
+	return user
+}
+
+func postlist() []Post { //Get a listof all posts
+
+	var post1 Post
+	post1.PostName = "Post1"
+	post1.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post1.UserName = "toto1"
+	post1.PostDescription = "Description du post"
+	post1.PostDate = time.Now()
+	post1.PostLikes = 15
+	post1.PostCategory = []string{"categorie1", "categorie2"}
+
+	var post2 Post
+	post2.PostName = "Post1"
+	post2.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post2.UserName = "toto1"
+	post2.PostDescription = "Description du post"
+	post2.PostCategory = []string{"categorie1", "categorie2"}
+	post2.PostDate = time.Now()
+	post2.PostLikes = 15
+
+	var post3 Post
+	post3.PostName = "Post1"
+	post3.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post3.UserName = "toto1"
+	post3.PostDescription = "Description du post"
+	post3.PostCategory = []string{"categorie1", "categorie2"}
+	post3.PostDate = time.Now()
+	post3.PostLikes = 15
+
+	var post4 Post
+	post4.PostName = "Post1"
+	post4.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post4.UserName = "toto1"
+	post4.PostDescription = "Description du post"
+	post4.PostCategory = []string{"categorie1", "categorie2"}
+	post4.PostDate = time.Now()
+	post4.PostLikes = 15
+
+	var post5 Post
+	post5.PostName = "Post1"
+	post5.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
+	post5.UserName = "toto1"
+	post5.PostDescription = "Description du post"
+	post5.PostCategory = []string{"categorie1", "categorie2"}
+	post5.PostDate = time.Now()
+	post5.PostLikes = 15
+
+	return []Post{post1, post2, post3, post4, post5}
+
+}
+
+// func FindUser(ID int) User {
+
+// }

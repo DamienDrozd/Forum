@@ -1,10 +1,8 @@
-package Data
+package main
 
 import (
-	"time"
-
 	"database/sql"
-	// "github.com/mattn/go-sqlite3"
+	_ "go-sqlite3"
 )
 
 var db *sql.DB
@@ -16,40 +14,40 @@ var db *sql.DB
 // 	return string(result)
 // }
 
-type User struct {
-	ID       int
-	Username string
-	Password string
-	Email    string
-	Avatar   string
-}
+// type User struct {
+// 	ID       int
+// 	Username string
+// 	Password string
+// 	Email    string
+// 	Avatar   string
+// }
 
-type Comment struct {
-	ID       int
-	UserID   int
-	PostID   int
-	UserName string
-	Message  string
-	Likes    int
-	Dislikes int
-	Date     time.Time
-	Avatar   string
-}
+// type Comment struct {
+// 	ID       int
+// 	UserID   int
+// 	PostID   int
+// 	UserName string
+// 	Message  string
+// 	Likes    int
+// 	Dislikes int
+// 	Date     time.Time
+// 	Avatar   string
+// }
 
-type OutputPost struct {
-	TabComment      []Comment
-	ID              int
-	UserID          int
-	title           string
-	PostName        string
-	Categories      []string
-	PostDate        time.Time
-	UserName        string
-	PostDescription string
-	Avatar          string
-	Likes           int
-	Dislikes        int
-}
+// type OutputPost struct {
+// 	TabComment      []Comment
+// 	ID              int
+// 	UserID          int
+// 	title           string
+// 	PostName        string
+// 	Categories      []string
+// 	PostDate        time.Time
+// 	UserName        string
+// 	PostDescription string
+// 	Avatar          string
+// 	Likes           int
+// 	Dislikes        int
+// }
 
 const UserTab = `
 	CREATE TABLE IF NOT EXISTS users (
@@ -79,15 +77,15 @@ const PostTab = `
 			image		TEXT
 		)`
 
-func DataMain() {
-	db, _ = sql.Open("sqlite3", "data.db")
+// func main() {
+// 	db, _ = sql.Open("sqlite3", "data.db")
 
-	CreateDB(UserTab)
-	CreateDB(CommentTab)
-	CreateDB(PostTab)
-}
+// 	createDB(UserTab)
+// 	createDB(CommentTab)
+// 	createDB(PostTab)
+// }
 
-func CreateDB(tab string) error {
+func createDB(tab string) error {
 	stmt, err := db.Prepare(tab)
 	if err != nil {
 		return err
