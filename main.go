@@ -59,8 +59,9 @@ type Post struct {
 	UserAvatar      string
 	TabComment      []Comment
 	PostName        string
-	PostCategory    []string
+	PostCategory    string
 	PostDate        time.Time
+	PostDateString  string
 	PostDescription string
 	PostLikes       int
 	PostDislikes    int
@@ -75,6 +76,50 @@ type Category struct {
 ------------------------------ Func Handler Index and MainPage -------------------------------
 ----------------------------------------------------------------------------------------------*/
 // index.html
+
+func newPost(w http.ResponseWriter, r *http.Request) {
+	timestart := time.Now()
+
+	var newpost Post
+	var ID string
+	var Avatar string
+	var UserName string
+
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			UserName = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			ID = cookie.Value
+		}
+
+	}
+
+	newpost.UserID, _ = strconv.Atoi(ID)
+	newpost.UserName = UserName
+	newpost.UserAvatar = Avatar
+	newpost.PostName = r.FormValue("Titre_sujet")
+	newpost.PostCategory = r.FormValue("categorie")
+	newpost.PostDescription = r.FormValue("message_newpost")
+	newpost.PostDate = time.Now()
+	newpost.PostDateString = newpost.PostDate.Format("2006-01-02 15:04:05")
+
+	addPost(newpost)
+
+	templates := template.New("Label de ma template")
+	templates = template.Must(templates.ParseFiles("./templates/newpost.html"))
+	err := templates.ExecuteTemplate(w, "newpost", nil)
+
+	if err != nil {
+		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	}
+	t := time.Now()
+	fmt.Println("time1:", t.Sub(timestart))
+}
+
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
@@ -82,27 +127,66 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	tablist := postlist()
 
-	out.TabList = tablist
-
 	postmap := make(map[string]int)
 
 	for i := range tablist {
 
-		for j := range tablist[i].PostCategory {
+		if postmap[tablist[i].PostCategory] == 0 {
 
-			if postmap[out.TabList[i].PostCategory[j]] == 0 {
+			postmap[tablist[i].PostCategory] = 1
 
-				postmap[out.TabList[i].PostCategory[j]] = 1
+		} else {
 
-			} else {
-
-				postmap[out.TabList[i].PostCategory[j]] += 1
-			}
-
+			postmap[tablist[i].PostCategory] += 1
 		}
+
 	}
 
-	fmt.Println(r.FormValue("Categories"))
+	tricategories := r.FormValue("Categories")
+	tricreatedposts := r.FormValue("CreatedPosts")
+	trilikedposts := r.FormValue("LikedPosts")
+
+	if tricategories == "run" {
+
+		for i := range tablist {
+			for j := range tablist {
+				if tablist[i].PostCategory < tablist[j].PostCategory {
+					tablist[i], tablist[j] = tablist[j], tablist[i]
+				}
+			}
+		}
+
+	} else if tricreatedposts == "run" {
+
+		for i := range tablist {
+			for j := range tablist {
+				if tablist[i].PostDate.Format("2006-01-02 15:04:05") < tablist[j].PostDate.Format("2006-01-02 15:04:05") {
+					tablist[i], tablist[j] = tablist[j], tablist[i]
+				}
+			}
+		}
+
+	} else if trilikedposts == "run" {
+
+		for i := range tablist {
+			for j := range tablist {
+				if tablist[i].PostLikes < tablist[j].PostLikes {
+					tablist[i], tablist[j] = tablist[j], tablist[i]
+				}
+			}
+		}
+
+	} else {
+
+		for i := range tablist {
+			for j := range tablist {
+				if tablist[i].PostName < tablist[j].PostName {
+					tablist[i], tablist[j] = tablist[j], tablist[i]
+				}
+			}
+		}
+
+	}
 
 	CategoryList := make([]Category, len(postmap))
 	x := 0
@@ -114,6 +198,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	out.CategoryList = CategoryList
+	out.TabList = tablist
 
 	fmt.Println(postmap)
 
@@ -293,6 +378,7 @@ func main() {
 	http.HandleFunc("/register", register)
 	http.HandleFunc("/post", post)
 	http.HandleFunc("/index", indexHandler)
+	http.HandleFunc("/newpost", newPost)
 
 	fmt.Println("Server is starting...\n")
 	fmt.Println("Go on http://localhost:8080/\n")
@@ -327,6 +413,10 @@ func addLogin(user User) {
 	// user.Username
 	// user.Email
 	// user.Password
+
+}
+
+func addPost(newpost Post) {
 
 }
 
@@ -372,43 +462,43 @@ func postlist() []Post { //Get a listof all posts
 	post1.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
 	post1.UserName = "toto1"
 	post1.PostDescription = "Description du post"
+	post1.PostCategory = "categorie2"
 	post1.PostDate = time.Now()
 	post1.PostLikes = 15
-	post1.PostCategory = []string{"categorie1", "categorie2"}
 
 	var post2 Post
-	post2.PostName = "Post1"
+	post2.PostName = "Post2"
 	post2.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
 	post2.UserName = "toto1"
 	post2.PostDescription = "Description du post"
-	post2.PostCategory = []string{"categorie1", "categorie2"}
+	post2.PostCategory = "categorie1"
 	post2.PostDate = time.Now()
 	post2.PostLikes = 15
 
 	var post3 Post
-	post3.PostName = "Post1"
+	post3.PostName = "Post3"
 	post3.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
 	post3.UserName = "toto1"
 	post3.PostDescription = "Description du post"
-	post3.PostCategory = []string{"categorie1", "categorie2"}
+	post3.PostCategory = "categorie2"
 	post3.PostDate = time.Now()
 	post3.PostLikes = 15
 
 	var post4 Post
-	post4.PostName = "Post1"
+	post4.PostName = "Post4"
 	post4.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
 	post4.UserName = "toto1"
 	post4.PostDescription = "Description du post"
-	post4.PostCategory = []string{"categorie1", "categorie2"}
+	post4.PostCategory = "categorie2"
 	post4.PostDate = time.Now()
 	post4.PostLikes = 15
 
 	var post5 Post
-	post5.PostName = "Post1"
+	post5.PostName = "Post5"
 	post5.UserAvatar = "https://tse4.mm.bing.net/th?id=OIP.YdkNhFNLUQ_NN3gZir70pQHaHZ&pid=Api"
 	post5.UserName = "toto1"
 	post5.PostDescription = "Description du post"
-	post5.PostCategory = []string{"categorie1", "categorie2"}
+	post5.PostCategory = "categorie1"
 	post5.PostDate = time.Now()
 	post5.PostLikes = 15
 

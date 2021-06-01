@@ -26,8 +26,8 @@
 
             <div class="rightnav">
                 <div id="menu">
-                    <a href="#">Accueil</a>
-                    <a href="#">New Post</a>
+                    <a href="/index">Accueil</a>
+                    <a href="/newpost">New Post</a>
                     <a href="#">Mon compte</a>
                     <a href="/login" class="Connexion">Connexion</a>
                 </div>  
@@ -51,14 +51,14 @@
           </div> -->
 
           <div class="d-flex justify-content-center">
-           
-            
 
-                <button class="btn btn-outline-secondary" type="Categories" value="run">Categories</button>
+            <button class="btn btn-outline-secondary" type="submit" name="Name" value="run">Name</button>
+        
+            <button class="btn btn-outline-secondary" type="submit" name="Categories" value="run">Categories</button>
 
-                <button class="btn btn-outline-secondary" type="submit" name="CreatedPosts">created posts</button>
+            <button class="btn btn-outline-secondary" type="submit" name="CreatedPosts" value="run">created posts</button>
 
-                <button class="btn btn-outline-secondary" type="LikedPosts">liked posts</button>
+            <button class="btn btn-outline-secondary" type="submit" name="LikedPosts" value="run">liked posts</button>
 
 
           </div>
@@ -97,9 +97,9 @@
                     <p>{{.PostDescription}}</p>
                 </div>
                 <div class="categorie_post">
-                    {{range .PostCategory}}
-                        <p>{{.}}</p>
-                    {{end}}
+                    
+                        <p>{{.PostCategory}}</p>
+                    
                 </div>
                 <div class="date_heure_post">
                     <p>{{.PostDate}}</p>
