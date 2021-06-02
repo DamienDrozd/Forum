@@ -281,7 +281,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println(pseudo, email, password)
-	InsertIntoDB(user)
+	InsertUsertoDB(user)
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/register.html"))
@@ -381,7 +381,7 @@ func main() {
 	// 	Password: "Hello",
 	// 	Email:    "azerty@hotmail.fr",
 	// }
-	// InsertIntoDB(user1)
+	// InsertUsertoDB(user1)
 	// Serving templates files
 	filesServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", filesServer))
@@ -577,7 +577,7 @@ func createDB(tab string) error {
 }
 
 // !! A récupérer à partir de la requete http !!
-func InsertIntoDB(user User) error {
+func InsertUsertoDB(user User) error {
 	add, err := db.Prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)")
 	defer add.Close()
 	if err != nil {
