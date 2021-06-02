@@ -418,6 +418,18 @@ func addLogin(user User) {
 
 func addPost(newpost Post) {
 
+	// UserID          int
+	// UserName        string
+	// UserAvatar      string
+	// TabComment      []Comment
+	// PostName        string
+	// PostCategory    string
+	// PostDate        time.Time
+	// PostDateString  string
+	// PostDescription string
+	// PostLikes       int
+	// PostDislikes    int
+
 }
 
 //----------------------Lecture----------------------------
