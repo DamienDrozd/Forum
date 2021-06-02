@@ -1,12 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
 	"text/template"
 	"time"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 /*--------------------------------------------------------------------------------------------
@@ -271,15 +274,14 @@ func register(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	password := r.FormValue("psw")
 
-	var user User
-
-	user.Username = pseudo
-	user.Email = email
-	user.Password = password
-
-	addLogin(user)
+	user := User{
+		Username: pseudo,
+		Email:    email,
+		Password: password,
+	}
 
 	fmt.Println(pseudo, email, password)
+	InsertUsertoDB(user)
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/register.html"))
@@ -368,6 +370,18 @@ func post(w http.ResponseWriter, r *http.Request) {
 --------------------------------------Main Func-----------------------------------------------
 ----------------------------------------------------------------------------------------------*/
 func main() {
+	db, _ = sql.Open("sqlite3", "data.db")
+
+	createDB(UserTab)
+	createDB(CommentTab)
+	createDB(PostTab)
+	// test User Tab
+	// user1 := User{
+	// 	Username: "Nick",
+	// 	Password: "Hello",
+	// 	Email:    "azerty@hotmail.fr",
+	// }
+	// InsertUsertoDB(user1)
 	// Serving templates files
 	filesServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", filesServer))
@@ -521,3 +535,55 @@ func postlist() []Post { //Get a listof all posts
 // func FindUser(ID int) User {
 
 // }
+
+var db *sql.DB
+
+const UserTab = `
+	CREATE TABLE IF NOT EXISTS users (
+		id			INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, 
+		username	TEXT UNIQUE NOT NULL, 
+		password	TEXT NOT NULL, 
+		email		TEXT UNIQUE NOT NULL,
+		avatar		TEXT
+	)`
+
+const CommentTab = `
+	CREATE	TABLE IF NOT EXISTS comments (
+		id			INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+		user_id 	INTEGER,
+		post_id		INTEGER,
+		message		TEXT,
+		date		DATETIME
+		)`
+
+const PostTab = `
+		CREATE TABLE IF NOT EXISTS post(
+			post_id		INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+			user_id		INTEGER NOT NULL,
+			title		TEXT NOT NULL,
+			post_description		TEXT NOT NULL,
+			date		DATETIME,
+			image		TEXT
+		)`
+
+func createDB(tab string) error {
+	stmt, err := db.Prepare(tab)
+	if err != nil {
+		return err
+	}
+	stmt.Exec()
+	stmt.Close()
+	return nil
+}
+
+// !! A récupérer à partir de la requete http !!
+func InsertUsertoDB(user User) error {
+	add, err := db.Prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)")
+	defer add.Close()
+	if err != nil {
+		return err
+	}
+
+	add.Exec(user.Username, user.Password, user.Email)
+	return nil
+}
