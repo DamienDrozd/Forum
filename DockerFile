@@ -1,5 +1,5 @@
 # The base go-image
-FROM golang:1.16.4-alpine
+FROM golang:1.16
 
 # Docker image description
 LABEL name="Forum"
