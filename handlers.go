@@ -164,18 +164,27 @@ func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(password, email)
 	//---------------------------On vérififie si l'adresse email et le mdp sont dans la base de donnée et on connecte l'utilisateur--------------------
 
-	var user User
+	user := User{}
 
-	user = testLogin(email, password)
+	tab := ReadUsertoDB()
+
+	for i := range tab {
+
+		fmt.Println(tab[i].Email, email)
+		fmt.Println(tab[i].Password, password)
+
+		if tab[i].Email == email && tab[i].Password == password {
+
+			user = tab[i]
+		}
+
+	}
+
+	fmt.Println(user)
+
+	output := ""
 
 	if user.ID != 0 {
-
-		// ID
-		// Username
-		// Email
-		// Avatar
-
-		// expiration := time.Now().Add(365 * 24 * time.Hour)
 
 		cookie := http.Cookie{Name: "ID", Value: strconv.Itoa(user.ID)} //, Expires: expiration}
 		http.SetCookie(w, &cookie)
@@ -186,16 +195,18 @@ func login(w http.ResponseWriter, r *http.Request) {
 		cookie = http.Cookie{Name: "Avatar", Value: user.Avatar} //	, Expires: expiration}
 		http.SetCookie(w, &cookie)
 
-		http.Redirect(w, r, "/post", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 
+	} else {
+		output += "L'email ou le mot de passe n'existe pas"
 	}
 
-	user.Password = password
-	user.Email = email
+	var erroutput Error
+	erroutput.Error = output
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/login.html"))
-	err := templates.ExecuteTemplate(w, "login", nil)
+	err := templates.ExecuteTemplate(w, "login", erroutput)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
@@ -224,9 +235,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 		Password: password,
 	}
 
-	fmt.Println(pseudo, email, password)
-
-	tab := ReadUsertoDB(user)
+	tab := ReadUsertoDB()
 
 	if password_repeat != password {
 		output += "Erreur, les mots de passe ne correspondent pas\n"

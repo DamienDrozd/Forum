@@ -192,7 +192,7 @@ func InsertUsertoDB(user User) error {
 	return nil
 }
 
-func ReadUsertoDB(user User) []User {
+func ReadUsertoDB() []User {
 
 	rows := selectAllFromTable(db, "users")
 	// fmt.Println(rows)
@@ -201,7 +201,7 @@ func ReadUsertoDB(user User) []User {
 
 	for rows.Next() {
 		var u User
-		err := rows.Scan(&u.ID, &u.Username, &u.Email, &u.Password, &u.Avatar)
+		err := rows.Scan(&u.ID, &u.Username, &u.Password, &u.Email, &u.Avatar)
 		if err != nil {
 			log.Fatal(err)
 		}
