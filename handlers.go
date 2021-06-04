@@ -214,6 +214,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	pseudo := r.FormValue("username")
 	email := r.FormValue("email")
 	password := r.FormValue("psw")
+	password_repeat := r.FormValue("psw_repeat")
 
 	output := ""
 
@@ -227,6 +228,10 @@ func register(w http.ResponseWriter, r *http.Request) {
 
 	tab := ReadUsertoDB(user)
 
+	if password_repeat != password {
+		output += "Erreur, les mots de passe ne correspondent pas\n"
+	}
+
 	for i := range tab {
 		if tab[i].Username == user.Username {
 			output += "Erreur, ce pseudo est déja pris\n"
@@ -239,6 +244,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 
 	if output == "" {
 		InsertUsertoDB(user)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 
 	var erroutput Error
