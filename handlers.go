@@ -241,6 +241,12 @@ func register(w http.ResponseWriter, r *http.Request) {
 		output += "Erreur, les mots de passe ne correspondent pas\n"
 	}
 
+	if len(password) == 0 || len(pseudo) == 0 || len(email) == 0 {
+
+		output += "Erreur, vous devez remplir toutes les cases.\n"
+
+	}
+
 	for i := range tab {
 		if tab[i].Username == user.Username {
 			output += "Erreur, ce pseudo est déja pris\n"
