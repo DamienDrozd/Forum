@@ -34,8 +34,11 @@ func main() {
 	http.HandleFunc("/newpost", newPost)
 
 	fmt.Println("Server is starting...")
+	fmt.Print("\n")
 	fmt.Println("Go on http://localhost:8080/")
+	fmt.Print("\n")
 	fmt.Println("To shut down the server press CTRL + C")
+	fmt.Print("\n")
 
 	// Starting serveur
 	http.ListenAndServe(":8080", nil)

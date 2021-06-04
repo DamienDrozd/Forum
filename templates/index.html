@@ -27,7 +27,7 @@
 
             <div class="rightnav">
                 <div id="menu">
-                    <a href="">?</a>
+                    <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
                     <a href="/newpost">New Post</a>
                     <a href="#">Mon compte</a>
                     <a href="/login" class="Connexion">Connexion</a>
@@ -35,28 +35,59 @@
             </div>
         </nav>
     </header>
+    
+    <div class="firstblock">
+        
+        <!-- <h1>Forum</h1> -->
 
-    <form class="d-flex"  method="POST" action="/search">
-        <div class="d-flex justify-content-center">
-            <button class="btn btn-outline-secondary" type="submit" name="Name" value="run">Name</button>
-            <button class="btn btn-outline-secondary" type="submit" name="Categories" value="run">Categories</button>
-            <button class="btn btn-outline-secondary" type="submit" name="CreatedPosts" value="run">created posts</button>
-            <button class="btn btn-outline-secondary" type="submit" name="LikedPosts" value="run">liked posts</button>
+        <div class="leftnav">
+            <div id="img_forum">
+                <img src="/static/img/icon/forum.png" alt="ForumIcon">
+            </div>
+            <div id="forum_tittle">
+                <a href="/index">Forum</a>
+                
+            </div>
         </div>
-    </form>
 
+        <!-- <nav class="navbar">
+            
+            <div class="rightnav">
+                <div id="menu">
+                    <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
+                    <a href="/newpost">New Post</a>
+                    <a href="#">Mon compte</a>
+                    <a href="/login" class="Connexion">Connexion</a>
+                </div>  
+            </div>
+        </nav> -->
+
+
+    </div>
     <div class="main_content">
-        <div class="firstblock">
+        
 
-        </div>
+
+        
         <div class="secondblock">
+            <div id="filtrer">
+                <h2>Filter les postes</h2>
+                <form class="form-filter"  method="POST" action="/search">
+                    <div class="btn-filter">
+                        <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                        <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
+                        <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
+                        <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
+                    </div>
+                </form>
+            </div>
+
             {{range .CategoryList}}
             <div class="card_categorie">
                 <a href="#">{{.CategoryName}}</a>
                 {{.CategoryNumber}}
             </div>
             {{end}}
-
         </div>
 
         <div class="thirdblock">

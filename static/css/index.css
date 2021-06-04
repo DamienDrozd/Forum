@@ -27,14 +27,9 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.4em;
-    background-color: rgb(147, 63, 226);
+    background-color: rgb(147, 63, 252);
     font-family: 'Architects Daughter', cursive;
 } 
-
-.navbar{
-    /* position:fixed; */
-}
-
 
 .leftnav{
     display: flex;
@@ -69,11 +64,27 @@ body {
 
 
 
+
 /* 
 -----------------------------------------------------------------------------------------------------------------
 --------------------------------------------- Main Content -------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
+
+.firstblock {
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 50vh;
+
+}
+
+
+#filtrer {
+    display: none;
+}
 
 
 
@@ -107,15 +118,6 @@ body {
     border-radius: 20px;
 }
 
-/* .post_tall{
-    grid-row: span 2 / auto;
-}
-
-.post_wide {
-    grid-column: span 2 / auto;
-} */
-
-  v 
  
 /*---------------------------------------------------------------------------------------------------------------
 ---------------------------------------------Responsive ---------------------------------------------------------
