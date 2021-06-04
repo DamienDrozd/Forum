@@ -1,21 +1,39 @@
 # The base go-image
 FROM golang:1.16.4-alpine
- 
+
+# Docker image description
+LABEL name="Forum"
+LABEL description="Forum for a school project"
+LABEL authors="DamienDrozd, KevinAlves, JorgeCastellanos, SofianeDraris"
+LABEL release-date="12.06.2021"
+
 # Create a directory for the app
 RUN mkdir /Forum
- 
-# Copy all files from the current directory to the app directory
-COPY . /Forum
 
+# Add all files into Forum app 
+ADD . /Forum
+ 
 # Set working directory
 WORKDIR /Forum
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+RUN go build -o main .
+
+
+
+# Copy all files from the current directory to the app directory
+# COPY . /Forum
+
  
 # Run command as described:
 # go build will build an executable file named server in the current directory
-RUN go build -o server . 
+# RUN go run . 
  
 # Run the server executable
-CMD [ "/Forum/server" ]
+CMD [ "/Forum/main" ]
 
 #Run the docker in the command prompt:
 #1
