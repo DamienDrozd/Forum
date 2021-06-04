@@ -1,3 +1,8 @@
 # Forum
 
-test push kevin
+## How to execute the program ?
+
+```console
+go run .
+
+```

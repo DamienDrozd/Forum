@@ -122,9 +122,9 @@ body {
 ---------------------------------------------------------------------------------------------------------------*/
 
 
-@media screen and (min-width : 2140px){ 
+@media screen and (min-width : 2140px) { 
     .thirdblock{
         grid-column-gap: 10vw;
-        grid-row-gap: 5vh;
+        grid-row-gap : 5vh;
     }
 }
