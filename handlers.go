@@ -32,9 +32,7 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 		if cookie.Name == "ID" {
 			ID = cookie.Value
 		}
-
 	}
-
 	newpost.UserID, _ = strconv.Atoi(ID)
 	newpost.UserName = UserName
 	newpost.UserAvatar = Avatar
