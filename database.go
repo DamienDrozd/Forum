@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"log"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -179,12 +180,41 @@ func createDB(tab string) error {
 
 // !! A récupérer à partir de la requete http !!
 func InsertUsertoDB(user User) error {
-	add, err := db.Prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)")
+
+	user.Avatar = "test"
+	add, err := db.Prepare("INSERT INTO users (username, password, email, avatar) VALUES (?, ?, ?, ?)")
 	defer add.Close()
 	if err != nil {
 		return err
 	}
 
-	add.Exec(user.Username, user.Password, user.Email)
+	add.Exec(user.Username, user.Password, user.Email, user.Avatar)
 	return nil
+}
+
+func ReadUsertoDB(user User) []User {
+
+	rows := selectAllFromTable(db, "users")
+	// fmt.Println(rows)
+
+	var tab []User
+
+	for rows.Next() {
+		var u User
+		err := rows.Scan(&u.ID, &u.Username, &u.Email, &u.Password, &u.Avatar)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tab = append(tab, u)
+	}
+
+	return tab
+
+}
+
+func selectAllFromTable(db *sql.DB, table string) *sql.Rows {
+	query := "SELECT * FROM " + table
+	result, _ := db.Query(query)
+	return result
 }

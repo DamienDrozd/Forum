@@ -14,6 +14,10 @@ type User struct {
 	Avatar   string
 }
 
+type Error struct {
+	Error string
+}
+
 type Comment struct {
 	ID       int
 	UserID   int

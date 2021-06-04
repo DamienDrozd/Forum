@@ -215,6 +215,8 @@ func register(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	password := r.FormValue("psw")
 
+	output := ""
+
 	user := User{
 		Username: pseudo,
 		Email:    email,
@@ -222,11 +224,29 @@ func register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println(pseudo, email, password)
-	InsertUsertoDB(user)
+
+	tab := ReadUsertoDB(user)
+
+	for i := range tab {
+		if tab[i].Username == user.Username {
+			output += "Erreur, ce pseudo est déja pris\n"
+		}
+		if tab[i].Email == user.Email {
+			output += "Erreur, cet email est déja pris\n"
+		}
+
+	}
+
+	if output == "" {
+		InsertUsertoDB(user)
+	}
+
+	var erroutput Error
+	erroutput.Error = output
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/register.html"))
-	err := templates.ExecuteTemplate(w, "register", nil)
+	err := templates.ExecuteTemplate(w, "register", erroutput)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
