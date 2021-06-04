@@ -2,14 +2,17 @@ html,
 body {
   margin: 0;
   overflow-x: hidden;
-  background-color: whitesmoke;
   font-family: 'Montserrat Alternates', sans-serif;
-  background: #232323
+  /* background-color: whitesmoke;
+  color: #232323; */
+  background-color : #232323;
+  /* color:whitesmoke */
 }
 
 * {
   margin: 0;
 }
+
 
 /* 
 -----------------------------------------------------------------------------------------------------------------
@@ -25,7 +28,6 @@ body {
     justify-content: center;
     font-size: 1.4em;
     background-color: rgb(147, 63, 226);
-    /* font-family: "Avenir Next", "Avenir", sans-serif; */
     font-family: 'Architects Daughter', cursive;
 } 
 
@@ -33,8 +35,20 @@ body {
     /* position:fixed; */
 }
 
+
 .leftnav{
     display: flex;
+}
+
+#forum_tittle{
+    margin-left: 1vw;
+}
+
+#forum_tittle a {
+    text-decoration: none;
+    color: #232323;
+    font-size: 30px;
+    font-weight: 900;
 }
 
 .rightnav{
@@ -78,12 +92,12 @@ body {
 .thirdblock{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-column-gap: 4vw;
+    grid-column-gap: 7vw;
     grid-row-gap: 5vh
 }
 .card__post {
     background-color: whitesmoke;
-    width: 20vw;
+    width: 100%;
     height: 20vh;
     border-radius: 31px;
 }
@@ -101,3 +115,17 @@ body {
 .post_wide {
     grid-column: span 2 / auto;
 } */
+
+  v 
+ 
+/*---------------------------------------------------------------------------------------------------------------
+---------------------------------------------Responsive ---------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------*/
+
+
+@media screen and (min-width : 2140px){ 
+    .thirdblock{
+        grid-column-gap: 10vw;
+        grid-row-gap: 5vh;
+    }
+}
