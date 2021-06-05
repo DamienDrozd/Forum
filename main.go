@@ -12,9 +12,9 @@ func main() {
 	// open database and sqlite3 module
 	db, _ = sql.Open("sqlite3", "data.db")
 
+	createDB(PostTab)
 	createDB(UserTab)
 	createDB(CommentTab)
-	createDB(PostTab)
 
 	// Serving templates files
 	filesServer := http.FileServer(http.Dir("./static"))

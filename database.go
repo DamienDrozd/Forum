@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"time"
 
@@ -29,22 +30,6 @@ func addLogin(user User) {
 	// user.Username
 	// user.Email
 	// user.Password
-
-}
-
-func addPost(newpost Post) {
-
-	// UserID          int
-	// UserName        string
-	// UserAvatar      string
-	// TabComment      []Comment
-	// PostName        string
-	// PostCategory    string
-	// PostDate        time.Time
-	// PostDateString  string
-	// PostDescription string
-	// PostLikes       int
-	// PostDislikes    int
 
 }
 
@@ -150,7 +135,7 @@ const UserTab = `
 	)`
 
 const CommentTab = `
-	CREATE	TABLE IF NOT EXISTS comments (
+	CREATE TABLE IF NOT EXISTS comments (
 		id			INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
 		user_id 	INTEGER,
 		post_id		INTEGER,
@@ -159,16 +144,40 @@ const CommentTab = `
 		)`
 
 const PostTab = `
-		CREATE TABLE IF NOT EXISTS post(
-			post_id		INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-			user_id		INTEGER NOT NULL,
-			title		TEXT NOT NULL,
-			post_description		TEXT NOT NULL,
-			date		DATETIME,
-			image		TEXT
-		)`
+	CREATE TABLE IF NOT EXISTS post (
+		postid				INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+		postname			TEXT NOT NULL UNIQUE,
+		postcategory		TEXT NOT NULL,
+		postdate			DATETIME,
+		postdatestring		TEXT NOT NULL,
+		postdescription		TEXT NOT NULL,
+		postlikes			INTEGER NOT NULL,
+		postdislikes		INTEGER NOT NULL,
+		userid				INTEGER NOT NULL,
+		username			TEXT NOT NULL,
+		useravatar			TEXT NOT NULL
+	)`
+
+func addPost(newpost Post) error {
+
+	// fmt.Println(newpost)
+
+	add, err := db.Prepare("INSERT INTO post (postname, postcategory, postdate, postdatestring, postdescription, postlikes, postdislikes, userid, username, useravatar) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,?)")
+	defer add.Close()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("test", add)
+
+	add.Exec(newpost.PostName, newpost.PostCategory, newpost.PostDate, newpost.PostDateString, newpost.PostDescription, newpost.PostLikes, newpost.PostDislikes, newpost.UserID, newpost.UserName, newpost.UserAvatar)
+	return nil
+
+}
 
 func createDB(tab string) error {
+
+	// fmt.Println("test")
 	stmt, err := db.Prepare(tab)
 	if err != nil {
 		return err
@@ -202,6 +211,27 @@ func ReadUsertoDB() []User {
 	for rows.Next() {
 		var u User
 		err := rows.Scan(&u.ID, &u.Username, &u.Password, &u.Email, &u.Avatar)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tab = append(tab, u)
+	}
+
+	return tab
+
+}
+
+func ReadPosttoDB() []Post {
+
+	rows := selectAllFromTable(db, "post")
+	// fmt.Println(rows)
+
+	var tab []Post
+
+	for rows.Next() {
+		var u Post
+		err := rows.Scan(&u.PostID, &u.PostName, &u.PostCategory, &u.PostDate, &u.PostDateString, &u.PostDescription, &u.PostLikes, &u.PostDislikes, &u.UserID, &u.UserName, &u.UserAvatar)
 		if err != nil {
 			log.Fatal(err)
 		}

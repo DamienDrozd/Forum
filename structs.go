@@ -51,10 +51,7 @@ type Out struct {
 }
 
 type Post struct {
-	UserID          int
-	UserName        string
-	UserAvatar      string
-	TabComment      []Comment
+	PostID          int
 	PostName        string
 	PostCategory    string
 	PostDate        time.Time
@@ -62,6 +59,10 @@ type Post struct {
 	PostDescription string
 	PostLikes       int
 	PostDislikes    int
+	UserID          int
+	UserName        string
+	UserAvatar      string
+	TabComment      []Comment
 }
 
 type Category struct {

@@ -33,20 +33,53 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 			ID = cookie.Value
 		}
 	}
+
+	erroutput := ""
+
+	if UserName == "" || ID == "" {
+		erroutput += "Vous devez être connecté pour ajouter un post"
+	}
+
+	newpost.PostName = r.FormValue("Titre_sujet")
+	newpost.PostCategory = r.FormValue("categorie")
+	newpost.PostDate = time.Now()
+	newpost.PostDateString = newpost.PostDate.Format("2006-01-02 15:04:05")
+	newpost.PostDescription = r.FormValue("message_newpost")
 	newpost.UserID, _ = strconv.Atoi(ID)
 	newpost.UserName = UserName
 	newpost.UserAvatar = Avatar
-	newpost.PostName = r.FormValue("Titre_sujet")
-	newpost.PostCategory = r.FormValue("categorie")
-	newpost.PostDescription = r.FormValue("message_newpost")
-	newpost.PostDate = time.Now()
-	newpost.PostDateString = newpost.PostDate.Format("2006-01-02 15:04:05")
 
-	addPost(newpost)
+	tab := ReadPosttoDB()
+
+	for i := range tab {
+		if tab[i].PostName == newpost.PostName {
+			erroutput += "Un post avec le même nom existe déja"
+			break
+		}
+	}
+
+	if erroutput == "" && newpost.PostName != "" && newpost.PostCategory != "" && newpost.PostDescription != "" {
+
+		err1 := addPost(newpost)
+
+		if err1 != nil {
+			log.Fatalf("DataBase execution: %s", err1)
+		}
+
+	}
+
+	if r.Method != "POST" {
+		erroutput = ""
+	}
+
+	var output Error
+	output.Error = erroutput
+
+	fmt.Println(erroutput)
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/newpost.html"))
-	err := templates.ExecuteTemplate(w, "newpost", nil)
+	err := templates.ExecuteTemplate(w, "newpost", output)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message

@@ -35,8 +35,9 @@
 
     <div class="main_content">
         <h1>Nouveau Topic</h1>
+        <p>{{.Error}}</p>
         <div class="card_newpost">
-            <form action="/newpost" method="get">
+            <form action="/newpost" method="post">
                 <div class="Titre_post">
                     <label for="titre-sujet" id="titre-sujet">Titre du Sujet : </label>
                     <input type="text" id="Titre_sujet" name="Titre_sujet"required>
