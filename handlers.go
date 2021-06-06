@@ -60,7 +60,7 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 
 	if erroutput == "" && newpost.PostName != "" && newpost.PostCategory != "" && newpost.PostDescription != "" {
 
-		err1 := addPost(newpost)
+		err1 := InsertPosttoDB(newpost)
 
 		if err1 != nil {
 			log.Fatalf("DataBase execution: %s", err1)
@@ -96,7 +96,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	var out Out
 
-	tablist := postlist()
+	tablist := ReadPosttoDB()
 
 	postmap := make(map[string]int)
 

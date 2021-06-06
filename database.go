@@ -158,23 +158,6 @@ const PostTab = `
 		useravatar			TEXT NOT NULL
 	)`
 
-func addPost(newpost Post) error {
-
-	// fmt.Println(newpost)
-
-	add, err := db.Prepare("INSERT INTO post (postname, postcategory, postdate, postdatestring, postdescription, postlikes, postdislikes, userid, username, useravatar) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,?)")
-	defer add.Close()
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("test", add)
-
-	add.Exec(newpost.PostName, newpost.PostCategory, newpost.PostDate, newpost.PostDateString, newpost.PostDescription, newpost.PostLikes, newpost.PostDislikes, newpost.UserID, newpost.UserName, newpost.UserAvatar)
-	return nil
-
-}
-
 func createDB(tab string) error {
 
 	// fmt.Println("test")
@@ -190,7 +173,7 @@ func createDB(tab string) error {
 // !! A récupérer à partir de la requete http !!
 func InsertUsertoDB(user User) error {
 
-	user.Avatar = "test"
+	user.Avatar = "https://i.redd.it/wellr7jjiv011.jpg"
 	add, err := db.Prepare("INSERT INTO users (username, password, email, avatar) VALUES (?, ?, ?, ?)")
 	defer add.Close()
 	if err != nil {
@@ -240,6 +223,23 @@ func ReadPosttoDB() []Post {
 	}
 
 	return tab
+
+}
+
+func InsertPosttoDB(newpost Post) error {
+
+	// fmt.Println(newpost)
+
+	add, err := db.Prepare("INSERT INTO post (postname, postcategory, postdate, postdatestring, postdescription, postlikes, postdislikes, userid, username, useravatar) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,?)")
+	defer add.Close()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("test", add)
+
+	add.Exec(newpost.PostName, newpost.PostCategory, newpost.PostDate, newpost.PostDateString, newpost.PostDescription, newpost.PostLikes, newpost.PostDislikes, newpost.UserID, newpost.UserName, newpost.UserAvatar)
+	return nil
 
 }
 
