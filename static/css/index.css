@@ -64,7 +64,7 @@ body {
 
 /* 
 -----------------------------------------------------------------------------------------------------------------
----------------------------------------------Navbar2 style -------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
 
@@ -76,7 +76,7 @@ body {
     width: 90vw;
     border-radius: 100px;
     margin-left: 5vw;
-    height: 50vh;
+    height: 45vh;
     font-family: 'Lobster', cursive;
 }
 
@@ -113,7 +113,7 @@ body {
     text-decoration: none;
     color: whitesmoke;
     padding: 20px;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
 }
 
@@ -130,6 +130,45 @@ body {
     background-color: rgb(255, 231, 17);
     color: rgb(219, 65, 38);
     border-radius: 50px;
+}
+
+.Middle-title p{
+    color: whitesmoke;
+}
+
+.M-title {
+    font-size: 90px;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+.M-content{
+    text-align: center;
+    font-size: 18px;
+}
+
+.Middle-link {
+    border: solid 0.5px whitesmoke;
+    border-radius: 30px;
+    padding: 10px;
+    width: 5vw;
+}
+
+.Middle-link {
+    background-color: rgb(233, 89, 89);
+    margin-left: 42vw;
+}
+
+.Middle-link:hover{
+    background-color: rgb(147, 63, 252);
+    cursor: pointer;
+}
+
+.Middle-link a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+
 }
 
 
