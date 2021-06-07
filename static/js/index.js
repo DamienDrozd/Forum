@@ -39,7 +39,7 @@ function getCookies() {
     // document.write(user[1])
     // var nom = document.querySelector('UserName') ;
     // nom.innerHTML = user[1]
-    document.querySelector('UserName').innerHTML = test;
+    // document.querySelector('UserName').innerHTML = test;
   }
   
 

@@ -56,26 +56,7 @@
         </nav> 
     </header>
     
-        <button id="btnlogin" onclick="getCookies()"></button>
-      <!-- <nav class="navbar">
-            <div class="leftnav">
-                <div id="img_forum">
-                    <img src="/static/img/icon/forum.png" alt="ForumIcon">
-                </div>
-                <div id="forum_tittle">
-                    <a href="/index">Forum</a>  
-                </div>
-            </div>
-
-            <div class="rightnav">
-                <div id="menu">
-                    <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
-                    <a href="/newpost">New Post</a>
-                    <a href="#">Mon compte</a>
-                    <a href="/login" class="Connexion">Connexion</a>
-                </div>  
-            </div>
-        </nav> -->
+    <button id="btnlogin" onclick="getCookies()"></button>
 
     <div class="main_content">
         <div class="secondblock">
@@ -90,7 +71,12 @@
                     </div>
                 </form>
             </div>    
+        </div>
 
+        <div class="content_categories">
+            <div class="catego_title">
+                <h1>Catégories</h1>
+            </div>
             {{range .CategoryList}}
             <div class="card_categorie">
                 <a href="#">{{.CategoryName}}</a>
