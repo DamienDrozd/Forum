@@ -1,0 +1,66 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Montserrat Alternates', sans-serif;
+  color: whitesmoke; 
+  background-color : #232323;
+}
+
+* {
+  margin: 0;
+}
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+.navbar {
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 8vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+    background-color: rgb(147, 63, 252);
+    font-family: 'Architects Daughter', cursive;
+} 
+
+.leftnav{
+    display: flex;
+}
+
+#forum_tittle{
+    margin-left: 1vw;
+} 
+
+#forum_tittle a {
+    text-decoration: none;
+    color: #232323;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.rightnav{
+    margin-left: 30vw;
+}
+
+#menu a {
+    text-decoration: none;
+    color: #232323;
+    padding: 25px;
+}
+
+#menu a:hover {
+    background-color: rgb(255, 231, 17);
+    color: tomato;
+    border-radius: 2%;
+}
+
