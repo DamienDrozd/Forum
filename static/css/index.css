@@ -19,7 +19,7 @@ body {
 ---------------------------------------------Navbar style -------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
-.navbar {
+/* .navbar {
     width: 100vw;
     height: 8vh;
     overflow: hidden;
@@ -37,16 +37,16 @@ body {
 
 #forum_tittle{
     margin-left: 1vw;
-}
+} */
 
-#forum_tittle a {
+/* #forum_tittle a {
     text-decoration: none;
     color: #232323;
     font-size: 30px;
     font-weight: 900;
-}
+} */
 
-.rightnav{
+/* .rightnav{
     margin-left: 30vw;
 }
 
@@ -60,8 +60,77 @@ body {
     background-color: rgb(255, 231, 17);
     color: tomato;
     border-radius: 2%;
+} */
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar2 style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.firstblock {
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90vw;
+    border-radius: 100px;
+    margin-left: 5vw;
+    height: 50vh;
+    font-family: 'Lobster', cursive;
 }
 
+.forum_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 30px;
+    font-weight: 900;
+} 
+
+.leftnav {
+    margin-top: 2vh;
+    margin-left: 5vw;
+}
+
+.leftnav a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 35px;
+    margin-left: 0.5vw;
+}
+
+.rightnav {
+    margin-right: 5vw;
+}
+
+#menu a {
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#menu a:hover {
+    color: tomato;
+}
+
+.Inscription {
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+}
+
+.Inscription:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
 
 
 
@@ -71,16 +140,7 @@ body {
 -----------------------------------------------------------------------------------------------------------------
 */
 
-.firstblock {
-    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 50vh;
-    font-family: 'Lobster', cursive;
 
-}
 
 
 #filtrer {
