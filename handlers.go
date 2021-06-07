@@ -319,8 +319,6 @@ func post(w http.ResponseWriter, r *http.Request) {
 	var UserName string
 	var Avatar string
 	var ID string
-	var postName string
-	postName = "test"
 
 	for _, cookie := range r.Cookies() {
 		if cookie.Name == "Username" {
@@ -334,6 +332,19 @@ func post(w http.ResponseWriter, r *http.Request) {
 		}
 
 	}
+
+	keys, ok := r.URL.Query()["name"]
+
+	if !ok || len(keys[0]) < 1 {
+		log.Println("Url Param 'key' is missing")
+		return
+	}
+
+	// Query()["key"] will return an array of items,
+	// we only want the single item.
+	var postName string
+
+	postName = keys[0]
 
 	inputcomment := r.FormValue("comment")
 
