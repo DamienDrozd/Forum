@@ -4,12 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"time"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-<<<<<<< HEAD
-=======
 //----------------------écriture----------------------------
 
 func addComment(postName string, comment Comment) {
@@ -61,7 +60,6 @@ func testLogin(email, password string) User {
 	return user
 }
 
->>>>>>> 1f5cf5628dcf61221d760c3b2ae04ff53714cf25
 var db *sql.DB
 
 const UserTab = `
