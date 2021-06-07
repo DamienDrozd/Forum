@@ -207,8 +207,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(tab[i].Email, email)
 		fmt.Println(tab[i].Password, password)
 
-		if tab[i].Email == email && tab[i].Password == password {
-
+		if tab[i].Email == email && CheckPasswordHash(password, tab[i].Password) == true {
+			fmt.Println("connexion effectuée")
 			user = tab[i]
 		}
 
@@ -375,9 +375,40 @@ func post(w http.ResponseWriter, r *http.Request) {
 
 	output.TabComment = ReadCommenttoDB(output.PostID)
 
-	AddLiketoPosttoDB("likes", output.PostLikes+1, output.PostID)
-	AddLiketoPosttoDB("dislikes", output.PostDislikes+1, output.PostID)
+	if r.FormValue("likes") == "run" {
+		AddLiketoPosttoDB("likes", output.PostLikes+1, output.PostID)
+		output.PostLikes += 1
+	}
+	if r.FormValue("dislikes") == "run" {
+		AddLiketoPosttoDB("dislikes", output.PostDislikes+1, output.PostID)
+		output.PostDislikes += 1
+	}
+	fmt.Println(r.FormValue("CommentLikes"))
+	fmt.Println(r.FormValue("CommentDislikes"))
 
+	if r.FormValue("CommentLikes") != "" {
+		ID, _ := strconv.Atoi(r.FormValue("CommentLikes"))
+		for i := range output.TabComment {
+			if ID == output.TabComment[i].CommentID {
+				fmt.Println(ID)
+				AddLiketoCommenttoDB("likes", output.TabComment[i].CommentLikes+1, ID)
+				output.TabComment[i].CommentLikes += 1
+			}
+
+		}
+
+	}
+	if r.FormValue("CommentDislikes") != "" {
+		ID, _ := strconv.Atoi(r.FormValue("CommentDislikes"))
+		for i := range output.TabComment {
+			if ID == output.TabComment[i].CommentID {
+				fmt.Println(ID)
+				AddLiketoCommenttoDB("dislikes", output.TabComment[i].CommentDislikes+1, ID)
+				output.TabComment[i].CommentDislikes += 1
+			}
+
+		}
+	}
 	//--------------------------------------------------------------------
 
 	templates := template.New("Label de ma template")

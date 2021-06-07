@@ -60,18 +60,15 @@
                 <p>{{.PostDescription}}</p>
             </div>
 
-            <!-- button like /dislike -->
-            <button class="like" name="likes" value="run"> Like  </button>
-            <!-- add counter -->
-            <span class="nbr_like">{{.PostLikes}}</span>
+            <form class="form-filter"  method="POST">
+                    
+                    <button class="btn-like" type="submit" name="likes" value="run">Like</button>
+                    <span class="nbr_like">{{.PostLikes}}</span>
+                    <button class="btn-dislike" type="submit" name="dislikes" value="run">Dislike</button>
+                    <span class="nbr_dislike">{{.PostDislikes}}</span>
+                    
+            </form>
 
-            <button class="dislike" name="likes" value="run"> Dislike </button>
-            <!-- add counter -->
-            <span class="nbr_dislike">{{.PostDislikes}}</span>
-            
-
-            <!-- repondre par un commentaire -->
-            <!-- ajouter boutton pour créer commentaire -->
         </div>
 
 
@@ -102,10 +99,15 @@
             </div>
             
             <!-- button like/dislike -->
-            Dislikes:
-            {{.CommentDislikes}}
-            Likes:
-            {{.CommentLikes}}
+            <form class="form-filter"  method="POST">
+                Likes:
+                {{.CommentLikes}}
+                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}>Like</button>
+                Dislikes:
+                {{.CommentDislikes}}
+                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}>Dislike</button>
+            </form>
+            
                   
         </div>    
         {{end}}

@@ -4,61 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"time"
 
 	_ "github.com/mattn/go-sqlite3"
 )
-
-//----------------------écriture----------------------------
-
-func addComment(postName string, comment Comment) {
-
-	// ID       int
-	// UserID   int
-	// PostID   int
-	// UserName string
-	// Message  string
-	// Likes    int
-	// Dislikes int
-	// Date     string
-	// Avatar   string
-
-}
-
-//----------------------Lecture----------------------------
-
-func readComment(postName string) []Comment {
-
-	//----------------------------------------------------Provisoire---------------------------------------
-
-	var Comment1 Comment
-
-	Comment1.CommentMessage = "Message test"
-	Comment1.UserName = "toto"
-	Comment1.UserAvatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	Comment1.CommentLikes = 5
-	Comment1.CommentDislikes = 2
-	Comment1.CommentDate = time.Now()
-
-	var Comment2 Comment
-
-	Comment2.CommentMessage = "Message test"
-	Comment2.UserName = "toto"
-	Comment2.UserAvatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	Comment2.CommentLikes = 5
-	Comment2.CommentDislikes = 2
-	Comment2.CommentDate = time.Now()
-
-	return []Comment{Comment1, Comment2}
-
-}
-
-func testLogin(email, password string) User {
-
-	var user User
-
-	return user
-}
 
 var db *sql.DB
 
@@ -226,6 +174,8 @@ func InsertUsertoDB(user User) error {
 		return err
 	}
 
+	user.Password = HashPassword(user.Password)
+
 	add.Exec(user.Username, user.Password, user.Email, user.Avatar)
 	return nil
 }
@@ -262,5 +212,19 @@ func AddLiketoPosttoDB(typeadd string, nb int, PostID int) {
 }
 
 func AddLiketoCommenttoDB(typeadd string, nb int, CommentID int) {
+
+	if typeadd == "likes" {
+
+		stmt, _ := db.Prepare("update comments set commentlikes=? where commentid=?")
+
+		stmt.Exec(nb, CommentID)
+	}
+
+	if typeadd == "dislikes" {
+
+		stmt, _ := db.Prepare("update comments set commentdislikes=? where commentid=?")
+
+		stmt.Exec(nb, CommentID)
+	}
 
 }
