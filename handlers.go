@@ -348,21 +348,6 @@ func post(w http.ResponseWriter, r *http.Request) {
 
 	inputcomment := r.FormValue("comment")
 
-	fmt.Println(inputcomment)
-
-	var Comment Comment
-
-	if inputcomment != "" && ID != "" {
-		Comment.CommentMessage = inputcomment
-		Comment.UserName = UserName
-		Comment.UserAvatar = Avatar
-		Comment.CommentLikes = 0
-		Comment.CommentDislikes = 0
-		Comment.CommentDate = time.Now()
-		Comment.CommentDateString = Comment.CommentDate.Format("2006-01-02 15:04:05")
-		addComment(postName, Comment)
-	}
-
 	var output Post
 
 	tablist := ReadPosttoDB()
@@ -373,9 +358,25 @@ func post(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	fmt.Println(output)
+	var Comment Comment
 
-	output.TabComment = readComment(postName)
+	if inputcomment != "" && ID != "" {
+		Comment.CommentMessage = inputcomment
+		Comment.CommentLikes = 0
+		Comment.CommentDislikes = 0
+		Comment.CommentDate = time.Now()
+		Comment.CommentDateString = Comment.CommentDate.Format("2006-01-02 15:04:05")
+		Comment.PostID = output.PostID
+		Comment.UserID, _ = strconv.Atoi(ID)
+		Comment.UserName = UserName
+		Comment.UserAvatar = Avatar
+		InsertCommenttoDB(Comment)
+	}
+
+	output.TabComment = ReadCommenttoDB(output.PostID)
+
+	AddLiketoPosttoDB("likes", output.PostLikes+1, output.PostID)
+	AddLiketoPosttoDB("dislikes", output.PostDislikes+1, output.PostID)
 
 	//--------------------------------------------------------------------
 
