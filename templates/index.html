@@ -59,7 +59,7 @@
     <button id="btnlogin" onclick="getCookies()"></button>
 
     <div class="main_content">
-        <div class="secondblock">
+        <!-- <div class="secondblock">
             <div id="filtrer">
                 <h2>Filter les postes</h2>
                 <form class="form-filter"  method="POST" action="/search">
@@ -71,26 +71,46 @@
                     </div>
                 </form>
             </div>    
-        </div>
+        </div> -->
 
         <div class="content_categories">
             <div class="catego_title">
                 <h1>Catégories</h1>
             </div>
-            {{range .CategoryList}}
-            <div class="card_categorie">
-                <a href="#">{{.CategoryName}}</a>
-                {{.CategoryNumber}}
+
+            <!-- trouver un moyen de rendre random les couleurs des divs -->
+            <div class="card-catego">
+                {{range .CategoryList}}
+                <div class="card_categorie">
+                    <a href="#">{{.CategoryName}}</a>
+                    {{.CategoryNumber}}
+                </div>
+                {{end}}
+                <br>
             </div>
-            {{end}}
         </div>
 
         <div class="thirdblock">
+            <div class="T-Post">
+                <div class="title-post">
+                    <h1>Topics</h1>
+                </div>
+                <div class="filterblock">
+                    <div id="filtrer">
+                        <h2>Filter les postes</h2>
+                        <form class="form-filter"  method="POST" action="/search">
+                            <div class="btn-filter">
+                                <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                                <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
+                                <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
+                                <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
+                            </div>
+                        </form>
+                    </div>    
+                </div>
+            </div>
             {{range .TabList}}
-            <!-- rajouter le lien de la page du post -->
-            <!-- /post/templates -->
             <div class="card__post" onclick="location.href='{{.PostURL}}';" style="cursor:pointer;">
-                
                 <div class="avatar">
                     <img src={{.UserAvatar}} alt="avatar">
                 </div>

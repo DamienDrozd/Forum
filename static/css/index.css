@@ -23,11 +23,12 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 90vw;
+    width: 94vw;
     border-radius: 100px;
-    margin-left: 5vw;
+    margin-left: 3vw;
     height: 45vh;
     font-family: 'Lobster', cursive;
+    margin-top: 2vh;
 }
 
 .forum_title {
@@ -109,7 +110,7 @@ body {
 
 .Middle-link {
     background-color: rgb(233, 89, 89);
-    margin-left: 42vw;
+    margin-left: 43.5vw;
 }
 
 .Middle-link:hover{
@@ -168,13 +169,33 @@ body {
 --------------------------------------------- Catégories --------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
+
+.content_categories {
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+}
+
 .catego_title {
     color: whitesmoke;
+    margin-bottom: 2vh;
+}
+
+.card-catego {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-row-gap: 1vh;
+    grid-column-gap: 2vw;
 }
 .card_categorie {
-
+    padding: 20px;
+    border: solid 1px whitesmoke;
 }
 
+.card_categorie a {
+    text-decoration: none;
+    text-align: center;
+    color: whitesmoke;
+}
 
 
 
