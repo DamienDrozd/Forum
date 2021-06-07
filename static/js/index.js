@@ -24,21 +24,20 @@ btn.addEventListener("click", () => {
 var btn2 = document.querySelector("btnlogin");
 
 const allcookies = document.cookie
-
 console.log(allcookies)
+
+
 
 
 function getCookies() {
   var cut = document.cookie.split(';');
-  var cut2 = document.cookie.split('Username');
-  console.log(cut2);
+  console.log(cut);
+
   for (let i = 0; i < cut.length; i++) {
+    
     // ca = document.cookie.split("=");
     var c = cut[i]
-    if (i == '=' || i == ';') {
-      c = c.replace(cut[i], cut[i]+"");
-      console.log(c)
-    } 
+
 
  
   
