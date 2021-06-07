@@ -45,6 +45,7 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 	newpost.PostDate = time.Now()
 	newpost.PostDateString = newpost.PostDate.Format("2006-01-02 15:04:05")
 	newpost.PostDescription = r.FormValue("message_newpost")
+	newpost.PostURL = "/post?name=" + newpost.PostName
 	newpost.UserID, _ = strconv.Atoi(ID)
 	newpost.UserName = UserName
 	newpost.UserAvatar = Avatar
@@ -341,34 +342,29 @@ func post(w http.ResponseWriter, r *http.Request) {
 	var Comment Comment
 
 	if inputcomment != "" && ID != "" {
-		Comment.Message = inputcomment
+		Comment.CommentMessage = inputcomment
 		Comment.UserName = UserName
-		Comment.Avatar = Avatar
-		Comment.Likes = 0
-		Comment.Dislikes = 0
-		Comment.Date = time.Now().Format("2006-01-02 15:04:05")
-
+		Comment.UserAvatar = Avatar
+		Comment.CommentLikes = 0
+		Comment.CommentDislikes = 0
+		Comment.CommentDate = time.Now()
+		Comment.CommentDateString = Comment.CommentDate.Format("2006-01-02 15:04:05")
 		addComment(postName, Comment)
 	}
 
-	CommentTab := readComment(postName)
+	var output Post
 
-	var output OutputPost
+	tablist := ReadPosttoDB()
 
-	output.PostName = postName
-	output.Category = []string{"categorie1", "categorie2"}
-	output.TabComment = CommentTab
+	for i := range tablist {
+		if tablist[i].PostName == postName {
+			output = tablist[i]
+		}
+	}
 
-	//------------------------------------Provisoire-------------------
+	fmt.Println(output)
 
-	output.PostName = "ceci est un post"
-	output.Category = []string{"categorie1", "categorie2"}
-	output.PostDate = time.Now()
-	output.UserName = "toto0"
-	output.PostDescription = "Ici on peut y écrire la description de ce post"
-	output.Avatar = "https://tse3.mm.bing.net/th?id=OIP.vzUhlFJFR5akQnwy8tWSvAHaF7&pid=Api"
-	output.Likes = 50
-	output.Dislikes = 3
+	output.TabComment = readComment(postName)
 
 	//--------------------------------------------------------------------
 

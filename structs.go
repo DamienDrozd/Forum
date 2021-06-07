@@ -19,30 +19,16 @@ type Error struct {
 }
 
 type Comment struct {
-	ID       int
-	UserID   int
-	PostID   int
-	UserName string
-	Message  string
-	Likes    int
-	Dislikes int
-	Date     string
-	Avatar   string
-}
-
-type OutputPost struct {
-	TabComment      []Comment
-	ID              int
-	UserID          int
-	title           string
-	PostName        string
-	Category        []string
-	PostDate        time.Time
-	UserName        string
-	PostDescription string
-	Avatar          string
-	Likes           int
-	Dislikes        int
+	CommentID         int
+	CommentMessage    string
+	CommentLikes      int
+	CommentDislikes   int
+	CommentDate       time.Time
+	CommentDateString string
+	PostID            int
+	UserID            int
+	UserName          string
+	UserAvatar        string
 }
 
 type Out struct {
@@ -57,6 +43,7 @@ type Post struct {
 	PostDate        time.Time
 	PostDateString  string
 	PostDescription string
+	PostURL         string
 	PostLikes       int
 	PostDislikes    int
 	UserID          int

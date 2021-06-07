@@ -96,7 +96,8 @@
             {{range .TabList}}
             <!-- rajouter le lien de la page du post -->
             <!-- /post/templates -->
-            <div class="card__post" onclick="location.href='/post';" style="cursor:pointer;">
+            <div class="card__post" onclick="location.href='{{.PostURL}}';" style="cursor:pointer;">
+                
                 <div class="avatar">
                     <img src={{.UserAvatar}} alt="avatar">
                 </div>

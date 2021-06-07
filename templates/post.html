@@ -36,20 +36,20 @@
             <!-- image avatar -->
             <div class="img_user">
                 <!-- mettre template pour recup img avatar user  -->
-                <img src={{.Avatar}} alt="avatar">
+                <img src={{.UserAvatar}} alt="avatar">
             </div>
 
             <!-- date du post -->
             <div class="date_post">
-                {{.PostDate}}
+                {{.PostDateString}}
             </div>
 
             <!-- categorie du post -->
             <div class="categories_post">
                 <ul>
-                    {{range .Categories}}
-                        <li>{{.}}</li>
-                    {{end}}
+                    
+                    <li>{{.PostCategory}}</li>
+                    
                 </ul>
             </div>
 
@@ -62,11 +62,11 @@
             <!-- button like /dislike -->
             <button class="like"> Like  </button>
             <!-- add counter -->
-            <span class="nbr_like">{{.Likes}}</span>
+            <span class="nbr_like">{{.PostLikes}}</span>
 
             <button class="dislike"> Dislike </button>
             <!-- add counter -->
-            <span class="nbr_dislike">{{.Dislikes}}</span>
+            <span class="nbr_dislike">{{.PostDislikes}}</span>
             
 
             <!-- repondre par un commentaire -->
@@ -87,24 +87,24 @@
             <!-- img avatar -->
             <div class="img_avatar_comment">
                 <!-- templates img avatar -->
-                <img src={{.Avatar}} alt="avatar">
+                <img src={{.UserAvatar}} alt="avatar">
             </div>
             
             <!-- date et heure commentaire -->
             <div class="date_comment">
-                <p>{{.Date}}</p>
+                <p>{{.CommentDateString}}</p>
             </div>
 
             <!-- commentaire -->
             <div class="commentaire_user">
-                <p>{{.Message}}</p>
+                <p>{{.CommentMessage}}</p>
             </div>
             
             <!-- button like/dislike -->
             Dislikes:
-            {{.Dislikes}}
+            {{.CommentDislikes}}
             Likes:
-            {{.Likes}}
+            {{.CommentLikes}}
                   
         </div>    
         {{end}}
