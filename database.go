@@ -25,14 +25,6 @@ func addComment(postName string, comment Comment) {
 
 }
 
-func addLogin(user User) {
-
-	// user.Username
-	// user.Email
-	// user.Password
-
-}
-
 //----------------------Lecture----------------------------
 
 func readComment(postName string) []Comment {
