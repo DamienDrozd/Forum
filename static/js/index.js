@@ -23,31 +23,31 @@ btn.addEventListener("click", () => {
 */
 var btn2 = document.querySelector("btnlogin");
 
-const allcookies = document.cookie
-console.log(allcookies)
-
-
-
-
 function getCookies() {
+  const allcookies = document.cookie
+  console.log(allcookies)
   var cut = document.cookie.split(';');
   console.log(cut);
 
-  for (let i = 0; i < cut.length; i++) {
-    
-    // ca = document.cookie.split("=");
+  for (var i = 1; i < cut.length-2; i++) {
     var c = cut[i]
-
-
- 
-  
-    console.log(c);   
+    var user = c.split("=");
+    var test = ""
+    test += user[1]
+    console.log(test)
+    // console.log(user[1])
+    // document.write(user[1])
+    // var nom = document.querySelector('UserName') ;
+    // nom.innerHTML = user[1]
+    document.querySelector('UserName').innerHTML = test;
   }
+  
+
   return null
   
 }
 
-getCookies()
+// getCookies()
 
 
 
