@@ -101,7 +101,10 @@ body {
     border: solid 0.5px whitesmoke;
     border-radius: 30px;
     padding: 10px;
-    width: 5vw;
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Middle-link {

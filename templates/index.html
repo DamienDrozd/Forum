@@ -25,9 +25,10 @@
                 </div>
                 <div class="rightnav">
                     <div id="menu">
-                        <!-- <a id="btnfilter" style="cursor: pointer;">Filtrer</a> -->
+                        <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
                         <!-- <a href="#">Mon compte</a> -->
-                        <a href="/login" class="Connexion">Connexion</a>
+                        <a href="#" class="UserName">UserName</a>
+                        <a href="/login" id="" class="Connexion">Connexion</a>
                         <a href="/login" class="Deconnexion">Deconnexion</a>
                         <a href="/register" class="Inscription">Inscription</a>
 
@@ -48,17 +49,14 @@
                     </div>
                 </div>
                 <div class="Middle-link">
-                    <img src="/static/img/icon/pen.png" alt="iconpost">
-                    <a href="/newpost">New Post</a>
+                    <div><img src="/static/img/icon/pen.png" alt="iconpost"></div>
+                    <div><a href="/newpost">New Post</a></div>
                 </div>
             </div>
         </nav> 
     </header>
     
-
-     
-    
-
+        <button id="btnlogin"></button>
       <!-- <nav class="navbar">
             <div class="leftnav">
                 <div id="img_forum">
@@ -79,17 +77,6 @@
             </div>
         </nav> -->
 
-    <!-- <nav class="navbar">
-        
-        <div class="rightnav">
-            <div id="menu">
-                <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
-                <a href="/newpost">New Post</a>
-                <a href="#">Mon compte</a>
-                <a href="/login" class="Connexion">Connexion</a>
-            </div>  
-        </div>
-    </nav> -->
     <div class="main_content">
         <div class="secondblock">
             <div id="filtrer">
@@ -102,9 +89,7 @@
                         <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
                     </div>
                 </form>
-            </div>
-
-            <div></div>
+            </div>    
 
             {{range .CategoryList}}
             <div class="card_categorie">
