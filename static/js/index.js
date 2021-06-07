@@ -50,29 +50,20 @@ function getCookies() {
 // getCookies()
 
 
+/*
+--------------------------------------------------
+------------------RandomColor---------------------
+--------------------------------------------------
+*/
 
+function random_bg_color() {
+  var x = Math.floor(Math.random() * 256);
+  var y = Math.floor(Math.random() * 256);
+  var z = Math.floor(Math.random() * 256);
+  var bgColor = "rgb(" + x + ", " + y + ", " + z + ")";
+  console.log(bgColor);
 
+  document.getElementById("card_categorie").style.backgroundColor = bgColor;
+}
 
-
-// btn2.addEventListener("click",(x) => {
-
-//   for (let i = 0; i < x.length; i++) {
-//     // const element = array[index];
-//     console.log(i)
-    
-//   }
-
-//   // if (x == null){
-
-//   // }
-//   console.log (x);
-
-
-// })
-
-
-// function GetCookieName() {
-
-// }
-// var x = document.cookie
-
+window.onload = random_bg_color();

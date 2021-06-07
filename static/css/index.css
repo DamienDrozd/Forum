@@ -135,35 +135,11 @@ body {
     display: none;
 }
 
-
-/* 
------------------------------------------------------------------------------------------------------------------
---------------------------------------------- Post --------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------
-*/
-
 .main_content{
     margin-left: 12vw;
     margin-right: 12vw;
 }
 
-.thirdblock{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-column-gap: 7vw;
-    grid-row-gap: 5vh
-}
-.card__post {
-    background-color: whitesmoke;
-    width: 100%;
-    border-radius: 31px;
-}
-
-.card__post .avatar img {
-    width: 32px;
-    border: solid 2px black;
-    border-radius: 20px;
-}
 /* 
 -----------------------------------------------------------------------------------------------------------------
 --------------------------------------------- Catégories --------------------------------------------------------------
@@ -171,7 +147,7 @@ body {
 */
 
 .content_categories {
-    margin-bottom: 2vh;
+    margin-bottom: 5vh;
     margin-top: 1vh;
 }
 
@@ -189,13 +165,68 @@ body {
 .card_categorie {
     padding: 20px;
     border: solid 1px whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .card_categorie a {
     text-decoration: none;
     text-align: center;
     color: whitesmoke;
+    font-size: 18px;
 }
+
+.card_categorie p {
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+--------------------------------------------- Post --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.title-post {
+    color: whitesmoke;
+}
+
+
+
+
+
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Card Post --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+.thirdblock{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-column-gap: 7vw;
+    grid-row-gap: 5vh
+}
+
+.card__post {
+    background-color: whitesmoke;
+    width: 100%;
+    border-radius: 31px;
+}
+
+.card__post .avatar img {
+    width: 32px;
+    border: solid 2px black;
+    border-radius: 20px;
+}
+
+
+
+
+
+
 
 
 

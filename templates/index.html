@@ -25,8 +25,6 @@
                 </div>
                 <div class="rightnav">
                     <div id="menu">
-                        <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
-                        <!-- <a href="#">Mon compte</a> -->
                         <a href="#" class="UserName">UserName</a>
                         <a href="/login" id="" class="Connexion">Connexion</a>
                         <a href="/login" class="Deconnexion">Deconnexion</a>
@@ -56,57 +54,49 @@
         </nav> 
     </header>
     
-    <button id="btnlogin" onclick="getCookies()"></button>
+    <!-- <button id="btnlogin" onclick="getCookies()"></button> -->
 
     <div class="main_content">
-        <!-- <div class="secondblock">
-            <div id="filtrer">
-                <h2>Filter les postes</h2>
-                <form class="form-filter"  method="POST" action="/search">
-                    <div class="btn-filter">
-                        <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
-                        <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
-                        <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
-                        <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
-                    </div>
-                </form>
-            </div>    
-        </div> -->
-
+        <!-- liste categories -->
         <div class="content_categories">
             <div class="catego_title">
                 <h1>Catégories</h1>
             </div>
-
             <!-- trouver un moyen de rendre random les couleurs des divs -->
             <div class="card-catego">
                 {{range .CategoryList}}
-                <div class="card_categorie">
+                <div class="card_categorie" id="card_categorie">
                     <a href="#">{{.CategoryName}}</a>
-                    {{.CategoryNumber}}
+                    <p>{{.CategoryNumber}}</p>
                 </div>
                 {{end}}
                 <br>
             </div>
         </div>
 
+        <!-- Posts -->
         <div class="thirdblock">
             <div class="T-Post">
                 <div class="title-post">
-                    <h1>Topics</h1>
-                </div>
-                <div class="filterblock">
-                    <div id="filtrer">
-                        <h2>Filter les postes</h2>
-                        <form class="form-filter"  method="POST" action="/search">
-                            <div class="btn-filter">
-                                <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
-                                <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
-                                <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
-                                <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
-                            </div>
-                        </form>
-                    </div>    
+                    <h1>Les Topics</h1>
+                    <br>
+                    <p>Vous trouverez ici la liste de l'ensemble des sujets du Forum ! </p>
+                    <br>
+                    <p>Affinez votre recherche avec des filtres ! </p>
+                    <button id="btnfilter" style="cursor: pointer;">Filtrer</button>
+                    <div class="filterblock">
+                        <div id="filtrer">
+                            <h2>Filter les postes</h2>
+                            <form class="form-filter"  method="POST" action="/search">
+                                <div class="btn-filter">
+                                    <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                                    <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
+                                    <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
+                                    <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
+                                </div>
+                            </form>
+                        </div>    
+                    </div>
                 </div>
             </div>
             {{range .TabList}}
