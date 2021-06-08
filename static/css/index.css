@@ -60,6 +60,11 @@ body {
     margin-right: 5vw;
 }
 
+#menu {
+    display: flex;
+    align-items: center;
+}
+
 #menu a {
     text-decoration: none;
     color: whitesmoke;
