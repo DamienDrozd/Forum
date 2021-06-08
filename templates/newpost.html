@@ -9,17 +9,16 @@
         <title>Projet Forum</title>
         <link rel="icon" href="/static/img/icon/forum.png">
         <!-- fontstyle -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/static/css/newpost.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
     </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="leftnav">
-                <div id="img_forum">
-                    <img src="/static/img/icon/forum.png" alt="ForumIcon">
-                </div>
                 <div id="forum_tittle">
                     <h1>Forum</h1>
                 </div>
@@ -46,17 +45,22 @@
                 </div>-->
     </header>
 
-    <div class="main_content">
-        <h1>Nouveau Topic</h1>
+    <div class="new__post">
+        <div class="N-title flex padding">
+            <h1>Nouveau Topic</h1>
+        </div>
         <p>{{.Error}}</p>
-        <div class="card_newpost">
+        <div class="NewpostForm flex padding">
             <form action="/newpost" method="post">
                 <div class="Titre_post">
                     <label for="titre-sujet" id="titre-sujet">Titre du Sujet : </label>
+                    <br>
                     <input type="text" id="Titre_sujet" name="Titre_sujet"required>
+                    <br>
                 </div>
                 <div class="categorie_newpost">
                     <label for="categorie_newpost">Choissisez une catégorie : </label>
+                    <br>
                     <select name="categorie" id="categorie">
                         <option value="Informatique">Informatique</option>      
                         <option value="Technologie">Technologie</option>       
@@ -72,9 +76,10 @@
                 </div>
                 <div class="text_area">
                     <label for="message">Message : </label>
+                    <br>
                     <textarea name="message_newpost" id="message_newpost" cols="30" rows="10" value="Ecrivez quelque chose ..." required></textarea>
                 </div>
-                <div class="btn-newpost">
+                <div class="btn-newpost flex">
                     <button class="btn-newpost-submit" type="submit">Soumettre</button>
                 </div>
             </form>
