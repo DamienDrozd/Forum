@@ -37,8 +37,8 @@
                     <br>
                     <input type="password" id="password" name="user_password" required>
                 </div>
-                <div class="btnLogin">
-                    <button class="btn btn-outline-secondary" type="submit">Connexion</button>
+                <div class="btnLogin flex">
+                    <button class="LOGIN" type="submit">Connexion</button>
                 </div>
                 <p>{{.Error}}</p>
             </form>
@@ -65,7 +65,9 @@
                 <p>Vous n'avez pas de compte ?</p>
                 <p>Incrivez-vous ici</p>
                 <br>
-                <a href="/register">Inscription</a>
+                <div class="flex">
+                    <a class="REGISTER" href="/register">Inscription</a>
+                </div>
             </div>
         </div>
     </div>
