@@ -21,18 +21,20 @@
         </nav>
     </header>
     <div class="connexion">
-        <div class="L-Title">
+        <div class="L-Title flex padding">
             <h1>Connexion</h1>
         </div>
-        <div class="loginForm">
-            <p>{{.Error}}</p>
+        <div class="loginForm padding flex">
             <form action="" method="GET">
+                <p>{{.Error}}</p>
                 <div id="mail"> 
+                    <br>
                     <label for="mail"> E-mail : </label>
                     <br>
                     <input type="email" id="mail" name="user_mail" required>
                 </div>
                 <div id="mdp">
+                    <br>
                     <label for="password"> Mot de passe : </label>
                     <br>
                     <input type="password" id="password" name="user_password" required>
@@ -42,28 +44,28 @@
                 </div>
             </form>
         </div>
-        <div class="otherLogin">
-            <div>
+        <div class="otherLogin padding flex">
+            <div class="otherco">
                 <p>Ou Connectez-vous avec</p>
-            </div>
-            <div>
-                <div>
-                    <img src="/static/img/icon/facebook.png" alt="facebook">
-                </div>
-                <div>
-                    <img src="/static/img/icon/github.png" alt="github">
-                </div>
-                <div>
-                    <img src="/static/img/icon/google.png" alt="google">
+                <br>
+                <div class="otherconnexion flex">
+                    <div class="facebook">
+                        <img src="/static/img/icon/facebook.png" alt="facebook">
+                    </div>
+                    <div class="github">
+                        <img src="/static/img/icon/github.png" alt="github">
+                    </div>
+                    <div class="google">
+                        <img src="/static/img/icon/google.png" alt="google">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="otherLogin">
+        <div class="otherLogin padding flex">
             <div>
                 <p>Vous n'avez pas de compte ?</p>
                 <p>Incrivez-vous ici</p>
-            </div>
-            <div>
+                <br>
                 <a href="/register">Inscription</a>
             </div>
         </div>
