@@ -27,7 +27,7 @@ function checkCookies() {
   var btnConnexion = document.getElementById("Connexion");
   var btnInscription = document.getElementById("Inscription");
   var cookies = document.cookie;
-  console.log(cookies)
+  console.log("La liste des cookies :", cookies)
 
   if (cookies == "") {
     btnConnexion.style.display = "block";
@@ -57,7 +57,7 @@ function random_bg_color() {
     var y = Math.floor(Math.random() * 256);
     var z = Math.floor(Math.random() * 256);
     var bgColor = "rgb(" + x + ", " + y + ", " + z + ")";
-    console.log(bgColor);
+    console.log("Couleur aléatoire : ", bgColor);
 
     document.getElementById(id).style.backgroundColor = bgColor;
   }
