@@ -255,6 +255,10 @@ body {
     border-radius: 20px;
 }
 
+.avatar {
+    display: flex;
+    align-items: center;
+}
 
 
 
