@@ -40,6 +40,13 @@ body {
     font-size: 25px;
 }
 
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 35px;
+    font-weight: 900;
+} 
+
 #menu {
     display: flex;
     align-items: center;
@@ -169,6 +176,7 @@ body {
 
 .btn-newpost{
     justify-content: space-around;
+    align-items: baseline;
 }
 
 .Newpost_submit{
@@ -195,10 +203,10 @@ body {
     border: solid 0.2px whitesmoke;
     border-radius: 50px;
     color: whitesmoke;
+    text-decoration: none;
     padding: 14px;
     font-size: 20px;
     cursor: pointer;
-    margin-bottom: 1.5vh;
 }
 
 .RETOUR:hover {
