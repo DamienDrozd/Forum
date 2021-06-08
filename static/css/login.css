@@ -55,6 +55,8 @@ body {
 */
 
 .connexion {
+    font-family: 'Lobster', cursive;
+    font-weight: 500;
     background-color:rgb(0,0,0, 0.7);
     border-radius: 40px;
     width: 70vw;
