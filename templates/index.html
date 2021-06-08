@@ -25,13 +25,12 @@
                 </div>
                 <div class="rightnav">
                     <div id="menu">
-                        <a class="UserName">{{.User.Username}}</a>
+                        <a class="UserName"><img src="/static/img/icon/usericon.png" alt="iconuser"> {{.User.Username}}</a>
                         <a href="/login" id="" class="Connexion">Connexion</a>
                         <a href="/register" class="Inscription">Inscription</a>
                         <form method="post">
                             <button class="Deconnexion" name="Deconnexion" value="run">Deconnexion</a>
                         </form>
-
                     </div>  
                 </div>
             </div>   
@@ -66,7 +65,7 @@
             </div>
             <!-- trouver un moyen de rendre random les couleurs des divs -->
             <div class="card-catego">
-                <form method="post">
+                <form method="post" class="card-catego">
                     <div class="card_categorie" >
                         <button class="Categorie" name="Categorie" value="">All</button>
                     </div>
