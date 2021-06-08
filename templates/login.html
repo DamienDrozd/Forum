@@ -21,24 +21,55 @@
         </nav>
     </header>
     <div class="connexion">
-        <!-- faire un background noir transparant -->
-        <div class="bgblack"></div>
-        <p>{{.Error}}</p>
-        <form action="" method="GET">
-            <div id="mail"> 
-                <label for="mail"> E-mail : </label>
+        <div class="L-Title flex padding">
+            <h1>Connexion</h1>
+        </div>
+        <div class="loginForm padding flex">
+            <form action="" method="GET">
+                <div id="mail"> 
+                    <br>
+                    <label for="mail"> E-mail : </label>
+                    <br>
+                    <input type="email" id="mail" name="user_mail" required>
+                </div>
+                <div id="mdp">
+                    <label for="password"> Mot de passe : </label>
+                    <br>
+                    <input type="password" id="password" name="user_password" required>
+                </div>
+                <div class="btnLogin flex">
+                    <button class="LOGIN" type="submit">Connexion</button>
+                </div>
+                <p>{{.Error}}</p>
+            </form>
+        </div>
+        <div class="otherLogin padding flex">
+            <div class="otherco">
+                <p>Ou Connectez-vous avec</p>
                 <br>
-                <input type="email" id="mail" name="user_mail" required>
+                <div class="otherconnexion flex">
+                    <div class="facebook">
+                        <img src="/static/img/icon/facebook.png" alt="facebook">
+                    </div>
+                    <div class="github">
+                        <img src="/static/img/icon/github.png" alt="github">
+                    </div>
+                    <div class="google">
+                        <img src="/static/img/icon/google.png" alt="google">
+                    </div>
+                </div>
             </div>
-            <div id="mdp">
-                <label for="password"> Mot de passe : </label>
+        </div>
+        <div class="otherLogin padding flex">
+            <div class="O-inscription">
+                <p>Vous n'avez pas de compte ?</p>
+                <p>Incrivez-vous ici</p>
                 <br>
-                <input type="password" id="password" name="user_password" required>
+                <div class="flex">
+                    <a class="REGISTER" href="/register">Inscription</a>
+                </div>
             </div>
-            <div>
-                <button class="btn btn-outline-secondary" type="submit">rechercher</button>
-            </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>
