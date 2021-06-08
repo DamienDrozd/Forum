@@ -86,6 +86,7 @@ body {
     padding: 20px;
     font-size: 22px;
     cursor: pointer;
+    margin-left: 1vw;
 }
 
 .Deconnexion:hover {
