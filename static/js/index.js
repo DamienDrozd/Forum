@@ -17,37 +17,49 @@ btn.addEventListener("click", () => {
 
 /*
 --------------------------------------------------
-------------------Username Avatar-----------------
------------------------Cookies--------------------
+------------------Username------------------------
+-----------Connexion/Deconnexion------------------
 --------------------------------------------------
 */
-var btn2 = document.querySelector("btnlogin");
+function checkCookies() {
+  var btnDeconnexion = document.getElementById("Deconnexion");
+  var btnUser = document.getElementById("UserName");
+  var btnConnexion = document.getElementById("Connexion");
+  var btnInscription = document.getElementById("Inscription");
+  var cookies = document.cookie;
+  console.log(cookies)
 
-function getCookies() {
-  const allcookies = document.cookie
-  console.log(allcookies)
-  var cut = document.cookie.split(';');
-  console.log(cut);
-
-  for (var i = 1; i < cut.length-2; i++) {
-    var c = cut[i]
-    var user = c.split("=");
-    var test = ""
-    test += user[1]
-    console.log(test)
-    // console.log(user[1])
-    // document.write(user[1])
-    // var nom = document.querySelector('UserName') ;
-    // nom.innerHTML = user[1]
-    // document.querySelector('UserName').innerHTML = test;
+  if (cookies == "") {
+    btnConnexion.style.display = "block";
+    btnInscription.style.display = "block";
+    btnDeconnexion.style.display = "none";
+    btnUser.style.display = "none";
+  } else {
+    btnConnexion.style.display = "none";
+    btnInscription.style.display = "none";
+    btnDeconnexion.style.display = "block";
+    btnUser.style.display = "block";
   }
-  
-
-  return null
-  
 }
 
-// getCookies()
+window.onload = checkCookies();
+
+
+// btnDeconnexion.addEventListener("click", () => {
+//   btnUser.style.display = "none";
+//   btnDeconnexion.style.display= "none";
+//   btnConnexion.style.display = "block";
+//   btnInscription.style.display = "block";
+// })
+
+// btnConnexion.addEventListener("click", () => {
+//   btnUser.style.display = "block";
+//   btnDeconnexion.style.display= "block";
+//   btnConnexion.style.display = "none";
+//   btnInscription.style.display = "none";
+// })
+
+
 
 
 /*

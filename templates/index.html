@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
-<body>
+<body onload="checkCookies()">
     <header>
         <nav class="firstblock">
             <div class="forum_title">
@@ -25,11 +25,11 @@
                 </div>
                 <div class="rightnav">
                     <div id="menu">
-                        <a class="UserName"><img src="/static/img/icon/usericon.png" alt="iconuser"> {{.User.Username}}</a>
-                        <a href="/login" id="" class="Connexion">Connexion</a>
-                        <a href="/register" class="Inscription">Inscription</a>
+                        <a class="UserName" id="UserName"><img src="/static/img/icon/usericon.png" alt="iconuser"> {{.User.Username}}</a>
+                        <a href="/login" id="Connexion" class="Connexion">Connexion</a>
+                        <a href="/register" id="Inscription" class="Inscription">Inscription</a>
                         <form method="post">
-                            <button class="Deconnexion" name="Deconnexion" value="run">Deconnexion</a>
+                            <button class="Deconnexion" id="Deconnexion" name="Deconnexion" value="run">Deconnexion</a>
                         </form>
                     </div>  
                 </div>
@@ -110,38 +110,39 @@
             </div>
             {{range .TabList}}
             <div class="card__post" onclick="location.href='{{.PostURL}}';" style="cursor:pointer;">
-                <div class="avatar">
-                    <div class="img_avatar">
-                        <img src={{.UserAvatar}} alt="avatar">
+                <div class="cardPost">
+                    <div class="avatar">
+                        <div class="img_avatar">
+                            <img src={{.UserAvatar}} alt="avatar">
+                        </div>
+                        <div class="user_post">
+                            <p>{{.UserName}}</p>
+                        </div>
                     </div>
-                    <div class="user_post">
-                        <p>{{.UserName}}</p>
+                    <div class="title_post">
+                        <h2>{{.PostName}}</h2>
                     </div>
-                </div>
+                    <div class="post_">
+                        <p>{{.PostDescription}}</p>
+                    </div>
+                    <div class="categorie_post">
+                        <p>{{.PostCategory}}</p>
+                    </div>
+                    <div class="date_heure_post">
+                        <p>{{.PostDateString}}</p>
+                    </div>
+                    <div class="nb_like_post">
+                        <div class="coeur">
+                            <img src="../static/img/icon/heart.png" alt="image pouce/coeur">
+                            <span>{{.PostLikes}}</span>
+                        </div>
+                        <div class="com">
+                            <img src="../static/img/icon/commentaire.png" alt="image commentaire">
+                            <!-- rajouter templates nb commentaire -->
+                            <span>{{.NbComment}}</span>
+                        </div>
+                    </div>
 
-                <div class="title_post">
-                    <h2>{{.PostName}}</h2>
-                </div>
-                <div class="post_">
-                    <p>{{.PostDescription}}</p>
-                </div>
-                <div class="categorie_post">
-                    <p>{{.PostCategory}}</p>
-                </div>
-                <div class="date_heure_post">
-                    <p>{{.PostDateString}}</p>
-                </div>
-
-                <div class="nb_like_post">
-                    <div class="coeur">
-                        <img src="../static/img/icon/heart.png" alt="image pouce/coeur">
-                        <span>{{.PostLikes}}</span>
-                    </div>
-                    <div class="com">
-                        <img src="../static/img/icon/commentaire.png" alt="image commentaire">
-                        <!-- rajouter templates nb commentaire -->
-                        <span>{{.NbComment}}</span>
-                    </div>
                 </div>
             </div>
             {{end}}
