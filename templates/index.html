@@ -89,17 +89,14 @@
                         <div id="filtrer">
                             <form class="form-filter"  method="POST" action="/search">
                                 <div class="btn-filter">
-                                    <label for="btn-filter_name"> Filtrer par : </label>
-                                    <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                                    <label for="F-title" class="F-title"> Filtrer par : </label>
                                     <br>
-                                    <label for="btn-filter_catego"> Filtrer par :</label>
-                                    <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
-                                    <br>
-                                    <label for="btn-filter_post"> Filtrer par :</label>
-                                    <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
-                                    <br>
-                                    <label for="btn-filter_like"> Filtrer par :</label>
-                                    <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
+                                    <div class="F-grid">
+                                        <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                                        <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
+                                        <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>                                       
+                                        <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>    
