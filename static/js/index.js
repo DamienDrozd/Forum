@@ -45,23 +45,6 @@ function checkCookies() {
 window.onload = checkCookies();
 
 
-// btnDeconnexion.addEventListener("click", () => {
-//   btnUser.style.display = "none";
-//   btnDeconnexion.style.display= "none";
-//   btnConnexion.style.display = "block";
-//   btnInscription.style.display = "block";
-// })
-
-// btnConnexion.addEventListener("click", () => {
-//   btnUser.style.display = "block";
-//   btnDeconnexion.style.display= "block";
-//   btnConnexion.style.display = "none";
-//   btnInscription.style.display = "none";
-// })
-
-
-
-
 /*
 --------------------------------------------------
 ------------------RandomColor---------------------
