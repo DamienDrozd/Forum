@@ -275,7 +275,7 @@ body {
 .card__post {
     background-color: whitesmoke;
     width: 100%;
-    border-radius: 31px;
+    border-radius: 40px;
 }
 
 .card__post .avatar img {
@@ -284,10 +284,30 @@ body {
     border-radius: 20px;
 }
 
+.cardPost {
+    padding: 20px;
+}
+
 .avatar {
     display: flex;
     align-items: center;
+    margin-bottom: 1vh;
+    border-bottom: 1px solid;
 }
+
+.user_post{
+    margin-left: 1vh;
+}
+
+.date_heure_post {
+    margin-left: 3vw;
+}
+
+
+
+
+
+
 
 
 

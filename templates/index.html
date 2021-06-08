@@ -117,18 +117,23 @@
                         <div class="user_post">
                             <p>{{.UserName}}</p>
                         </div>
+                        <div class="date_heure_post">
+                            <p>{{.PostDateString}}</p>
+                        </div>
                     </div>
-                    <div class="title_post">
-                        <h2>{{.PostName}}</h2>
-                    </div>
-                    <div class="post_">
-                        <p>{{.PostDescription}}</p>
+                    <div class="Poste">
+                        <div class="title_post">
+                            <h2>{{.PostName}}</h2>
+                            <br>
+                        </div>
+                        <div class="post_">
+                            <p>{{.PostDescription}}</p>
+                            <br>
+                        </div>
                     </div>
                     <div class="categorie_post">
-                        <p>{{.PostCategory}}</p>
-                    </div>
-                    <div class="date_heure_post">
-                        <p>{{.PostDateString}}</p>
+                        <p>#{{.PostCategory}}</p>
+                        <br>
                     </div>
                     <div class="nb_like_post">
                         <div class="coeur">
