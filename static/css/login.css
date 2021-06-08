@@ -76,7 +76,7 @@ body {
     align-items: center;
 }
 .padding {
-    padding: 18px;
+    padding: 17px;
 }
 
 .loginForm label {
@@ -133,4 +133,12 @@ body {
 
 .otherconnexion {
     justify-content: space-between;
+}
+
+.otherco p {
+    font-size: 20px;
+}
+.O-inscription p {
+    font-size: 20px;
+
 }
