@@ -144,7 +144,6 @@ body {
     text-decoration: none;
     color: whitesmoke;
     font-size: 18px;
-
 }
 
 /* 
@@ -190,6 +189,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border-radius: 50px;
 }
 
 .card-catego button {
