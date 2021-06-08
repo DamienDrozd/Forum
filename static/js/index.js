@@ -60,9 +60,12 @@ function random_bg_color() {
   var y = Math.floor(Math.random() * 256);
   var z = Math.floor(Math.random() * 256);
   var bgColor = "rgb(" + x + ", " + y + ", " + z + ")";
+  var bgColor2 = "rgb(" + x + ", " + y + ", " + z + ")";
   console.log(bgColor);
+  console.log(bgColor2);
 
   document.getElementById("card_categorie").style.backgroundColor = bgColor;
+  document.getElementsByClassName("categorie_post").style.backgroundColor = bgColor2;
 }
 
 window.onload = random_bg_color();

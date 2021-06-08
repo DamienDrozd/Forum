@@ -95,7 +95,7 @@ body {
 
 .M-content{
     text-align: center;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .Middle-link {
@@ -187,20 +187,53 @@ body {
 --------------------------------------------- Post --------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
+/*
+--------------------------------------------- Filtre --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
 
 .title-post {
     color: whitesmoke;
 }
 
+#btnfilter {
+    background-color: #232323;
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 50%;
+    border: 1px solid whitesmoke;
+    color: whitesmoke;
+    margin-left: 7vw;
+    margin-top: 1vh;
+}
 
+#btnfilter:hover {
+    background-color: rgb(233, 89, 89);
+}
 
+.F-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-column-gap: 2vw;
+    grid-row-gap: 1vh;
+}
 
+.btn-filter button{
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+    font-size: 17px;
+    border: 1px solid whitesmoke;
+    border-radius: 15px;
+}
 
-
+.btn-filter button:hover{
+    background-color: rgb(147, 63, 252);
+}
 
 /* 
------------------------------------------------------------------------------------------------------------------
----------------------------------------------Card Post --------------------------------------------------------------
+---------------------------------------------Card Post ----------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
 .thirdblock{
@@ -229,7 +262,20 @@ body {
 
 
 
+.nb_like_post {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
 
+.coeur{
+    display: flex;
+    align-items: center;
+}
+.com{
+    display: flex;
+    align-items: center;
+}
 
 /*---------------------------------------------------------------------------------------------------------------
 ---------------------------------------------Responsive ---------------------------------------------------------
