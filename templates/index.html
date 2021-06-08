@@ -1,0 +1,153 @@
+{{define "index"}}
+<!-- front à améliorer -->
+<!DOCTYPE html>
+<html lang="FR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Forum</title>
+    <link rel="icon" href="/static/img/icon/forum.png">
+    <!-- fontstyle -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <header>
+        <nav class="firstblock">
+            <div class="forum_title">
+                <div class="leftnav">
+                    <img src="/static/img/icon/forum.png" alt="ForumIcon">
+                    <a href="/index">Forum</a> 
+                </div>
+                <div class="rightnav">
+                    <div id="menu">
+                        <a href="#" class="UserName">UserName</a>
+                        <a href="/login" id="" class="Connexion">Connexion</a>
+                        <a href="/register" class="Inscription">Inscription</a>
+                        <form method="post">
+                            <button class="Deconnexion" name="Deconnexion" value="run">Deconnexion</a>
+                        </form>
+
+                    </div>  
+                </div>
+            </div>   
+            <div class="Middle-title">
+                <div class="Middle-text">
+                    <div class="M-title">
+                        <p>Bienvenue</p>
+                    </div>
+                    <div class="M-content">
+                        <p>Forum est une plateforme de discussion sur différents sujets.
+                        <p>Vous trouverez ici les derniers sujets et les catégories qui vous interessent !</p>
+                        <br>
+                        <p>Lancez un sujet de discussion ici ! </p>
+                        <br>
+                    </div>
+                </div>
+                <div class="Middle-link">
+                    <div><img src="/static/img/icon/pen.png" alt="iconpost"></div>
+                    <div><a href="/newpost">New Post</a></div>
+                </div>
+            </div>
+        </nav> 
+    </header>
+    
+    <!-- <button id="btnlogin" onclick="getCookies()"></button> -->
+
+    <div class="main_content">
+        <!-- liste categories -->
+        <div class="content_categories">
+            <div class="catego_title">
+                <h1>Catégories</h1>
+            </div>
+            <!-- trouver un moyen de rendre random les couleurs des divs -->
+            <div class="card-catego">
+                {{range .CategoryList}}
+                <div class="card_categorie" id="card_categorie">
+                    <a href="#">{{.CategoryName}}</a>
+                    <p>{{.CategoryNumber}}</p>
+                </div>
+                {{end}}
+                <br>
+            </div>
+        </div>
+
+        <!-- Posts -->
+        <div class="thirdblock">
+            <div class="T-Post">
+                <div class="title-post">
+                    <h1>Les Topics</h1>
+                    <br>
+                    <p>Vous trouverez ici la liste de l'ensemble des sujets du Forum ! </p>
+                    <p>Cliquez sur le poste qui vous interesse pour avoir accès à la discussion !</p>
+                    <br>
+                    <p>Affinez votre recherche avec des filtres ! </p>
+                    <button id="btnfilter">Filtrer</button>
+                    <div class="filterblock">
+                        <div id="filtrer">
+                            <form class="form-filter"  method="POST" action="/search">
+                                <div class="btn-filter">
+                                    <label for="F-title" class="F-title"> Filtrer par : </label>
+                                    <br>
+                                    <div class="F-grid">
+                                        <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                                        <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
+                                        <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>                                       
+                                        <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            {{range .TabList}}
+            <div class="card__post" onclick="location.href='{{.PostURL}}';" style="cursor:pointer;">
+                <div class="avatar">
+                    <div class="img_avatar">
+                        <img src={{.UserAvatar}} alt="avatar">
+                    </div>
+                    <div class="user_post">
+                        <p>{{.UserName}}</p>
+                    </div>
+                </div>
+
+                <div class="title_post">
+                    <h2>{{.PostName}}</h2>
+                </div>
+                <div class="post_">
+                    <p>{{.PostDescription}}</p>
+                </div>
+                <div class="categorie_post">
+                    <p>{{.PostCategory}}</p>
+                </div>
+                <div class="date_heure_post">
+                    <p>{{.PostDateString}}</p>
+                </div>
+
+                <div class="nb_like_post">
+                    <div class="coeur">
+                        <img src="../static/img/icon/heart.png" alt="image pouce/coeur">
+                        <span>{{.PostLikes}}</span>
+                    </div>
+                    <div class="com">
+                        <img src="../static/img/icon/commentaire.png" alt="image commentaire">
+                        <!-- rajouter templates nb commentaire -->
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+
+    </div>
+
+</body>
+<script src="/static/js/index.js"></script>
+</html>
+
+{{end}}
