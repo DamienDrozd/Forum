@@ -216,7 +216,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		for i := range tablist {
 			for j := range tablist {
-				if tablist[i].PostLikes < tablist[j].PostLikes {
+				if tablist[i].PostLikes > tablist[j].PostLikes {
 					tablist[i], tablist[j] = tablist[j], tablist[i]
 				}
 			}
