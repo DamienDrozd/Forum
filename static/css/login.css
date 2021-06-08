@@ -79,7 +79,19 @@ body {
     padding: 20px;
 }
 
+.loginForm label {
+    font-size:20px ;
+}
 
+.loginForm input {
+    margin:15px 0;
+	padding:15px 10px;
+	width:100%;
+	outline:none;
+	border:1px solid whitesmoke;
+	border-radius:20px;
+	display:inline-block;
+}
 .otherconnexion {
     justify-content: space-between;
 }

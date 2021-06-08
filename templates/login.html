@@ -26,7 +26,6 @@
         </div>
         <div class="loginForm padding flex">
             <form action="" method="GET">
-                <p>{{.Error}}</p>
                 <div id="mail"> 
                     <br>
                     <label for="mail"> E-mail : </label>
@@ -34,7 +33,6 @@
                     <input type="email" id="mail" name="user_mail" required>
                 </div>
                 <div id="mdp">
-                    <br>
                     <label for="password"> Mot de passe : </label>
                     <br>
                     <input type="password" id="password" name="user_password" required>
@@ -42,6 +40,7 @@
                 <div class="btnLogin">
                     <button class="btn btn-outline-secondary" type="submit">Connexion</button>
                 </div>
+                <p>{{.Error}}</p>
             </form>
         </div>
         <div class="otherLogin padding flex">
