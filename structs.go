@@ -16,6 +16,8 @@ type User struct {
 
 type Error struct {
 	Error string
+	User  User
+	Post  Post
 }
 
 type Comment struct {

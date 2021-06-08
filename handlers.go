@@ -33,6 +33,10 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 			ID = cookie.Value
 		}
 	}
+	var user User
+	user.Username = UserName
+	user.Avatar = Avatar
+	user.ID, _ = strconv.Atoi(ID)
 
 	erroutput := ""
 
@@ -75,8 +79,9 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 
 	var output Error
 	output.Error = erroutput
+	output.User = user
 
-	fmt.Println(erroutput)
+	fmt.Println(output)
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/newpost.html"))
@@ -380,16 +385,23 @@ func post(w http.ResponseWriter, r *http.Request) {
 	var UserName string
 	var Avatar string
 	var ID string
+	var User User
 
 	for _, cookie := range r.Cookies() {
 		if cookie.Name == "Username" {
 			UserName = cookie.Value
+			User.Username = cookie.Value
 		}
 		if cookie.Name == "Avatar" {
 			Avatar = cookie.Value
+			User.Avatar = cookie.Value
 		}
 		if cookie.Name == "ID" {
 			ID = cookie.Value
+			User.ID, _ = strconv.Atoi(cookie.Value)
+		}
+		if cookie.Name == "Email" {
+			User.Email = cookie.Value
 		}
 
 	}
@@ -470,11 +482,15 @@ func post(w http.ResponseWriter, r *http.Request) {
 
 		}
 	}
+
+	var Error Error
+	Error.User = User
+	Error.Post = output
 	//--------------------------------------------------------------------
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/post.html"))
-	err := templates.ExecuteTemplate(w, "post", output)
+	err := templates.ExecuteTemplate(w, "post", Error)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
