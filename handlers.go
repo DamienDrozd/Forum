@@ -194,7 +194,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		CategoryList[x].CategoryID = x + 1
 		x++
 	}
-	fmt.Println(CategoryList)
+	// fmt.Println(CategoryList)
 
 	for i := range tablist {
 		tablist[i].TabComment = ReadCommenttoDB(tablist[i].PostID)
