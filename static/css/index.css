@@ -170,12 +170,16 @@ body {
     justify-content: space-around;
 }
 
-.card_categorie a {
-    text-decoration: none;
+.card-catego button {
+    border: none;
+    background-color: none;
+    background: none;
     text-align: center;
     color: whitesmoke;
     font-size: 18px;
+    cursor: pointer;
 }
+
 
 .card_categorie p {
     color: whitesmoke;
