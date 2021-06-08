@@ -101,6 +101,31 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	postmap := make(map[string]int)
 
+	deco := r.FormValue("Deconnexion")
+
+	if deco == "run" {
+		c, _ := r.Cookie("Username")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Email")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Avatar")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+	}
+
 	for i := range tablist {
 
 		if postmap[tablist[i].PostCategory] == 0 {
@@ -172,7 +197,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	out.CategoryList = CategoryList
 	out.TabList = tablist
 
-	fmt.Println(postmap)
+	// fmt.Println(postmap)
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/index.html"))
@@ -195,7 +220,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("user_password")
 	email := r.FormValue("user_mail")
 
-	fmt.Println(password, email)
+	// fmt.Println(password, email)
 	//---------------------------On vérififie si l'adresse email et le mdp sont dans la base de donnée et on connecte l'utilisateur--------------------
 
 	user := User{}
@@ -204,8 +229,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	for i := range tab {
 
-		fmt.Println(tab[i].Email, email)
-		fmt.Println(tab[i].Password, password)
+		// fmt.Println(tab[i].Email, email)
+		// fmt.Println(tab[i].Password, password)
 
 		if tab[i].Email == email && CheckPasswordHash(password, tab[i].Password) == true {
 			fmt.Println("connexion effectuée")
@@ -214,7 +239,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	fmt.Println(user)
+	// fmt.Println(user)
 
 	output := ""
 
@@ -383,14 +408,14 @@ func post(w http.ResponseWriter, r *http.Request) {
 		AddLiketoPosttoDB("dislikes", output.PostDislikes+1, output.PostID)
 		output.PostDislikes += 1
 	}
-	fmt.Println(r.FormValue("CommentLikes"))
-	fmt.Println(r.FormValue("CommentDislikes"))
+	// fmt.Println(r.FormValue("CommentLikes"))
+	// fmt.Println(r.FormValue("CommentDislikes"))
 
 	if r.FormValue("CommentLikes") != "" {
 		ID, _ := strconv.Atoi(r.FormValue("CommentLikes"))
 		for i := range output.TabComment {
 			if ID == output.TabComment[i].CommentID {
-				fmt.Println(ID)
+				// fmt.Println(ID)
 				AddLiketoCommenttoDB("likes", output.TabComment[i].CommentLikes+1, ID)
 				output.TabComment[i].CommentLikes += 1
 			}
@@ -402,7 +427,7 @@ func post(w http.ResponseWriter, r *http.Request) {
 		ID, _ := strconv.Atoi(r.FormValue("CommentDislikes"))
 		for i := range output.TabComment {
 			if ID == output.TabComment[i].CommentID {
-				fmt.Println(ID)
+				// fmt.Println(ID)
 				AddLiketoCommenttoDB("dislikes", output.TabComment[i].CommentDislikes+1, ID)
 				output.TabComment[i].CommentDislikes += 1
 			}

@@ -22,8 +22,7 @@ btn.addEventListener("click", () => {
 --------------------------------------------------
 */
 var btn2 = document.querySelector("btnlogin");
-
-function getCookies() {
+btn2.addEventListener("click", () => { 
   const allcookies = document.cookie
   console.log(allcookies)
   var cut = document.cookie.split(';');
@@ -45,9 +44,9 @@ function getCookies() {
 
   return null
   
-}
+});
 
-// getCookies()
+
 
 
 /*
