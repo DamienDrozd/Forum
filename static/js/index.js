@@ -57,16 +57,15 @@ function getCookies() {
 */
 
 function random_bg_color() {
-  var x = Math.floor(Math.random() * 256);
-  var y = Math.floor(Math.random() * 256);
-  var z = Math.floor(Math.random() * 256);
-  var bgColor = "rgb(" + x + ", " + y + ", " + z + ")";
-  var bgColor2 = "rgb(" + x + ", " + y + ", " + z + ")";
-  console.log(bgColor);
-  console.log(bgColor2);
+  for (let id = 1; id < 11 ;id++) {
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + ", " + y + ", " + z + ")";
+    console.log(bgColor);
 
-  document.getElementById("card_categorie").style.backgroundColor = bgColor;
-  document.getElementsByClassName("categorie_post").style.backgroundColor = bgColor2;
+    document.getElementById(id).style.backgroundColor = bgColor;
+  }
 }
 
 window.onload = random_bg_color();

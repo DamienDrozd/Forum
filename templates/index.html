@@ -67,11 +67,11 @@
             <!-- trouver un moyen de rendre random les couleurs des divs -->
             <div class="card-catego">
                 <form method="post">
-                    <div class="card_categorie" id="card_categorie">
+                    <div class="card_categorie" >
                         <button class="Categorie" name="Categorie" value="">All</button>
                     </div>
                     {{range .CategoryList}}
-                        <div class="card_categorie" id="card_categorie">
+                        <div class="card_categorie" id="{{.CategoryID}}">
                             <button class="Categorie" name="Categorie" value="{{.CategoryName}}">{{.CategoryName}}</button>
                             <p>{{.CategoryNumber}}</p>
                         </div>
