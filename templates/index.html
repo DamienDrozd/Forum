@@ -87,12 +87,18 @@
                     <button id="btnfilter">Filtrer</button>
                     <div class="filterblock">
                         <div id="filtrer">
-                            <h2>Filter les postes</h2>
                             <form class="form-filter"  method="POST" action="/search">
                                 <div class="btn-filter">
+                                    <label for="btn-filter_name"> Filtrer par : </label>
                                     <button class="btn-filter_name" type="submit" name="Name" value="run">Titre</button>
+                                    <br>
+                                    <label for="btn-filter_catego"> Filtrer par :</label>
                                     <button class="btn-filter_catego" type="submit" name="Categories" value="run">Categories</button>
+                                    <br>
+                                    <label for="btn-filter_post"> Filtrer par :</label>
                                     <button class="btn-filter_post" type="submit" name="CreatedPosts" value="run">Date de création</button>
+                                    <br>
+                                    <label for="btn-filter_like"> Filtrer par :</label>
                                     <button class="btn-filter_like" type="submit" name="LikedPosts" value="run">Nombre de Like</button>
                                 </div>
                             </form>
@@ -116,9 +122,7 @@
                     <p>{{.PostDescription}}</p>
                 </div>
                 <div class="categorie_post">
-                    
-                        <p>{{.PostCategory}}</p>
-                    
+                    <p>{{.PostCategory}}</p>
                 </div>
                 <div class="date_heure_post">
                     <p>{{.PostDateString}}</p>
