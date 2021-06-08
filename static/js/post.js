@@ -23,6 +23,6 @@ function checkCookies() {
       btnDeconnexion.style.display = "block";
       btnUser.style.display = "block";
     }
-}  
+}
 window.onload = checkCookies();
   
