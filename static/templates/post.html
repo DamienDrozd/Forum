@@ -1,0 +1,134 @@
+{{define "post"}}
+<!-- faire la page et le style -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Forum</title>
+    <link rel="icon" href="/static/img/icon/forum.png">
+    <link rel="stylesheet" href="/static/css/post.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="leftnav">
+                <div id="img_forum">
+                    <img src="/static/img/icon/forum.png" alt="ForumIcon">
+                </div>
+                <div id="forum_tittle">
+                    <a href="/index">Forum</a>  
+                </div>
+            </div>
+            <div class="rightnav">
+                <div id="menu">
+                    <a id="btnfilter" style="cursor: pointer;">Filtrer</a>
+                    <a href="/newpost">New Post</a>
+                    <a href="#">Mon compte</a>
+                    <a href="/login" class="Connexion">Connexion</a>
+                </div>  
+            </div>
+        </nav>
+    </header>
+
+    <div class="main_content">
+        <div class="post">
+            <!-- titre du post -->
+            <div class="tittle_post"> 
+                <h1>{{.PostName}}</h1>
+            </div>
+            
+            <!-- pseudo du redacteur du post -->
+            <div class="user_post">
+                <h2>{{.UserName}}</h2>               
+            </div>
+
+            <!-- image avatar -->
+            <div class="img_user">
+                <!-- mettre template pour recup img avatar user  -->
+                <img src={{.UserAvatar}} alt="avatar">
+            </div>
+
+            <!-- date du post -->
+            <div class="date_post">
+                {{.PostDateString}}
+            </div>
+
+            <!-- categorie du post -->
+            <div class="categories_post">
+                <ul>
+                    
+                    <li>{{.PostCategory}}</li>
+                    
+                </ul>
+            </div>
+
+            <!-- post -->
+            <div class="post">
+                <!-- template pour recup text du post initial -->
+                <p>{{.PostDescription}}</p>
+            </div>
+
+            <form class="form-filter"  method="POST">
+                    
+                    <button class="btn-like" type="submit" name="likes" value="run">Like</button>
+                    <span class="nbr_like">{{.PostLikes}}</span>
+                    <button class="btn-dislike" type="submit" name="dislikes" value="run">Dislike</button>
+                    <span class="nbr_dislike">{{.PostDislikes}}</span>
+                    
+            </form>
+
+        </div>
+
+
+        <!-- range pour les commentaires -->
+        {{range .TabComment}}
+
+        <div class="comments">
+
+            <!-- user name -->
+            <div class="user_name_comment">
+                <h2>{{.UserName}}</h2> 
+            </div>
+
+            <!-- img avatar -->
+            <div class="img_avatar_comment">
+                <!-- templates img avatar -->
+                <img src={{.UserAvatar}} alt="avatar">
+            </div>
+            
+            <!-- date et heure commentaire -->
+            <div class="date_comment">
+                <p>{{.CommentDateString}}</p>
+            </div>
+
+            <!-- commentaire -->
+            <div class="commentaire_user">
+                <p>{{.CommentMessage}}</p>
+            </div>
+            
+            <!-- button like/dislike -->
+            <form class="form-filter"  method="POST">
+                Likes:
+                {{.CommentLikes}}
+                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}>Like</button>
+                Dislikes:
+                {{.CommentDislikes}}
+                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}>Dislike</button>
+            </form>
+            
+                  
+        </div>    
+        {{end}}
+
+        <form action="" method="POST">
+            <div id="reponse_user">
+                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                <button type="submit">send comment</button>
+            </div>
+        </form>
+    </div> 
+</body>
+</html>
+{{end}}

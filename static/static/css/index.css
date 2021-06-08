@@ -1,0 +1,290 @@
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Montserrat Alternates', sans-serif;
+  color: #232323; 
+  background-color : #232323;
+}
+
+* {
+  margin: 0;
+}
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.firstblock {
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 94vw;
+    border-radius: 100px;
+    margin-left: 3vw;
+    height: 45vh;
+    font-family: 'Lobster', cursive;
+    margin-top: 2vh;
+}
+
+.forum_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 30px;
+    font-weight: 900;
+} 
+
+.leftnav {
+    margin-top: 2vh;
+    margin-left: 5vw;
+}
+
+.leftnav a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 35px;
+    margin-left: 0.5vw;
+}
+
+.rightnav {
+    margin-right: 5vw;
+}
+
+#menu a {
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#menu a:hover {
+    color: tomato;
+}
+
+.Inscription {
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+}
+
+.Inscription:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+.Middle-title p{
+    color: whitesmoke;
+}
+
+.M-title {
+    font-size: 90px;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+.M-content{
+    text-align: center;
+    font-size: 25px;
+}
+
+.Middle-link {
+    border: solid 0.5px whitesmoke;
+    border-radius: 30px;
+    padding: 10px;
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Middle-link {
+    background-color: rgb(233, 89, 89);
+    margin-left: 43.5vw;
+}
+
+.Middle-link:hover{
+    background-color: rgb(147, 63, 252);
+    cursor: pointer;
+}
+
+.Middle-link a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+--------------------------------------------- Main Content -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+#filtrer {
+    display: none;
+}
+
+.main_content{
+    margin-left: 12vw;
+    margin-right: 12vw;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+--------------------------------------------- Catégories --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.content_categories {
+    margin-bottom: 5vh;
+    margin-top: 1vh;
+}
+
+.catego_title {
+    color: whitesmoke;
+    margin-bottom: 2vh;
+}
+
+.card-catego {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-row-gap: 1vh;
+    grid-column-gap: 2vw;
+}
+.card_categorie {
+    padding: 20px;
+    border: solid 1px whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card_categorie a {
+    text-decoration: none;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+.card_categorie p {
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+--------------------------------------------- Post --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+/*
+--------------------------------------------- Filtre --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.title-post {
+    color: whitesmoke;
+}
+
+#btnfilter {
+    background-color: #232323;
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 50%;
+    border: 1px solid whitesmoke;
+    color: whitesmoke;
+    margin-left: 7vw;
+    margin-top: 1vh;
+}
+
+#btnfilter:hover {
+    background-color: rgb(233, 89, 89);
+}
+
+.F-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-column-gap: 2vw;
+    grid-row-gap: 1vh;
+}
+
+.btn-filter button{
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+    font-size: 17px;
+    border: 1px solid whitesmoke;
+    border-radius: 15px;
+}
+
+.btn-filter button:hover{
+    background-color: rgb(147, 63, 252);
+}
+
+/* 
+---------------------------------------------Card Post ----------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+.thirdblock{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-column-gap: 7vw;
+    grid-row-gap: 5vh
+}
+
+.card__post {
+    background-color: whitesmoke;
+    width: 100%;
+    border-radius: 31px;
+}
+
+.card__post .avatar img {
+    width: 32px;
+    border: solid 2px black;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+.nb_like_post {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.coeur{
+    display: flex;
+    align-items: center;
+}
+.com{
+    display: flex;
+    align-items: center;
+}
+
+/*---------------------------------------------------------------------------------------------------------------
+---------------------------------------------Responsive ---------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------*/
+
+
+@media screen and (min-width : 2140px) { 
+    .thirdblock{
+        grid-column-gap: 10vw;
+        grid-row-gap : 5vh;
+    }
+}
