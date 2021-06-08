@@ -72,6 +72,22 @@ body {
     color: tomato;
 }
 
+.Deconnexion {
+    font-family: 'Lobster', cursive;
+    background: none;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.Deconnexion:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
 .Inscription {
     border: solid 0.2px whitesmoke;
     border-radius: 50px;
