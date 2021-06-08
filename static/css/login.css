@@ -55,6 +55,7 @@ body {
     font-family: 'Lobster', cursive;
     font-weight: 500;
     background-color: rgb(0,0,0, 0.7);
+    box-shadow: 0 0 20px 0 rgb(255, 255, 255);
     border-radius: 40px;
     width: 50vw;
     height: 62vh;
