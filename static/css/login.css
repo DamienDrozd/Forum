@@ -125,7 +125,6 @@ body {
 }
 
 .REGISTER:hover {
-    /* background-color: rgb(255, 231, 17); */
     background-color: rgb(233, 89, 89);
     color: whitesmoke;
     border-radius: 50px;
