@@ -27,7 +27,7 @@ body {
     height: 10vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-family: 'Lobster', cursive;
     margin-bottom: 6vh;
     
@@ -36,13 +36,56 @@ body {
 #forum_tittle{
     margin-left: 1vw;
 } 
+#forum_tittle {
+    font-size: 25px;
+}
 
-#forum_tittle a {
+#menu {
+    display: flex;
+    align-items: center;
+}
+
+#menu a {
     text-decoration: none;
     color: whitesmoke;
-    font-size: 60px;
-    font-weight: 200;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
 }
+
+#menu a:hover {
+    color: tomato;
+}
+.Deconnexion {
+    font-family: 'Lobster', cursive;
+    background: none;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: 1vw;
+}
+
+.Deconnexion:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+
+.Inscription {
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+}
+
+.Inscription:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
 /* 
 -----------------------------------------------------------------------------------------------------------------
 ---------------------------------------------Content style -------------------------------------------------------
@@ -80,7 +123,7 @@ body {
     font-size:20px ;
 }
 
-.NewpostForm input, textarea {
+.NewpostForm input {
     margin:15px 0;
 	padding:15px 10px;
 	width:100%;
@@ -90,12 +133,23 @@ body {
 	display:inline-block;
     font-family: 'Montserrat Alternates', sans-serif;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
+}
+
+.NewpostForm textarea {
+    margin:15px 0;
+	padding:15px 10px;
+	width:100%;
+	outline:none;
+	border:1px solid whitesmoke;
+	border-radius:20px;
+	display:inline-block;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .NewpostForm select {   
-    /* background-color: rgb(147, 63, 252); */
-    /* background: whitesmoke; */
     font-family: 'Lobster', cursive;
     font-size: 15px;
     width: 100%;
@@ -107,4 +161,48 @@ body {
 
 .categorie_newpost{
     margin-bottom: 2vh;
+}
+
+.obligation {
+    text-align: center;
+}
+
+.btn-newpost{
+    justify-content: space-around;
+}
+
+.Newpost_submit{
+    background-color: rgb(233, 89, 89);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 14px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 1.5vh;
+}
+
+.Newpost_submit:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+.RETOUR{
+    background-color: rgb(147, 63, 252);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 14px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 1.5vh;
+}
+
+.RETOUR:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
 }
