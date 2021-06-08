@@ -22,23 +22,24 @@
     </header>
     <div class="connexion">
         <!-- faire un background noir transparant -->
-        <div class="bgblack"></div>
-        <p>{{.Error}}</p>
-        <form action="" method="GET">
-            <div id="mail"> 
-                <label for="mail"> E-mail : </label>
-                <br>
-                <input type="email" id="mail" name="user_mail" required>
-            </div>
-            <div id="mdp">
-                <label for="password"> Mot de passe : </label>
-                <br>
-                <input type="password" id="password" name="user_password" required>
-            </div>
-            <div>
-                <button class="btn btn-outline-secondary" type="submit">rechercher</button>
-            </div>
-        </form>
+        <div class="loginForm">
+            <p>{{.Error}}</p>
+            <form action="" method="GET">
+                <div id="mail"> 
+                    <label for="mail"> E-mail : </label>
+                    <br>
+                    <input type="email" id="mail" name="user_mail" required>
+                </div>
+                <div id="mdp">
+                    <label for="password"> Mot de passe : </label>
+                    <br>
+                    <input type="password" id="password" name="user_password" required>
+                </div>
+                <div class="btnLogin">
+                    <button class="btn btn-outline-secondary" type="submit">Connexion</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

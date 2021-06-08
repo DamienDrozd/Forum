@@ -55,7 +55,12 @@ body {
 */
 
 .connexion {
-    background-color: whitesmoke;
-    width: 50vw;
-    color: #232323;
+    background-color: #232323;
+    border-radius: 40px;
+    width: 70vw;
+    height: 60vh;
+    color: whitesmoke;
+    z-index: 1;
 }
+
+
