@@ -56,4 +56,5 @@ type Post struct {
 type Category struct {
 	CategoryName   string
 	CategoryNumber int
+	CategoryID     int
 }
