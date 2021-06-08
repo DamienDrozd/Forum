@@ -50,6 +50,7 @@ type Post struct {
 	UserName        string
 	UserAvatar      string
 	TabComment      []Comment
+	NbComment       int
 }
 
 type Category struct {
