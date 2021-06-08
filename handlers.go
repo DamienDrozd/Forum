@@ -38,6 +38,32 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 	user.Avatar = Avatar
 	user.ID, _ = strconv.Atoi(ID)
 
+	deco := r.FormValue("Deconnexion")
+
+	if deco == "run" {
+		c, _ := r.Cookie("Username")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Email")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Avatar")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		user = User{}
+	}
+
 	erroutput := ""
 
 	if UserName == "" || ID == "" {
@@ -146,6 +172,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			c.MaxAge = -1 // delete cookie
 			http.SetCookie(w, c)
 		}
+		user = User{}
 	}
 
 	for i := range tablist {
@@ -385,25 +412,51 @@ func post(w http.ResponseWriter, r *http.Request) {
 	var UserName string
 	var Avatar string
 	var ID string
-	var User User
+	var user User
 
 	for _, cookie := range r.Cookies() {
 		if cookie.Name == "Username" {
 			UserName = cookie.Value
-			User.Username = cookie.Value
+			user.Username = cookie.Value
 		}
 		if cookie.Name == "Avatar" {
 			Avatar = cookie.Value
-			User.Avatar = cookie.Value
+			user.Avatar = cookie.Value
 		}
 		if cookie.Name == "ID" {
 			ID = cookie.Value
-			User.ID, _ = strconv.Atoi(cookie.Value)
+			user.ID, _ = strconv.Atoi(cookie.Value)
 		}
 		if cookie.Name == "Email" {
-			User.Email = cookie.Value
+			user.Email = cookie.Value
 		}
 
+	}
+
+	deco := r.FormValue("Deconnexion")
+
+	if deco == "run" {
+		c, _ := r.Cookie("Username")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Email")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Avatar")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		user = User{}
 	}
 
 	keys, ok := r.URL.Query()["name"]
@@ -484,7 +537,7 @@ func post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var Error Error
-	Error.User = User
+	Error.User = user
 	Error.Post = output
 	//--------------------------------------------------------------------
 
