@@ -56,7 +56,6 @@ body {
     box-shadow: 0 0 20px 0 rgb(255, 255, 255);
     border-radius: 40px;
     width: 50vw;
-    height: 62vh;
     color: whitesmoke;
     z-index: 1;
     position: relative;
@@ -78,7 +77,7 @@ body {
     align-items: center;
 }
 .padding {
-    padding: 17px;
+    padding: 25px;
 }
 
 .RegisterForm label {
@@ -86,13 +85,13 @@ body {
 }
 
 .RegisterForm input {
-    margin:15px 0;
-	padding:15px 10px;
-	width:100%;
-	outline:none;
-	border:1px solid whitesmoke;
-	border-radius:20px;
-	display:inline-block;
+    margin: 14px 0;
+    padding: 14px 5px;
+    width: 100%;
+    outline: none;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    display: inline-block;
 }
 
 .signupbtn {

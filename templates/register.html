@@ -31,19 +31,19 @@
             <form action="/index" method="GET">
                 <div class="username">
                     <label for="username"> Pseudo : </label>
-                    <input type="text" placeholder="Enter an user name" name="username" required>
+                    <input type="text" placeholder="Entrez un Pseudo" name="username" required>
                 </div>
                 <div class="email">
                     <label for="email"> Email : </label>
-                    <input type="email" placeholder="Enter an email" name="email" required>
+                    <input type="email" placeholder="Entrez votre email" name="email" required>
                 </div>
                 <div class="password">
-                    <label for="password"> Password : </label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <label for="password"> Mot de Passe : </label>
+                    <input type="password" placeholder="Entrez un mot de passe" name="psw" required>
                 </div>
                 <div class="psw-repeat">
-                    <label for="psw-repeat"> Repeat Password : </label>
-                    <input type="password" placeholder="Repeat Password" name="psw_repeat" required>
+                    <label for="psw-repeat"> Confirmez le Mot de Passe : </label>
+                    <input type="password" placeholder="Réecrivez le mot de passe" name="psw_repeat" required>
                 </div>
                 <p class="obligation">{{.Error}}</p>
                 <br>
