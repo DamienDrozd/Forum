@@ -95,6 +95,23 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
+	var user User
+
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			user.Username = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			user.Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			user.ID, _ = strconv.Atoi(cookie.Value)
+		}
+		if cookie.Name == "Email" {
+			user.Email = cookie.Value
+		}
+	}
+
 	var out Out
 
 	tablist := ReadPosttoDB()
@@ -214,6 +231,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	out.CategoryList = CategoryList
 	out.TabList = tablist
+	out.User = user
 
 	// fmt.Println(postmap)
 

@@ -34,6 +34,7 @@ type Comment struct {
 type Out struct {
 	TabList      []Post
 	CategoryList []Category
+	User         User
 }
 
 type Post struct {
