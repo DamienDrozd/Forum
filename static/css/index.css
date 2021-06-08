@@ -303,27 +303,43 @@ body {
     margin-left: 3vw;
 }
 
+.post_ {
+    text-align: justify;
+}
 
+.categorie_post{
+    margin-top: 1vh;
+}
 
-
-
-
-
-
+.C-post{
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+}
 
 .nb_like_post {
     display: flex;
     justify-content:space-around;
     align-items: center;
+    margin-top: 1vh;
 }
 
 .coeur{
     display: flex;
     align-items: center;
 }
+
 .com{
     display: flex;
     align-items: center;
+}
+.nbcoeur{
+    margin-left: 8px;
+}
+.nbcom{
+    margin-left: 8px;
 }
 
 /*---------------------------------------------------------------------------------------------------------------

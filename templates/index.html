@@ -132,18 +132,18 @@
                         </div>
                     </div>
                     <div class="categorie_post">
-                        <p>#{{.PostCategory}}</p>
+                        <p class="C-post">#{{.PostCategory}}</p>
                         <br>
                     </div>
                     <div class="nb_like_post">
                         <div class="coeur">
                             <img src="../static/img/icon/heart.png" alt="image pouce/coeur">
-                            <span>{{.PostLikes}}</span>
+                            <span class="nbcoeur">{{.PostLikes}}</span>
                         </div>
                         <div class="com">
                             <img src="../static/img/icon/commentaire.png" alt="image commentaire">
                             <!-- rajouter templates nb commentaire -->
-                            <span>{{.NbComment}}</span>
+                            <span class="nbcom">{{.NbComment}}</span>
                         </div>
                     </div>
 
@@ -151,9 +151,7 @@
             </div>
             {{end}}
         </div>
-
     </div>
-
 </body>
 <script src="/static/js/index.js"></script>
 </html>
