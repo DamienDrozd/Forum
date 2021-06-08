@@ -192,8 +192,22 @@ body {
     color: whitesmoke;
 }
 
+#btnfilter {
+    background-color: #232323;
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 50%;
+    border: 1px solid whitesmoke;
+    color: whitesmoke;
+    margin-left: 6vw;
+    margin-top: 1vh;
+}
 
-
+#btnfilter:hover {
+    background-color: rgb(233, 89, 89);
+}
 
 
 
