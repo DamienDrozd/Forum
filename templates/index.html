@@ -67,7 +67,7 @@
             <!-- trouver un moyen de rendre random les couleurs des divs -->
             <div class="card-catego">
                 {{range .CategoryList}}
-                <div class="card_categorie" id="card_categorie">
+                <div class="card_categorie" id="{{.CategoryID}}">
                     <a href="#">{{.CategoryName}}</a>
                     <p>{{.CategoryNumber}}</p>
                 </div>
