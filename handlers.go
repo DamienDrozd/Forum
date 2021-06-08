@@ -233,7 +233,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		tablist[i].NbComment = len(tablist[i].TabComment)
 		// fmt.Println(tablist[i].NbComment)
 	}
-
+	out.NbPost = len(tablist)
 	out.CategoryList = CategoryList
 	out.TabList = tablist
 	out.User = user

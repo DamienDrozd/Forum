@@ -68,7 +68,9 @@
                 <form method="post" class="card-catego">
                     <div class="card_categorie" >
                         <button class="Categorie" name="Categorie" value="">All</button>
+                        <p>{{.NbPost}}</p>
                     </div>
+                    
                     {{range .CategoryList}}
                         <div class="card_categorie" id="{{.CategoryID}}">
                             <button class="Categorie" name="Categorie" value="{{.CategoryName}}">{{.CategoryName}}</button>

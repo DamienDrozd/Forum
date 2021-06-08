@@ -37,6 +37,7 @@ type Out struct {
 	TabList      []Post
 	CategoryList []Category
 	User         User
+	NbPost       int
 }
 
 type Post struct {
