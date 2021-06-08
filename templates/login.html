@@ -21,7 +21,9 @@
         </nav>
     </header>
     <div class="connexion">
-        <!-- faire un background noir transparant -->
+        <div class="L-Title">
+            <h1>Connexion</h1>
+        </div>
         <div class="loginForm">
             <p>{{.Error}}</p>
             <form action="" method="GET">
@@ -39,6 +41,31 @@
                     <button class="btn btn-outline-secondary" type="submit">Connexion</button>
                 </div>
             </form>
+        </div>
+        <div class="otherLogin">
+            <div>
+                <p>Ou Connectez-vous avec</p>
+            </div>
+            <div>
+                <div>
+                    <img src="/static/img/icon/facebook.png" alt="facebook">
+                </div>
+                <div>
+                    <img src="/static/img/icon/github.png" alt="github">
+                </div>
+                <div>
+                    <img src="/static/img/icon/google.png" alt="google">
+                </div>
+            </div>
+        </div>
+        <div class="otherLogin">
+            <div>
+                <p>Vous n'avez pas de compte ?</p>
+                <p>Incrivez-vous ici</p>
+            </div>
+            <div>
+                <a href="/register">Inscription</a>
+            </div>
         </div>
     </div>
 </body>
