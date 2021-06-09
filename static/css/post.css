@@ -101,24 +101,13 @@ body {
 */
 /* font-family: 'Lobster', cursive; */
 
-/* .main_content {
-    font-weight: 500;
-    background-color: rgb(0,0,0, 0.8);
-    box-shadow: 0 0 20px 0 rgb(255 255 255);
-    border-radius: 40px;
-    width: 70%;
-    color: whitesmoke;
+.main_content {
+    width: 90%;
     z-index: 1;
     position: relative;
-    top: -4%;
-    left: 15%;
-} */
-
-/* img {
-    width: 32px;
-    border: solid 2px black;
-    border-radius: 20px;
-} */
+    top: -5%;
+    left: 5%;
+}
 
 .padding {
     padding: 25px;
@@ -138,7 +127,8 @@ body {
 
 .post {
     font-weight: 500;
-    background-color: rgb(0,0,0, 0.8);
+    /* background-color: rgb(0,0,0, 0.8); */
+    background-color: #232323;
     box-shadow: 0 0 20px 0 rgb(255 255 255);
     border-radius: 40px;
     width: 70%;
@@ -232,7 +222,8 @@ body {
 
 .comments {
     font-weight: 500;
-    background-color: rgb(0,0,0, 0.8);
+    /* background-color: rgb(0,0,0, 0.8); */
+    background-color: #232323;
     box-shadow: 0 0 10px 0 rgb(255 255 255);
     border-radius: 40px;
     width: 65%;
