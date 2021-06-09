@@ -110,11 +110,13 @@
             <div class="card__post" onclick="location.href='{{.PostURL}}';" style="cursor:pointer;">
                 <div class="cardPost">
                     <div class="avatar">
-                        <div class="img_avatar">
-                            <img src={{.UserAvatar}} alt="avatar">
-                        </div>
-                        <div class="user_post">
-                            <p>{{.UserName}}</p>
+                        <div class="left-side">
+                            <div class="img_avatar">
+                                <img src={{.UserAvatar}} alt="avatar">
+                            </div>
+                            <div class="user_post">
+                                <p>{{.UserName}}</p>
+                            </div>
                         </div>
                         <div class="date_heure_post">
                             <p>{{.PostDateString}}</p>

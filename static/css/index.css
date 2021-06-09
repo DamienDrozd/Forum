@@ -149,6 +149,10 @@ body {
     font-size: 18px;
 }
 
+.Middle-link img {
+    width: 28px;
+}
+
 /* 
 -----------------------------------------------------------------------------------------------------------------
 --------------------------------------------- Main Content -------------------------------------------------------
@@ -294,6 +298,12 @@ body {
     justify-content: space-between;
     margin-bottom: 1vh;
     border-bottom: 1px solid;
+}
+
+.left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .user_post{
