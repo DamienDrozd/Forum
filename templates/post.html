@@ -36,46 +36,47 @@
     </header>
 
     <div class="main_content">
-        <div class="post padding">
-            <div class="tittle_post flex"> 
-                <h1>{{.Post.PostName}}</h1>
-            </div>
-
-            <div class="user_post flex">
-                <div class="user_data flex">
-                    <div class="img_user">
-                        <img src={{.Post.UserAvatar}} alt="avatar">
-                    </div>
-                    <div class="user_name">
-                        <h2>{{.Post.UserName}}</h2>               
-                    </div>
+        <div class="post flex padding">
+            <div class="left padding">
+                <div class="img_user flex">
+                    <img src={{.Post.UserAvatar}} alt="avatar">
                 </div>
-                <div class="date_post">
-                    {{.Post.PostDateString}}
+                <div class="user_name flex">
+                    <p>{{.Post.UserName}}</p>             
                 </div>
             </div>
-
-        
-
-            <!-- categorie du post -->
-            <div class="categories_post">
-                <p>{{.Post.PostCategory}}</p>
+            <div class="right">
+                <div class="tittle_post flex"> 
+                    <h1>{{.Post.PostName}}</h1>
+                </div>
+                
+                <!-- <div class="user_post flex">
+                    <div class="user_data flex">
+                    </div>
+                </div> -->
+                <!-- post -->
+                <div class="post_post">
+                    <!-- template pour recup text du post initial -->
+                    <p>{{.Post.PostDescription}}</p>
+                </div>
+                <!-- categorie du post -->
+                <div class="categories_post">
+                    <p>{{.Post.PostCategory}}</p>
+                </div>
+                
+                <div class="AreaForm_Post">
+                    <form class="form-filter"  method="POST">    
+                        <button class="btn-like" type="submit" name="likes" value="run">J'aime</button>
+                        <span class="nbr_like">{{.Post.PostLikes}}</span>
+                        <button class="btn-dislike" type="submit" name="dislikes" value="run">Je n'aime pas</button>
+                        <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
+                    </form>
+                </div>
+                <div class="date_post flex">
+                    <p class="date_post_p">{{.Post.PostDateString}}</p>
+                </div>
+                
             </div>
-
-            <!-- post -->
-            <div class="post">
-                <!-- template pour recup text du post initial -->
-                <p>{{.Post.PostDescription}}</p>
-            </div>
-
-            <form class="form-filter"  method="POST">
-                    
-                <button class="btn-like" type="submit" name="likes" value="run">J'aime</button>
-                <span class="nbr_like">{{.Post.PostLikes}}</span>
-                <button class="btn-dislike" type="submit" name="dislikes" value="run">Je n'aime pas</button>
-                <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
-                    
-            </form>
 
         </div>
 
@@ -116,7 +117,7 @@
             </form>      
         </div>    
         {{end}}
-        <div class="AreaForm">
+        <div class="AreaForm_Comment">
             <form action="" method="POST">
                 <div id="reponse_user">
                     <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
