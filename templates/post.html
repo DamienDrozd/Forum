@@ -65,7 +65,7 @@
                             <span class="nbr_like">{{.Post.PostLikes}}</span>
                         </div> 
                         <div class="jaimepas flex">
-                            <button class="btn-dislike flex" type="submit" name="dislikes" value="run"><img src="/static/img/icon/broken-heart.png">Je n'aime pas</button>
+                            <button class="btn-dislike flex" type="submit" name="dislikes" value="run"><img src="/static/img/icon/broken-heart.png"></button>
                             <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
                         </div>  
                     </form>
@@ -113,12 +113,14 @@
             </div>
             
             <!-- button like/dislike -->
-            <form class="form-filter"  method="POST">
-                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png">J'aime</button>
-                <span class="nbr_like">{{.CommentLikes}}</span>
-                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png">Je n'aime pas</button>
-                <span class="nbr_dislike">{{.CommentDislikes}}</span>
-            </form>      
+            <div class="AreaForm_Comment">
+                <form class="form-filter"  method="POST">
+                    <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png"></button>
+                    <span class="nbr_like">{{.CommentLikes}}</span>
+                    <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png"></button>
+                    <span class="nbr_dislike">{{.CommentDislikes}}</span>
+                </form>      
+            </div>
         </div>    
         {{end}}
     </div> 
