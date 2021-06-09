@@ -180,22 +180,27 @@ body {
     margin-bottom: 2vh;
 }
 
+.categories_post{
+    display: flex;
+    justify-content: flex-start;
+}
+
 .categories_post p {
     border: 1px solid;
     border-radius: 20px;
     padding: 2px;
     text-align: center;
-    font-weight: bold;
     margin-left: 2vw;
     width: 22%;
+    font-family: 'Lobster';
+    font-weight: 300;
 }
-
 
 
 .btn-like {
     background-color: transparent;
     border-radius: 50px;
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
     border: none;
 }
@@ -208,17 +213,40 @@ body {
 .btn-dislike {
     background-color: transparent;
     border-radius: 50px;
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
     border: none;
+    margin-left: 1vw;
 }
 
 .btn-dislike:hover {
-    border: 1px solid whitesmoke;
+    border: 1px solid rgb(0,0,0, 0.8);
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
+.btn-rep {
+    background-color: rgb(147, 63, 252);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 0.4vh;
+    margin-left: 3vh;
+}
 
+.btn-rep:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+}
+
+.date_post{
+    width: 20%;
+    float: right;
+}
 .date_post_p {
     font-style:italic;
 }
@@ -241,7 +269,7 @@ body {
     color: whitesmoke;
     z-index: 1;
     position: relative;
-    left: 12%;
+    left: 11.5%;
     margin-left: 5vw;
     margin-top: 1vh;
 }
@@ -265,7 +293,7 @@ body {
     color: whitesmoke;
     z-index: 1;
     position: relative;
-    left: 12%;
+    left: 11.5%;
     margin-left: 5vw;
     margin-top: 1vh;
 }

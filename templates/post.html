@@ -59,23 +59,26 @@
                     <p>#{{.Post.PostCategory}}</p>
                 </div>
                 <div class="AreaForm_Post flex">
-                    <form class="form-filter flex"  method="POST"> 
-                        <div class="jaime flex">
-                            <button class="btn-like flex" type="submit" name="likes" value="run"><img src="/static/img/icon/heart.png"></button>
-                            <span class="nbr_like">{{.Post.PostLikes}}</span>
-                        </div> 
-                        <div class="jaimepas flex">
-                            <button class="btn-dislike flex" type="submit" name="dislikes" value="run"><img src="/static/img/icon/broken-heart.png"></button>
-                            <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
-                        </div>  
-                    </form>
+                    <div>
+                        <form class="form-filter flex"  method="POST"> 
+                            <div class="jaime flex">
+                                <button class="btn-like flex" type="submit" name="likes" value="run"><img src="/static/img/icon/heart.png"></button>
+                                <span class="nbr_like">{{.Post.PostLikes}}</span>
+                            </div> 
+                            <div class="jaimepas flex">
+                                <button class="btn-dislike flex" type="submit" name="dislikes" value="run"><img src="/static/img/icon/broken-heart.png"></button>
+                                <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
+                            </div>  
+                        </form>
+                    </div>
+                    <div class="btn-repondre flex">
+                        <button class="btn-rep flex" id="btn-rep">Répondre</button>
+                    </div>
                 </div>
                 <div class="date_post flex">
                     <p class="date_post_p">{{.Post.PostDateString}}</p>
                 </div>
-                
             </div>
-            
         </div>
         
         {{range .Post.TabComment}}
@@ -116,15 +119,15 @@
             </div>
         </div> 
         {{end}}
-        
+
         <!-- zone de commentaire -->
-        <div class="AreaForm_Comment flex padding">
+        <div class="AreaForm_Comment flex padding" id="AreaPost">
             <form action="" method="POST">
                 <div id="reponse_user">
                     <textarea name="comment" id="comment" cols="50" rows="10"></textarea>
                 </div>
                 <div class="btn-reponse_user">
-                    <button type="submit">send comment</button>
+                    <button type="submit">Envoyez</button>
                 </div>
             </form>
         </div>   

@@ -25,4 +25,20 @@ function checkCookies() {
   }
 }
 window.onload = checkCookies();
-  
+
+/*
+--------------------------------------------------
+--------------------TextArea----------------------
+--------------------------------------------------
+*/
+
+var btnRep = document.getElementById("btn-rep");
+var AreaPost = document.getElementById("AreaPost");
+
+btnRep.addEventListener("click", () => {
+  if(getComputedStyle(AreaPost).display != "none"){
+    AreaPost.style.display = "none";
+  } else {
+    AreaPost.style.display = "flex";
+  }
+});
