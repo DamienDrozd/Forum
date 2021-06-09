@@ -50,26 +50,24 @@
                     <h1>{{.Post.PostName}}</h1>
                 </div>
                 
-                <!-- <div class="user_post flex">
-                    <div class="user_data flex">
-                    </div>
-                </div> -->
                 <!-- post -->
                 <div class="post_post">
-                    <!-- template pour recup text du post initial -->
                     <p>{{.Post.PostDescription}}</p>
                 </div>
-                <!-- categorie du post -->
+
                 <div class="categories_post">
                     <p>{{.Post.PostCategory}}</p>
                 </div>
-                
-                <div class="AreaForm_Post">
-                    <form class="form-filter"  method="POST">    
-                        <button class="btn-like" type="submit" name="likes" value="run">J'aime</button>
-                        <span class="nbr_like">{{.Post.PostLikes}}</span>
-                        <button class="btn-dislike" type="submit" name="dislikes" value="run">Je n'aime pas</button>
-                        <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
+                <div class="AreaForm_Post flex">
+                    <form class="form-filter flex"  method="POST"> 
+                        <div class="jaime flex">
+                            <button class="btn-like flex" type="submit" name="likes" value="run"><img src="/static/img/icon/heart.png"></button>
+                            <span class="nbr_like">{{.Post.PostLikes}}</span>
+                        </div> 
+                        <div class="jaimepas flex">
+                            <button class="btn-dislike flex" type="submit" name="dislikes" value="run"><img src="/static/img/icon/broken-heart.png">Je n'aime pas</button>
+                            <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
+                        </div>  
                     </form>
                 </div>
                 <div class="date_post flex">
@@ -77,13 +75,21 @@
                 </div>
                 
             </div>
-
+            
         </div>
-
-
-        <!-- range pour les commentaires -->
+        <!-- zone de commentaire -->
+        <div class="AreaForm_Comment flex padding">
+            <form action="" method="POST">
+                <div id="reponse_user">
+                    <textarea name="comment" id="comment" cols="50" rows="10"></textarea>
+                </div>
+                <div class="btn-reponse_user">
+                    <button type="submit">send comment</button>
+                </div>
+            </form>
+        </div>
+        
         {{range .Post.TabComment}}
-
         <div class="comments padding">
             <!-- user name -->
             <div class="user_name_comment">
@@ -108,23 +114,13 @@
             
             <!-- button like/dislike -->
             <form class="form-filter"  method="POST">
-                J'aime :
-                {{.CommentLikes}}
-                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}>J'aime</button>
-                Je n'aime pas :
-                {{.CommentDislikes}}
-                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}>Je n'aime pas</button>
+                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png">J'aime</button>
+                <span class="nbr_like">{{.CommentLikes}}</span>
+                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png">Je n'aime pas</button>
+                <span class="nbr_dislike">{{.CommentDislikes}}</span>
             </form>      
         </div>    
         {{end}}
-        <div class="AreaForm_Comment">
-            <form action="" method="POST">
-                <div id="reponse_user">
-                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-                    <button type="submit">send comment</button>
-                </div>
-            </form>
-        </div>
     </div> 
 </body>
 <script src="/static/js/post.js"></script>

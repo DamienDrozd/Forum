@@ -114,11 +114,11 @@ body {
     left: 15%;
 } */
 
-img {
+/* img {
     width: 32px;
     border: solid 2px black;
     border-radius: 20px;
-}
+} */
 
 .padding {
     padding: 25px;
@@ -151,6 +151,7 @@ img {
 
 .left {
     width: 15%;
+    border-right: solid 1px whitesmoke;
 }
 
 .right {
@@ -173,9 +174,50 @@ img {
 }
 
 
+.tittle_post h1 {
+    margin-bottom: 2vh;
+    /* border: 1px solid; */
+    /* border-radius: 21px; */
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    padding: 12px;
+}
+
+.post_post {
+    font-size: 24px;
+    text-align: justify;
+    margin-left: 2vw;
+    margin-right: 4vw;
+
+}
 
 
 
+.btn-like {
+    /* background-color: rgb(147, 63, 252); */
+    background-color: rgb(0,0,0, 0.8);
+    /* font-family: 'Lobster', cursive; */
+    /* border: solid 0.2px whitesmoke; */
+    border-radius: 50px;
+    /* color: whitesmoke; */
+    /* text-decoration: none; */
+    padding: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: none;
+}
+
+.btn-dislike {
+    background-color: rgb(147, 63, 252);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
 
 
@@ -203,4 +245,41 @@ img {
     left: 12%;
     margin-left: 5vw;
     margin-top: 1vh;
+}
+
+.img_avatar_comment img{
+    width: 32px;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------TextArea style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.AreaForm_Comment {
+    font-weight: 500;
+    background-color: rgb(0,0,0, 0.8);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+    border-radius: 40px;
+    width: 65%;
+    color: whitesmoke;
+    z-index: 1;
+    position: relative;
+    left: 12%;
+    margin-left: 5vw;
+    margin-top: 1vh;
+}
+
+.AreaForm_Comment textarea{ 
+    margin:15px 0;
+    padding:15px 10px;
+    width:100%;
+    outline:none;
+    border:1px solid whitesmoke;
+    border-radius:20px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+
 }
