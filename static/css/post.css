@@ -101,17 +101,16 @@ body {
 */
 
 .main_content {
-    /* font-family: 'Lobster', cursive; */
     font-weight: 500;
     background-color: rgb(0,0,0, 0.8);
-    box-shadow: 0 0 20px 0 rgb(255, 255, 255);
+    box-shadow: 0 0 20px 0 rgb(255 255 255);
     border-radius: 40px;
-    width: 50vw;
+    width: 70%;
     color: whitesmoke;
     z-index: 1;
     position: relative;
-    top: -2%;
-    left: 25%;
+    top: -4%;
+    left: 15%;
 }
 
 img {

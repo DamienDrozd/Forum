@@ -74,10 +74,10 @@
 
             <form class="form-filter"  method="POST">
                     
-                    <button class="btn-like" type="submit" name="likes" value="run">Like</button>
-                    <span class="nbr_like">{{.Post.PostLikes}}</span>
-                    <button class="btn-dislike" type="submit" name="dislikes" value="run">Dislike</button>
-                    <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
+                <button class="btn-like" type="submit" name="likes" value="run">J'aime</button>
+                <span class="nbr_like">{{.Post.PostLikes}}</span>
+                <button class="btn-dislike" type="submit" name="dislikes" value="run">Je n'aime pas</button>
+                <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
                     
             </form>
 
@@ -112,12 +112,12 @@
             
             <!-- button like/dislike -->
             <form class="form-filter"  method="POST">
-                Likes:
+                J'aime :
                 {{.CommentLikes}}
-                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}>Like</button>
-                Dislikes:
+                <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}>J'aime</button>
+                Je n'aime pas :
                 {{.CommentDislikes}}
-                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}>Dislike</button>
+                <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}>Je n'aime pas</button>
             </form>
             
                   
