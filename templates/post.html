@@ -36,34 +36,30 @@
     </header>
 
     <div class="main_content">
-        <div class="post">
-            <!-- titre du post -->
-            <div class="tittle_post"> 
+        <div class="post padding">
+            <div class="tittle_post flex"> 
                 <h1>{{.Post.PostName}}</h1>
             </div>
-            
-            <!-- pseudo du redacteur du post -->
-            <div class="user_post">
-                <h2>{{.Post.UserName}}</h2>               
+
+            <div class="user_post flex">
+                <div class="user_data flex">
+                    <div class="img_user">
+                        <img src={{.Post.UserAvatar}} alt="avatar">
+                    </div>
+                    <div class="user_name">
+                        <h2>{{.Post.UserName}}</h2>               
+                    </div>
+                </div>
+                <div class="date_post">
+                    {{.Post.PostDateString}}
+                </div>
             </div>
 
-            <!-- image avatar -->
-            <div class="img_user">
-                <img src={{.Post.UserAvatar}} alt="avatar">
-            </div>
-
-            <!-- date du post -->
-            <div class="date_post">
-                {{.Post.PostDateString}}
-            </div>
+        
 
             <!-- categorie du post -->
             <div class="categories_post">
-                <ul>
-                    
-                    <li>{{.Post.PostCategory}}</li>
-                    
-                </ul>
+                <p>{{.Post.PostCategory}}</p>
             </div>
 
             <!-- post -->
@@ -87,8 +83,7 @@
         <!-- range pour les commentaires -->
         {{range .Post.TabComment}}
 
-        <div class="comments">
-
+        <div class="comments padding">
             <!-- user name -->
             <div class="user_name_comment">
                 <h2>{{.UserName}}</h2> 
@@ -118,18 +113,17 @@
                 Je n'aime pas :
                 {{.CommentDislikes}}
                 <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}>Je n'aime pas</button>
-            </form>
-            
-                  
+            </form>      
         </div>    
         {{end}}
-
-        <form action="" method="POST">
-            <div id="reponse_user">
-                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-                <button type="submit">send comment</button>
-            </div>
-        </form>
+        <div class="AreaForm">
+            <form action="" method="POST">
+                <div id="reponse_user">
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    <button type="submit">send comment</button>
+                </div>
+            </form>
+        </div>
     </div> 
 </body>
 <script src="/static/js/post.js"></script>
