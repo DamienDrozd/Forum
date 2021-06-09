@@ -32,6 +32,8 @@ func main() {
 	http.HandleFunc("/index", indexHandler)
 	// Newpost Handler
 	http.HandleFunc("/newpost", newPost)
+	// user Handler
+	http.HandleFunc("/user", user)
 
 	fmt.Println("Server is starting...")
 	fmt.Print("\n")

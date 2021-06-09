@@ -324,8 +324,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 
-	} else {
-		output += "L'email ou le mot de passe n'existe pas"
+	}
+
+	if password != "" && email != "" && user.ID == 0 {
+		output += "L'email ou le mot de passe entré est incorrect"
 	}
 
 	var erroutput Error
@@ -544,6 +546,48 @@ func post(w http.ResponseWriter, r *http.Request) {
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/post.html"))
 	err := templates.ExecuteTemplate(w, "post", Error)
+
+	if err != nil {
+		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	}
+	t := time.Now()
+	fmt.Println("time1:", t.Sub(timestart))
+
+}
+
+/*--------------------------------------------------------------------------------------------
+-------------------------------------- User Page----------------------------------------------
+----------------------------------------------------------------------------------------------*/
+func user(w http.ResponseWriter, r *http.Request) {
+	timestart := time.Now()
+
+	var user User
+	var output Error
+
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			user.Username = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			user.Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			user.ID, _ = strconv.Atoi(cookie.Value)
+		}
+		if cookie.Name == "Email" {
+			user.Email = cookie.Value
+		}
+	}
+
+	if user.ID == 0 {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
+
+	//--------------------------------------------------------------------
+
+	templates := template.New("Label de ma template")
+	templates = template.Must(templates.ParseFiles("./templates/account.html"))
+	err := templates.ExecuteTemplate(w, "user", output)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
