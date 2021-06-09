@@ -228,3 +228,24 @@ func AddLiketoCommenttoDB(typeadd string, nb int, CommentID int) {
 	}
 
 }
+
+func DeletePosttoDB(PostID int) {
+	TabComment := ReadCommenttoDB(PostID)
+
+	for i := range TabComment {
+		DeleteCommenttoDB(TabComment[i].CommentID)
+	}
+
+	stmt, _ := db.Prepare("DELETE FROM post WHERE postid=?;")
+
+	stmt.Exec(PostID)
+
+}
+
+func DeleteCommenttoDB(CommentID int) {
+
+	stmt, _ := db.Prepare("DELETE FROM comments WHERE commentid=?;")
+
+	stmt.Exec(CommentID)
+
+}

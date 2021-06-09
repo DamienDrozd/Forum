@@ -562,7 +562,6 @@ func user(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
 	var user User
-	var output Error
 
 	for _, cookie := range r.Cookies() {
 		if cookie.Name == "Username" {
@@ -583,11 +582,54 @@ func user(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 
+	UserList := ReadUsertoDB()
+	PostList := ReadPosttoDB()
+
+	for i := range UserList {
+		if UserList[i].ID == user.ID {
+			user = UserList[i]
+		}
+	}
+
+	for i := range PostList {
+		if PostList[i].UserID == user.ID {
+			PostList[i].TabComment = ReadCommenttoDB(PostList[i].PostID)
+			user.PostList = append(user.PostList, PostList[i])
+		}
+
+	}
+
+	DeletePost, _ := strconv.Atoi(r.FormValue("delete_post"))
+	DeleteComment, _ := strconv.Atoi(r.FormValue("delete_comment"))
+
+	if DeletePost != 0 {
+		DeletePosttoDB(DeletePost)
+		for i := range user.PostList {
+			if user.PostList[i].PostID == DeletePost {
+
+				user.PostList = append(user.PostList[:i], user.PostList[i+1:]...)
+				break
+
+			}
+		}
+	}
+	if DeleteComment != 0 {
+		DeleteCommenttoDB(DeleteComment)
+		for i := range user.PostList {
+			for j := range user.PostList[i].TabComment {
+				if user.PostList[i].TabComment[j].CommentID == DeleteComment {
+					user.PostList[i].TabComment = append(user.PostList[i].TabComment[:j], user.PostList[i].TabComment[j+1:]...)
+					break
+				}
+			}
+		}
+	}
+
 	//--------------------------------------------------------------------
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/account.html"))
-	err := templates.ExecuteTemplate(w, "user", output)
+	err := templates.ExecuteTemplate(w, "user", user)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message

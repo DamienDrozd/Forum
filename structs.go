@@ -7,11 +7,15 @@ import "time"
 ----------------------------------------------------------------------------------------------*/
 
 type User struct {
-	ID       int
-	Username string
-	Password string
-	Email    string
-	Avatar   string
+	ID           int
+	Username     string
+	Password     string
+	Email        string
+	Avatar       string
+	PostList     []Post
+	CommentList  []Comment
+	PostLiked    []Post
+	PostDisLiked []Post
 }
 
 type Error struct {

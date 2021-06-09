@@ -13,7 +13,75 @@
         <link rel="stylesheet" href="/static/css/index.css">
     </head>
 <body>
+
     
+    <div style="width:100%; color:whitesmoke;" >
+        
+        <p>username : {{.Username}}</p>
+        <p>Avatar : {{.Avatar}}</p>
+        <p>Email : {{.Email}}</p>
+        <p>Liste de posts de l'utilisateur : </p>
+        {{range .PostList}}
+            <div>
+                <form method="post">
+                    <p>Nom du post{{.PostName}}</p>
+                    <p>Catégorie du post : {{.PostCategory}}</p>
+                    <p>Date du post : {{.PostDateString}}</p>
+                    <p>Description : {{.PostDescription}}</p>
+                    <p>URL : {{.PostURL}}</p>
+                    <p>Likes : {{.PostLikes}}</p>
+                    <p>Dislikes : {{.PostDislikes}}</p>
+                    <p>Description : {{.PostDescription}}</p>
+                    <button type="submit" name="delete_post" value={{.PostID}}>delete post</button>
+                    <p>Comments : </p>
+                    {{range .TabComment}}
+                        <div>
+                            <p>{{.CommentMessage}}</p>
+                            <p>{{.CommentLikes}}</p>
+                            <p>{{.CommentDislikes}}</p>
+                            <p>{{.CommentDateString}}</p>
+                            <button type="submit" name="delete_comment" value={{.CommentID}}>delete comment</button>
+                        </div>
+                    {{end}}
+                </form>
+
+                <div>
+                    PostLiked: 
+                    {{range .PostLiked}}
+                    <div>
+                        <p>Nom du post{{.PostName}}</p>
+                        <p>Catégorie du post : {{.PostCategory}}</p>
+                        <p>Date du post : {{.PostDateString}}</p>
+                        <p>Description : {{.PostDescription}}</p>
+                        <p>URL : {{.PostURL}}</p>
+                        <p>Likes : {{.PostLikes}}</p>
+                        <p>Dislikes : {{.PostDislikes}}</p>
+                        <p>Description : {{.PostDescription}}</p>
+                    </div>
+                    {{end}}
+                </div>
+                <div>
+                    PostDisliked: 
+                    {{range .PostDisliked}}
+                    <div>
+                        <p>Nom du post{{.PostName}}</p>
+                        <p>Catégorie du post : {{.PostCategory}}</p>
+                        <p>Date du post : {{.PostDateString}}</p>
+                        <p>Description : {{.PostDescription}}</p>
+                        <p>URL : {{.PostURL}}</p>
+                        <p>Likes : {{.PostLikes}}</p>
+                        <p>Dislikes : {{.PostDislikes}}</p>
+                        <p>Description : {{.PostDescription}}</p>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        {{end}}
+        
+    </div>
+    
+
+
 </body>
 </html>
 {{end}}
