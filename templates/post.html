@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="categories_post">
-                    <p>{{.Post.PostCategory}}</p>
+                    <p>#{{.Post.PostCategory}}</p>
                 </div>
                 <div class="AreaForm_Post flex">
                     <form class="form-filter flex"  method="POST"> 
@@ -76,17 +76,6 @@
                 
             </div>
             
-        </div>
-        <!-- zone de commentaire -->
-        <div class="AreaForm_Comment flex padding">
-            <form action="" method="POST">
-                <div id="reponse_user">
-                    <textarea name="comment" id="comment" cols="50" rows="10"></textarea>
-                </div>
-                <div class="btn-reponse_user">
-                    <button type="submit">send comment</button>
-                </div>
-            </form>
         </div>
         
         {{range .Post.TabComment}}
@@ -113,16 +102,32 @@
             </div>
             
             <!-- button like/dislike -->
-            <div class="AreaForm_Comment">
-                <form class="form-filter"  method="POST">
-                    <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png"></button>
-                    <span class="nbr_like">{{.CommentLikes}}</span>
-                    <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png"></button>
-                    <span class="nbr_dislike">{{.CommentDislikes}}</span>
+            <div class="AreaForm_Like flex">
+                <form class="form-filter flex"  method="POST">
+                    <div class="jaime flex">
+                        <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png"></button>
+                        <span class="nbr_like">{{.CommentLikes}}</span>
+                    </div> 
+                    <div class="jaimepas flex">
+                        <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png"></button>
+                        <span class="nbr_dislike">{{.CommentDislikes}}</span>
+                    </div> 
                 </form>      
             </div>
-        </div>    
+        </div> 
         {{end}}
+        
+        <!-- zone de commentaire -->
+        <div class="AreaForm_Comment flex padding">
+            <form action="" method="POST">
+                <div id="reponse_user">
+                    <textarea name="comment" id="comment" cols="50" rows="10"></textarea>
+                </div>
+                <div class="btn-reponse_user">
+                    <button type="submit">send comment</button>
+                </div>
+            </form>
+        </div>   
     </div> 
 </body>
 <script src="/static/js/post.js"></script>
