@@ -312,6 +312,20 @@ body {
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
+.btn-supcom {
+    background-color: transparent;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    margin-left: 1.5vw;
+}
+
+.btn-supcom:hover {
+    border: 1px solid rgb(0,0,0, 0.8);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+}
+
 /* 
 -----------------------------------------------------------------------------------------------------------------
 ---------------------------------------------TextArea style -------------------------------------------------------
@@ -365,8 +379,10 @@ body {
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
-
-.suppriPost,
+/* 
+.suppriPost{
+    display: none;
+}
 .suppriCom {
     display: none;
-} 
+}  */

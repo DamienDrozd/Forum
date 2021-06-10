@@ -57,40 +57,31 @@ window.onload = checkCookies();
 --------------------------------------------------
 */
 
-function checkCookiesRole() {
-  // var btnSupPost = document.getElementById("suppriPost");
-  // var btnSupCom = document.getElementById("suppriCom");
-  const cookies2 = document.cookie;
-  // console.log("La liste des cookies :", cookies2)
-  const element = [] 
-  element.push(cookies2);
-
-  console.log(element)
-
-  for (const i of element) {
-
-    console.log(i);
-
-    
-  }
-
-
+// function checkCookiesRole() {
+//   var btnSupPost = document.getElementById("btn-sup");
+//   // var btnSupCom = document.getElementById("btn-supcom");
+//   var cookieValue = document.cookie
+//   .split('; ')
+//   .find(row => row.startsWith('Role='))
+//   .split('=')[1];
   
-    
-    
+//   if (cookieValue == undefined) {
+//     if (cookieValue != "admin") {
+//       console.log(cookieValue)
+//       btnSupPost.style.display = "none";
+//       // btnSupCom.style.display = "flex";
+      
+//     } else {
+//       btnSupPost.style.display = "flex";
+//       // console.log("il y a des cookies");
+//       // btnSupCom.style.display = "none";
+//     }
+//   } else {
+//     btnSupPost.style.display = "none";
+//     console.log("pas de cookies ici");
+//   }
+  
+        
+// }
 
-    
-}
-
-  // if (cookies == "") {
-  //   btnSupPost.style.display = "none";
-  //   btnSupCom.style.display = "none";
-    
-  // } else {
-  //   console.log("il y a des cookies");
-  //   btnSupPost.style.display = "flex";
-  //   btnSupCom.style.display = "flex";
-  // }
-
-
-window.onload = checkCookiesRole();
+// window.onload = checkCookiesRole();
