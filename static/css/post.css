@@ -363,3 +363,22 @@ body {
     font-size: 16px;
 
 }
+
+.btn-rep-post {
+    background-color: rgb(63, 66, 252);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 12px 20px;
+    font-size: 22px;
+    cursor: pointer;
+    margin-bottom: 0.4vh;
+    margin-left: 3vh;
+}
+
+.btn-rep-post:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+}
