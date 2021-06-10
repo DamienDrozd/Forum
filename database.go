@@ -47,7 +47,8 @@ const PostTab = `
 		postdislikes		INTEGER NOT NULL,
 		userid				INTEGER NOT NULL,
 		username			TEXT NOT NULL,
-		useravatar			TEXT NOT NULL
+		useravatar			TEXT NOT NULL,
+		validated 			TEXT NOT NULL
 	)`
 const CategoryTab = `
 	CREATE TABLE IF NOT EXISTS category (
@@ -152,7 +153,7 @@ func ReadPosttoDB() []Post {
 
 	for rows.Next() {
 		var u Post
-		err := rows.Scan(&u.PostID, &u.PostName, &u.PostCategory, &u.PostDate, &u.PostDateString, &u.PostDescription, &u.PostURL, &u.PostLikes, &u.PostDislikes, &u.UserID, &u.UserName, &u.UserAvatar)
+		err := rows.Scan(&u.PostID, &u.PostName, &u.PostCategory, &u.PostDate, &u.PostDateString, &u.PostDescription, &u.PostURL, &u.PostLikes, &u.PostDislikes, &u.UserID, &u.UserName, &u.UserAvatar, &u.Validated)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -190,7 +191,7 @@ func InsertPosttoDB(newpost Post) error {
 
 	// fmt.Println(newpost)
 
-	add, err := db.Prepare("INSERT INTO post (postname, postcategory, postdate, postdatestring, postdescription, posturl, postlikes, postdislikes, userid, username, useravatar) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?)")
+	add, err := db.Prepare("INSERT INTO post (postname, postcategory, postdate, postdatestring, postdescription, posturl, postlikes, postdislikes, userid, username, useravatar, validated) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?)")
 	defer add.Close()
 	if err != nil {
 		return err
@@ -198,7 +199,7 @@ func InsertPosttoDB(newpost Post) error {
 
 	fmt.Println("test", add)
 
-	add.Exec(newpost.PostName, newpost.PostCategory, newpost.PostDate, newpost.PostDateString, newpost.PostDescription, newpost.PostURL, newpost.PostLikes, newpost.PostDislikes, newpost.UserID, newpost.UserName, newpost.UserAvatar)
+	add.Exec(newpost.PostName, newpost.PostCategory, newpost.PostDate, newpost.PostDateString, newpost.PostDescription, newpost.PostURL, newpost.PostLikes, newpost.PostDislikes, newpost.UserID, newpost.UserName, newpost.UserAvatar, newpost.Validated)
 	return nil
 
 }
@@ -346,4 +347,10 @@ func PromoteUsertoDB(user User, typeadd string) {
 		stmt.Exec(newrole, user.ID)
 	}
 
+}
+
+func ValidatePosttoDB(PostID int) {
+	stmt, _ := db.Prepare("update post set validated=? where postid=?")
+
+	stmt.Exec("true", PostID)
 }

@@ -276,12 +276,17 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		tablist = tab
 	}
 
-	for i := range tablist {
+	x := len(tablist)
+	for i := 0; i < x; i++ {
 		tablist[i].TabComment = ReadCommenttoDB(tablist[i].PostID)
 		tablist[i].NbComment = len(tablist[i].TabComment)
-		// fmt.Println(tablist[i].NbComment)
+		if tablist[i].Validated == "false" {
+			tablist = append(tablist[:i], tablist[i+1:]...)
+			x = len(tablist)
+			i = -1
+		}
 	}
-	out.NbPost = len(ReadPosttoDB())
+	out.NbPost = len(tablist)
 	out.CategoryList = CategoryList
 	out.TabList = tablist
 	out.User = user
@@ -766,6 +771,51 @@ func admin(w http.ResponseWriter, r *http.Request) {
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/admin.html"))
 	err := templates.ExecuteTemplate(w, "admin", output)
+
+	if err != nil {
+		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	}
+	t := time.Now()
+	fmt.Println("time1:", t.Sub(timestart))
+
+}
+
+/*--------------------------------------------------------------------------------------------
+-------------------------------------- Moderator Page----------------------------------------------
+----------------------------------------------------------------------------------------------*/
+
+func moderator(w http.ResponseWriter, r *http.Request) {
+	timestart := time.Now()
+
+	uploadpost, _ := strconv.Atoi(r.FormValue("uploadpost"))
+	deletepost, _ := strconv.Atoi(r.FormValue("deletepost"))
+
+	if uploadpost != 0 {
+		ValidatePosttoDB(uploadpost)
+	}
+	if deletepost != 0 {
+		DeletePosttoDB(deletepost)
+	}
+
+	var output Out
+	tablist := ReadPosttoDB()
+
+	x := len(tablist)
+	for i := 0; i < x; i++ {
+		if tablist[i].Validated == "true" {
+			tablist = append(tablist[:i], tablist[i+1:]...)
+			x = len(tablist)
+			i = -1
+		}
+	}
+
+	output.TabList = tablist
+
+	//--------------------------------------------------------------------
+
+	templates := template.New("Label de ma template")
+	templates = template.Must(templates.ParseFiles("./templates/moderator.html"))
+	err := templates.ExecuteTemplate(w, "moderator", output)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message

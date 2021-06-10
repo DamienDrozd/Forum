@@ -37,6 +37,8 @@ func main() {
 	http.HandleFunc("/user", user)
 	// admin Handler
 	http.HandleFunc("/admin", admin)
+	// moderator Handler
+	http.HandleFunc("/moderator", moderator)
 
 	fmt.Println("Server is starting...")
 	fmt.Print("\n")

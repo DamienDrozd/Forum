@@ -62,6 +62,7 @@ type Post struct {
 	UserAvatar      string
 	TabComment      []Comment
 	NbComment       int
+	Validated       string
 }
 
 type Category struct {
