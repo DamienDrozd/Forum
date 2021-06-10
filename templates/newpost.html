@@ -40,7 +40,7 @@
         </div>
         <p class="obligation">{{.Error}}</p>
         <div class="NewpostForm flex padding">
-            <form action="/newpost" method="post">
+            <form method="post">
                 <div class="Titre_post">
                     <label for="titre-sujet" id="titre-sujet">Titre du Sujet : </label>
                     <br>
@@ -57,10 +57,17 @@
                         
                     </select>
                 </div>
+                
+                
                 <div class="text_area">
                     <label for="message">Message : </label>
                     <br>
                     <textarea name="message_newpost" id="message_newpost" cols="30" rows="10" value="Ecrivez quelque chose ..." required></textarea>
+                </div>
+                <div class="inputfiles">
+                    <!-- <input type="hidden" name="MAX_FILE_SIZE" value="20000000" /> -->
+                    <input type="file" name="file" multiple />
+                    
                 </div>
                 <div class="btn-newpost flex">
                     <div>

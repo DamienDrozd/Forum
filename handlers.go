@@ -75,6 +75,14 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 		erroutput += "Vous devez être connecté pour ajouter un post"
 	}
 
+	// file, _, _ := r.FormFile("fileupload")
+
+	file, handler, _ := r.FormFile("file")
+
+	// defer file.Close()
+	fmt.Println(file)
+	fmt.Println(handler)
+
 	newpost.PostName = r.FormValue("Titre_sujet")
 	newpost.PostCategory = r.FormValue("categorie")
 	newpost.PostDate = time.Now()
