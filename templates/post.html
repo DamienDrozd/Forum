@@ -1,5 +1,4 @@
 {{define "post"}}
-<!-- faire la page et le style -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -74,15 +73,14 @@
                 </div>
                 <div class="date_post flex">
                     <p class="date_post_p">{{.Post.PostDateString}}</p>
-                    <div class="suppri">
+                    <div class="suppriPost">
                         <form method="post">
-                            <button class="btn-sup" id="btn-like" name="SuprimerPost" value="run"><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                            <button class="btn-sup" id="btn-sup" name="SuprimerPost" value="run"><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        
         {{range .Post.TabComment}}
         <div class="comments flex padding">
             <div class="left padding">
@@ -111,9 +109,9 @@
                 </div>
                 <div class="date_post flex">
                     <p class="date_post_p">{{.CommentDateString}}</p>
-                    <div class="suppri">
+                    <div class="suppriCom">
                         <form method="POST">
-                            <button class="btn-sup" id="btn-sup" name="SuprimerCommentaire" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                            <button class="btn-supcom" id="btn-supcom" name="SuprimerCommentaire" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
                         </form>    
                     </div> 
                 </div>

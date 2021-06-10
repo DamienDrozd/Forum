@@ -1,10 +1,33 @@
 /*
 --------------------------------------------------
+--------------------TextArea----------------------
+--------------------------------------------------
+*/
+
+var AreaPost = document.getElementById("AreaPost");
+var btnCom = document.getElementById("btn-comment");
+
+btnCom.addEventListener("click", () => {
+  if(getComputedStyle(AreaPost).display != "none"){
+    AreaPost.style.display = "none";
+  } else {
+    AreaPost.style.display = "flex";
+  }
+});
+
+
+/*
+---------------------------------------------------------------
+--------------------Cookies Part-------------------------------
+---------------------------------------------------------------
+
+
+--------------------------------------------------
 ------------------Username------------------------
 -----------Connexion/Deconnexion------------------
 --------------------------------------------------
 */
-function checkCookies() {
+function checkCookies(cookies) {
   var btnDeconnexion = document.getElementById("Deconnexion");
   var btnUser = document.getElementById("UserName");
   var btnConnexion = document.getElementById("Connexion");
@@ -24,29 +47,41 @@ function checkCookies() {
     btnUser.style.display = "block";
   }
 }
+
 window.onload = checkCookies();
 
-/*
---------------------------------------------------
---------------------TextArea----------------------
---------------------------------------------------
-*/
-
-var AreaPost = document.getElementById("AreaPost");
-var btnCom = document.getElementById("btn-comment");
-
-btnCom.addEventListener("click", () => {
-  if(getComputedStyle(AreaPost).display != "none"){
-    AreaPost.style.display = "none";
-  } else {
-    AreaPost.style.display = "flex";
-  }
-});
-
-
 
 /*
 --------------------------------------------------
-------------------Admin button--------------------
+---------------Admin/Modo button------------------
 --------------------------------------------------
 */
+
+// function checkCookiesRole() {
+//   var btnSupPost = document.getElementById("btn-sup");
+//   // var btnSupCom = document.getElementById("btn-supcom");
+//   var cookieValue = document.cookie
+//   .split('; ')
+//   .find(row => row.startsWith('Role='))
+//   .split('=')[1];
+  
+//   if (cookieValue == undefined) {
+//     if (cookieValue != "admin") {
+//       console.log(cookieValue)
+//       btnSupPost.style.display = "none";
+//       // btnSupCom.style.display = "flex";
+      
+//     } else {
+//       btnSupPost.style.display = "flex";
+//       // console.log("il y a des cookies");
+//       // btnSupCom.style.display = "none";
+//     }
+//   } else {
+//     btnSupPost.style.display = "none";
+//     console.log("pas de cookies ici");
+//   }
+  
+        
+// }
+
+// window.onload = checkCookiesRole();
