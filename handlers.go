@@ -493,7 +493,12 @@ func post(w http.ResponseWriter, r *http.Request) {
 	}
 
 	SupprimerPost := r.FormValue("SuprimerPost")
-	fmt.Println(SupprimerPost)
+
+	if user.Role == "modo" || user.Role == "admin" {
+		if SupprimerPost != "" {
+			fmt.Println("test")
+		}
+	}
 
 	var postName string
 

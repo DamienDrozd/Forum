@@ -16,7 +16,7 @@ type User struct {
 	PostList     []Post
 	CommentList  []Comment
 	PostLiked    []Post
-	PostDisLiked []Post
+	PostDisliked []Post
 }
 
 type Error struct {
