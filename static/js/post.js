@@ -1,10 +1,33 @@
 /*
 --------------------------------------------------
+--------------------TextArea----------------------
+--------------------------------------------------
+*/
+
+var AreaPost = document.getElementById("AreaPost");
+var btnCom = document.getElementById("btn-comment");
+
+btnCom.addEventListener("click", () => {
+  if(getComputedStyle(AreaPost).display != "none"){
+    AreaPost.style.display = "none";
+  } else {
+    AreaPost.style.display = "flex";
+  }
+});
+
+
+/*
+---------------------------------------------------------------
+--------------------Cookies Part-------------------------------
+---------------------------------------------------------------
+
+
+--------------------------------------------------
 ------------------Username------------------------
 -----------Connexion/Deconnexion------------------
 --------------------------------------------------
 */
-function checkCookies() {
+function checkCookies(cookies) {
   var btnDeconnexion = document.getElementById("Deconnexion");
   var btnUser = document.getElementById("UserName");
   var btnConnexion = document.getElementById("Connexion");
@@ -24,29 +47,50 @@ function checkCookies() {
     btnUser.style.display = "block";
   }
 }
+
 window.onload = checkCookies();
 
+
 /*
 --------------------------------------------------
---------------------TextArea----------------------
+---------------Admin/Modo button------------------
 --------------------------------------------------
 */
 
-var AreaPost = document.getElementById("AreaPost");
-var btnCom = document.getElementById("btn-comment");
+function checkCookiesRole() {
+  // var btnSupPost = document.getElementById("suppriPost");
+  // var btnSupCom = document.getElementById("suppriCom");
+  const cookies2 = document.cookie;
+  // console.log("La liste des cookies :", cookies2)
+  const element = [] 
+  element.push(cookies2);
 
-btnCom.addEventListener("click", () => {
-  if(getComputedStyle(AreaPost).display != "none"){
-    AreaPost.style.display = "none";
-  } else {
-    AreaPost.style.display = "flex";
+  console.log(element)
+
+  for (const i of element) {
+
+    console.log(i);
+
+    
   }
-});
 
 
+  
+    
+    
 
-/*
---------------------------------------------------
-------------------Admin button--------------------
---------------------------------------------------
-*/
+    
+}
+
+  // if (cookies == "") {
+  //   btnSupPost.style.display = "none";
+  //   btnSupCom.style.display = "none";
+    
+  // } else {
+  //   console.log("il y a des cookies");
+  //   btnSupPost.style.display = "flex";
+  //   btnSupCom.style.display = "flex";
+  // }
+
+
+window.onload = checkCookiesRole();
