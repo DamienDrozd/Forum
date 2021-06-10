@@ -41,7 +41,7 @@
         </div>
         <p class="obligation">{{.Error}}</p>
         <div class="NewpostForm flex padding">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data" id="form">
                 <div class="Titre_post">
                     <label for="titre-sujet" id="titre-sujet">Titre du Sujet : </label>
                     <br>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="inputfiles">
                     <!-- <input type="hidden" name="MAX_FILE_SIZE" value="20000000" /> -->
-                    <input type="file" name="file" multiple />
+                    <input class="input file-input" type="file" name="file" multiple />
                     
                 </div>
                 <div class="btn-newpost flex">
