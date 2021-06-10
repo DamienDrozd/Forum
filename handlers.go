@@ -75,13 +75,13 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 		erroutput += "Vous devez être connecté pour ajouter un post"
 	}
 
-	// file, _, _ := r.FormFile("fileupload")
-
-	file, handler, _ := r.FormFile("file")
-
-	// defer file.Close()
-	fmt.Println(file)
-	fmt.Println(handler)
+	// file, fileHeader, err := r.FormFile("file")
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// 	return
+	// }
+	// fmt.Println(file)
+	// fmt.Println(fileHeader)
 
 	newpost.PostName = r.FormValue("Titre_sujet")
 	newpost.PostCategory = r.FormValue("categorie")
@@ -123,10 +123,10 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/newpost.html"))
-	err := templates.ExecuteTemplate(w, "newpost", output)
+	erro := templates.ExecuteTemplate(w, "newpost", output)
 
-	if err != nil {
-		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	if erro != nil {
+		log.Fatalf("Template execution: %s", erro) // If the executetemplate function cannot run, displays an error message
 	}
 	t := time.Now()
 	fmt.Println("time1:", t.Sub(timestart))
