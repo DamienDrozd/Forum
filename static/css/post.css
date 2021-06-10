@@ -292,7 +292,7 @@ body {
 }
 
 .btn-comment {
-    background-color: rgb(147, 63, 252);
+    background-color: rgb(219, 65, 38);
     font-family: 'Lobster', cursive;
     border: solid 0.2px whitesmoke;
     border-radius: 50px;
@@ -306,8 +306,8 @@ body {
 }
 
 .btn-comment:hover {
-    background-color: rgb(255, 231, 17);
-    color: rgb(219, 65, 38);
+    background-color: rgb(147, 63, 252);
+    color: whitesmoke;
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
