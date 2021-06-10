@@ -111,6 +111,7 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 	var output Error
 	output.Error = erroutput
 	output.User = user
+	output.CategoryList = ReadCategorytoDB()
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/newpost.html"))
@@ -491,8 +492,9 @@ func post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Query()["key"] will return an array of items,
-	// we only want the single item.
+	SupprimerPost := r.FormValue("SuprimerPost")
+	fmt.Println(SupprimerPost)
+
 	var postName string
 
 	postName = keys[0]

@@ -52,16 +52,10 @@
                     <label for="categorie_newpost">Choissisez une catégorie : </label>
                     <br>
                     <select name="categorie" id="categorie">
-                        <option value="Informatique">Informatique</option>      
-                        <option value="Technologie">Technologie</option>       
-                        <option value="Jeux-Videos">Jeux-Videos</option> 
-                        <option value="Auto/Moto">Auto/Moto</option>       
-                        <option value="Sport">Sport</option>       
-                        <option value="Environnement">Environnement</option>       
-                        <option value="Savoir&culture">Savoir/Culture</option>       
-                        <option value="Films&Series">Films/Séries</option>       
-                        <option value="Voyages">Voyages</option>       
-                        <option value="Divers">Divers</option>
+                        {{range .CategoryList}}
+                            <option value={{.CategoryName}}>{{.CategoryName}}</option>    
+                        {{end}}  
+                        
                     </select>
                 </div>
                 <div class="text_area">

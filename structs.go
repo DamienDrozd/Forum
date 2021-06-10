@@ -20,9 +20,10 @@ type User struct {
 }
 
 type Error struct {
-	Error string
-	User  User
-	Post  Post
+	Error        string
+	User         User
+	Post         Post
+	CategoryList []Category
 }
 
 type Comment struct {
