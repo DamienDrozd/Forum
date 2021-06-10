@@ -15,6 +15,7 @@ func main() {
 	createDB(PostTab)
 	createDB(UserTab)
 	createDB(CommentTab)
+	createDB(CategoryTab)
 
 	// Serving templates files
 	filesServer := http.FileServer(http.Dir("./static"))
@@ -34,6 +35,8 @@ func main() {
 	http.HandleFunc("/newpost", newPost)
 	// user Handler
 	http.HandleFunc("/user", user)
+	// admin Handler
+	http.HandleFunc("/admin", admin)
 
 	fmt.Println("Server is starting...")
 	fmt.Print("\n")

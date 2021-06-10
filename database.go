@@ -16,7 +16,8 @@ const UserTab = `
 		username	TEXT UNIQUE NOT NULL, 
 		password	TEXT NOT NULL, 
 		email		TEXT UNIQUE NOT NULL,
-		avatar		TEXT
+		avatar		TEXT,
+		role		TEXT
 	)`
 
 const CommentTab = `
@@ -48,6 +49,11 @@ const PostTab = `
 		username			TEXT NOT NULL,
 		useravatar			TEXT NOT NULL
 	)`
+const CategoryTab = `
+	CREATE TABLE IF NOT EXISTS category (
+		categoryid				INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+		categoryname			TEXT NOT NULL UNIQUE
+	)`
 
 func createDB(tab string) error {
 
@@ -65,6 +71,19 @@ func selectAllFromTable(db *sql.DB, table string) *sql.Rows {
 	query := "SELECT * FROM " + table
 	result, _ := db.Query(query)
 	return result
+}
+
+func SendMail(MailType string, comment Comment, post Post) {
+	if MailType == "NewLike" {
+
+	}
+	if MailType == "NewDislike" {
+
+	}
+	if MailType == "NewComment" {
+
+	}
+
 }
 
 //----------------------Lecture----------------------------
@@ -112,7 +131,7 @@ func ReadUsertoDB() []User {
 
 	for rows.Next() {
 		var u User
-		err := rows.Scan(&u.ID, &u.Username, &u.Password, &u.Email, &u.Avatar)
+		err := rows.Scan(&u.ID, &u.Username, &u.Password, &u.Email, &u.Avatar, &u.Role)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -145,6 +164,26 @@ func ReadPosttoDB() []Post {
 
 }
 
+func ReadCategorytoDB() []Category {
+
+	rows := selectAllFromTable(db, "category")
+	// fmt.Println(rows)
+
+	var tab []Category
+
+	for rows.Next() {
+		var u Category
+		err := rows.Scan(&u.CategoryID, &u.CategoryName)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		tab = append(tab, u)
+	}
+
+	return tab
+}
+
 //----------------------écriture----------------------------
 
 func InsertPosttoDB(newpost Post) error {
@@ -168,7 +207,7 @@ func InsertPosttoDB(newpost Post) error {
 func InsertUsertoDB(user User) error {
 
 	user.Avatar = "https://i.redd.it/wellr7jjiv011.jpg"
-	add, err := db.Prepare("INSERT INTO users (username, password, email, avatar) VALUES (?, ?, ?, ?)")
+	add, err := db.Prepare("INSERT INTO users (username, password, email, avatar, role) VALUES (?, ?, ?, ?, ?)")
 	defer add.Close()
 	if err != nil {
 		return err
@@ -176,7 +215,7 @@ func InsertUsertoDB(user User) error {
 
 	user.Password = HashPassword(user.Password)
 
-	add.Exec(user.Username, user.Password, user.Email, user.Avatar)
+	add.Exec(user.Username, user.Password, user.Email, user.Avatar, user.Role)
 	return nil
 }
 
@@ -191,6 +230,18 @@ func InsertCommenttoDB(comment Comment) error {
 	add.Exec(comment.CommentMessage, comment.CommentLikes, comment.CommentDislikes, comment.CommentDate, comment.CommentDateString, comment.PostID, comment.UserID, comment.UserName, comment.UserAvatar)
 	return nil
 
+}
+
+func InsertCategorytoDB(category Category) error {
+
+	add, err := db.Prepare("INSERT INTO category (categoryname) VALUES (?)")
+	defer add.Close()
+	if err != nil {
+		return err
+	}
+
+	add.Exec(category.CategoryName)
+	return nil
 }
 
 func AddLiketoPosttoDB(typeadd string, nb int, PostID int) {
@@ -247,5 +298,52 @@ func DeleteCommenttoDB(CommentID int) {
 	stmt, _ := db.Prepare("DELETE FROM comments WHERE commentid=?;")
 
 	stmt.Exec(CommentID)
+
+}
+
+func DeleteCategorytoDB(CategoryID int) {
+
+	stmt, _ := db.Prepare("DELETE FROM category WHERE categoryid=?;")
+
+	stmt.Exec(CategoryID)
+
+}
+
+func PromoteUsertoDB(user User, typeadd string) {
+
+	if typeadd == "promote" {
+
+		var newrole string
+		stmt, _ := db.Prepare("update users set role=? where id=?")
+
+		if user.Role == "user" {
+			newrole = "modo"
+		}
+		if user.Role == "modo" {
+			newrole = "admin"
+		}
+		if user.Role == "admin" {
+			newrole = "admin"
+		}
+		// fmt.Println(stmt, user.Role, newrole)
+		stmt.Exec(newrole, user.ID)
+	}
+
+	if typeadd == "demote" {
+
+		var newrole string
+		stmt, _ := db.Prepare("update users set role=? where id=?")
+
+		if user.Role == "modo" {
+			newrole = "user"
+		}
+		if user.Role == "admin" {
+			newrole = "modo"
+		}
+		if user.Role == "user" {
+			newrole = "user"
+		}
+		stmt.Exec(newrole, user.ID)
+	}
 
 }

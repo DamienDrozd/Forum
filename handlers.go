@@ -61,6 +61,11 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 			c.MaxAge = -1 // delete cookie
 			http.SetCookie(w, c)
 		}
+		c, _ = r.Cookie("Role")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
 		user = User{}
 	}
 
@@ -106,8 +111,6 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 	var output Error
 	output.Error = erroutput
 	output.User = user
-
-	fmt.Println(output)
 
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/newpost.html"))
@@ -168,6 +171,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			http.SetCookie(w, c)
 		}
 		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Role")
 		if c != nil {
 			c.MaxAge = -1 // delete cookie
 			http.SetCookie(w, c)
@@ -235,14 +243,18 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	CategoryList := make([]Category, len(postmap))
-	x := 0
 
-	for i := range postmap {
-		CategoryList[x].CategoryName = i
-		CategoryList[x].CategoryNumber = postmap[i]
-		CategoryList[x].CategoryID = x + 1
-		x++
+	CategoryList = ReadCategorytoDB()
+
+	for j := range CategoryList {
+		for i := range postmap {
+			if CategoryList[j].CategoryName == i {
+				CategoryList[j].CategoryNumber = postmap[i]
+				break
+			}
+		}
 	}
+
 	categorie := r.FormValue("Categorie")
 
 	if categorie != "" {
@@ -260,7 +272,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		tablist[i].NbComment = len(tablist[i].TabComment)
 		// fmt.Println(tablist[i].NbComment)
 	}
-	out.NbPost = len(tablist)
+	out.NbPost = len(ReadPosttoDB())
 	out.CategoryList = CategoryList
 	out.TabList = tablist
 	out.User = user
@@ -321,6 +333,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, &cookie)
 		cookie = http.Cookie{Name: "Avatar", Value: user.Avatar} //	, Expires: expiration}
 		http.SetCookie(w, &cookie)
+		cookie = http.Cookie{Name: "Role", Value: user.Role} //	, Expires: expiration}
+		http.SetCookie(w, &cookie)
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 
@@ -362,6 +376,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 		Username: pseudo,
 		Email:    email,
 		Password: password,
+		Role:     "user",
 	}
 
 	tab := ReadUsertoDB()
@@ -387,6 +402,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if output == "" {
+
 		InsertUsertoDB(user)
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
@@ -432,7 +448,9 @@ func post(w http.ResponseWriter, r *http.Request) {
 		if cookie.Name == "Email" {
 			user.Email = cookie.Value
 		}
-
+		if cookie.Name == "Role" {
+			user.Role = cookie.Value
+		}
 	}
 
 	deco := r.FormValue("Deconnexion")
@@ -454,6 +472,11 @@ func post(w http.ResponseWriter, r *http.Request) {
 			http.SetCookie(w, c)
 		}
 		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Role")
 		if c != nil {
 			c.MaxAge = -1 // delete cookie
 			http.SetCookie(w, c)
@@ -486,19 +509,20 @@ func post(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	var Comment Comment
+	var comment Comment
 
 	if inputcomment != "" && ID != "" {
-		Comment.CommentMessage = inputcomment
-		Comment.CommentLikes = 0
-		Comment.CommentDislikes = 0
-		Comment.CommentDate = time.Now()
-		Comment.CommentDateString = Comment.CommentDate.Format("2006-01-02 15:04:05")
-		Comment.PostID = output.PostID
-		Comment.UserID, _ = strconv.Atoi(ID)
-		Comment.UserName = UserName
-		Comment.UserAvatar = Avatar
-		InsertCommenttoDB(Comment)
+		comment.CommentMessage = inputcomment
+		comment.CommentLikes = 0
+		comment.CommentDislikes = 0
+		comment.CommentDate = time.Now()
+		comment.CommentDateString = comment.CommentDate.Format("2006-01-02 15:04:05")
+		comment.PostID = output.PostID
+		comment.UserID, _ = strconv.Atoi(ID)
+		comment.UserName = UserName
+		comment.UserAvatar = Avatar
+		InsertCommenttoDB(comment)
+		SendMail("Comment", comment, output)
 	}
 
 	output.TabComment = ReadCommenttoDB(output.PostID)
@@ -506,10 +530,12 @@ func post(w http.ResponseWriter, r *http.Request) {
 	if r.FormValue("likes") == "run" {
 		AddLiketoPosttoDB("likes", output.PostLikes+1, output.PostID)
 		output.PostLikes += 1
+		SendMail("NewLike", Comment{}, output)
 	}
 	if r.FormValue("dislikes") == "run" {
 		AddLiketoPosttoDB("dislikes", output.PostDislikes+1, output.PostID)
 		output.PostDislikes += 1
+		SendMail("NewDislike", Comment{}, output)
 	}
 	// fmt.Println(r.FormValue("CommentLikes"))
 	// fmt.Println(r.FormValue("CommentDislikes"))
@@ -576,6 +602,9 @@ func user(w http.ResponseWriter, r *http.Request) {
 		if cookie.Name == "Email" {
 			user.Email = cookie.Value
 		}
+		if cookie.Name == "Role" {
+			user.Role = cookie.Value
+		}
 	}
 
 	if user.ID == 0 {
@@ -630,6 +659,89 @@ func user(w http.ResponseWriter, r *http.Request) {
 	templates := template.New("Label de ma template")
 	templates = template.Must(templates.ParseFiles("./templates/account.html"))
 	err := templates.ExecuteTemplate(w, "user", user)
+
+	if err != nil {
+		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message
+	}
+	t := time.Now()
+	fmt.Println("time1:", t.Sub(timestart))
+
+}
+
+/*--------------------------------------------------------------------------------------------
+-------------------------------------- Admin Page----------------------------------------------
+----------------------------------------------------------------------------------------------*/
+
+func admin(w http.ResponseWriter, r *http.Request) {
+	timestart := time.Now()
+
+	var user User
+	var output Out
+
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			user.Username = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			user.Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			user.ID, _ = strconv.Atoi(cookie.Value)
+		}
+		if cookie.Name == "Email" {
+			user.Email = cookie.Value
+		}
+		if cookie.Name == "Role" {
+			user.Role = cookie.Value
+		}
+	}
+
+	if user.Role != "admin" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
+
+	TabUser := ReadUsertoDB()
+
+	AddCategory := (r.FormValue("category"))
+	if AddCategory != "" {
+		var NewCategory Category
+		NewCategory.CategoryName = AddCategory
+		InsertCategorytoDB(NewCategory)
+
+	}
+	DeleteCategory, _ := strconv.Atoi((r.FormValue("deletecategory")))
+
+	if DeleteCategory != 0 {
+		DeleteCategorytoDB(DeleteCategory)
+	}
+
+	Promote, _ := strconv.Atoi(r.FormValue("promote"))
+	Demote, _ := strconv.Atoi(r.FormValue("demote"))
+
+	var userpromote User
+
+	for i := range TabUser {
+
+		if TabUser[i].ID == Promote || TabUser[i].ID == Demote {
+			userpromote = TabUser[i]
+		}
+	}
+
+	if Promote != 0 {
+		PromoteUsertoDB(userpromote, "promote")
+	}
+	if Demote != 0 {
+		PromoteUsertoDB(userpromote, "demote")
+	}
+
+	output.TabUser = ReadUsertoDB()
+	output.CategoryList = ReadCategorytoDB()
+
+	//--------------------------------------------------------------------
+
+	templates := template.New("Label de ma template")
+	templates = template.Must(templates.ParseFiles("./templates/admin.html"))
+	err := templates.ExecuteTemplate(w, "admin", output)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err) // If the executetemplate function cannot run, displays an error message

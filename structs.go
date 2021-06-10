@@ -12,6 +12,7 @@ type User struct {
 	Password     string
 	Email        string
 	Avatar       string
+	Role         string
 	PostList     []Post
 	CommentList  []Comment
 	PostLiked    []Post
@@ -40,6 +41,7 @@ type Comment struct {
 type Out struct {
 	TabList      []Post
 	CategoryList []Category
+	TabUser      []User
 	User         User
 	NbPost       int
 }
@@ -62,7 +64,7 @@ type Post struct {
 }
 
 type Category struct {
+	CategoryID     int
 	CategoryName   string
 	CategoryNumber int
-	CategoryID     int
 }
