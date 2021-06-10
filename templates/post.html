@@ -59,7 +59,7 @@
                     <p>#{{.Post.PostCategory}}</p>
                 </div>
                 <div class="AreaForm_Post flex">
-                    <div>
+                    <div class="flex">
                         <form class="form-filter flex"  method="POST"> 
                             <div class="jaime flex">
                                 <button class="btn-like flex" type="submit" name="likes" value="run"><img src="/static/img/icon/heart.png"></button>
@@ -70,17 +70,19 @@
                                 <span class="nbr_dislike">{{.Post.PostDislikes}}</span>
                             </div>  
                         </form>
-                    </div>
-                    <div class="btn-repondre flex">
-                        <button class="btn-rep flex" id="btn-rep">Répondre</button>
+                        <div class="btn-repondre flex">
+                            <button class="btn-rep flex" id="btn-rep">Répondre</button>
+                        </div>
                     </div>
                 </div>
                 <div class="date_post flex">
                     <p class="date_post_p">{{.Post.PostDateString}}</p>
                 </div>
-                <form method="post">
-                        <button class="Deconnexion" id="Deconnexion" name="SuprimerPost" value="run">SuprimerPost</a>
-                </form>
+                <div class="suppri">
+                    <form method="post">
+                        <button class="btn-sup" id="btn-like" name="SuprimerPost" value="run"><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                    </form>
+                </div>
             </div>
         </div>
         
@@ -120,9 +122,11 @@
                     </div> 
                 </form>      
             </div>
-            <form method="POST">
-                <button class="Deconnexion" id="Deconnexion" name="SuprimerCommentaire" value={{.CommentID}}>SuprimerCommentaire</a>
-            </form>    
+            <div class="suppri">
+                <form method="POST">
+                    <button class="btn-sup" id="btn-sup" name="SuprimerCommentaire" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                </form>    
+            </div>
         </div> 
         {{end}}
         <!-- zone de commentaire -->

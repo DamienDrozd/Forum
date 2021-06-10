@@ -239,6 +239,27 @@ body {
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
+.btn-sup {
+    background-color: transparent;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    margin-left: 1.5vw;
+}
+
+.btn-sup:hover {
+    border: 1px solid rgb(0,0,0, 0.8);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+}
+
+
+.suppri {
+    /* margin-left: 1.5vw; */
+}
+
+
+
 .date_post{
     width: 20%;
     float: right;
