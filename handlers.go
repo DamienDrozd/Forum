@@ -492,14 +492,6 @@ func post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	SupprimerPost := r.FormValue("SuprimerPost")
-
-	if user.Role == "modo" || user.Role == "admin" {
-		if SupprimerPost != "" {
-			fmt.Println("test")
-		}
-	}
-
 	var postName string
 
 	postName = keys[0]
@@ -513,6 +505,23 @@ func post(w http.ResponseWriter, r *http.Request) {
 	for i := range tablist {
 		if tablist[i].PostName == postName {
 			output = tablist[i]
+		}
+	}
+
+	SupprimerPost := r.FormValue("SuprimerPost")
+
+	if user.Role == "modo" || user.Role == "admin" {
+		if SupprimerPost != "" {
+			DeletePosttoDB(output.PostID)
+			http.Redirect(w, r, "/", http.StatusSeeOther)
+		}
+	}
+
+	SupprimerComment, _ := strconv.Atoi(r.FormValue("SuprimerCommentaire"))
+
+	if user.Role == "modo" || user.Role == "admin" {
+		if SupprimerComment != 0 {
+			DeleteCommenttoDB(SupprimerComment)
 		}
 	}
 
