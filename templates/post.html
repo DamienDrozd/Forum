@@ -110,7 +110,7 @@
                             <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png"></button>
                             <span class="nbr_dislike">{{.CommentDislikes}}</span>
                         </div> 
-                    </form>      
+                    </form>
                 </div>
                 <div class="date_post flex">
                     <p class="date_post_p">{{.CommentDateString}}</p>
@@ -123,6 +123,9 @@
             </div>
         </div> 
         {{end}}
+        <div class="btn-repondre flex">
+            <button class="btn-comment flex" id="btn-comment">Répondre</button>
+        </div>      
         <!-- zone de commentaire -->
         <div class="AreaForm_Comment flex padding" id="AreaPost">
             <form action="" method="POST">

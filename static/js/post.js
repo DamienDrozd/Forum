@@ -34,6 +34,7 @@ window.onload = checkCookies();
 
 var btnRep = document.getElementById("btn-rep");
 var AreaPost = document.getElementById("AreaPost");
+var btnCom = document.getElementById("btn-comment");
 
 btnRep.addEventListener("click", () => {
   if(getComputedStyle(AreaPost).display != "none"){
@@ -42,6 +43,15 @@ btnRep.addEventListener("click", () => {
     AreaPost.style.display = "flex";
   }
 });
+
+btnCom.addEventListener("click", () => {
+  if(getComputedStyle(AreaPost).display != "none"){
+    AreaPost.style.display = "none";
+  } else {
+    AreaPost.style.display = "flex";
+  }
+});
+
 
 
 /*

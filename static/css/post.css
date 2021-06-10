@@ -270,7 +270,6 @@ body {
 */
 
 .comments {
-    font-weight: 500;
     background-color: #232323;
     box-shadow: 0 0 10px 0 rgb(255 255 255);
     border-radius: 40px;
@@ -290,6 +289,45 @@ body {
     width: 80px;
     border: solid 2px whitesmoke;
     border-radius: 20px;
+}
+.user_name_comment p {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.commentaire_user {
+    font-size: 24px;
+    text-align: justify;
+    margin-left: 2vw;
+    margin-right: 3vw;
+    margin-top: 4vh;
+    margin-bottom: 5vh;
+    justify-content: flex-start;
+}
+
+.commentaire_user p{
+    overflow-wrap: anywhere ;
+}
+
+.btn-comment {
+    background-color: rgb(147, 63, 252);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 12px 50px;
+    font-size: 25px;
+    cursor: pointer;
+    margin-bottom: 0.4vh;
+    margin-left: 3vw;
+    margin-top: 2vh;
+}
+
+.btn-comment:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
 /* 
