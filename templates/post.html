@@ -77,55 +77,49 @@
                 </div>
                 <div class="date_post flex">
                     <p class="date_post_p">{{.Post.PostDateString}}</p>
-                </div>
-                <div class="suppri">
-                    <form method="post">
-                        <button class="btn-sup" id="btn-like" name="SuprimerPost" value="run"><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
-                    </form>
+                    <div class="suppri">
+                        <form method="post">
+                            <button class="btn-sup" id="btn-like" name="SuprimerPost" value="run"><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
         
         {{range .Post.TabComment}}
-        <div class="comments padding">
-            <!-- user name -->
-            <div class="user_name_comment">
-                <h2>{{.UserName}}</h2> 
+        <div class="comments flex padding">
+            <div class="left padding">
+                <div class="img_avatar_comment flex">
+                    <img src={{.UserAvatar}} alt="avatar">
+                </div>
+                <div class="user_name_comment flex">
+                    <p>{{.UserName}}</p>            
+                </div>
             </div>
-
-            <!-- img avatar -->
-            <div class="img_avatar_comment">
-                <!-- templates img avatar -->
-                <img src={{.UserAvatar}} alt="avatar">
-            </div>
-            
-            <!-- date et heure commentaire -->
-            <div class="date_comment">
-                <p>{{.CommentDateString}}</p>
-            </div>
-
-            <!-- commentaire -->
-            <div class="commentaire_user">
-                <p>{{.CommentMessage}}</p>
-            </div>
-            
-            <!-- button like/dislike -->
-            <div class="AreaForm_Like flex">
-                <form class="form-filter flex"  method="POST">
-                    <div class="jaime flex">
-                        <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png"></button>
-                        <span class="nbr_like">{{.CommentLikes}}</span>
+            <div class="right">
+                <div class="commentaire_user flex">
+                    <p>{{.CommentMessage}}</p>
+                </div>
+                <div class="AreaForm_Like flex">
+                    <form class="form-filter flex"  method="POST">
+                        <div class="jaime flex">
+                            <button class="btn-like" type="submit" name="CommentLikes" value={{.CommentID}}><img src="/static/img/icon/heart.png"></button>
+                            <span class="nbr_like">{{.CommentLikes}}</span>
+                        </div> 
+                        <div class="jaimepas flex">
+                            <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png"></button>
+                            <span class="nbr_dislike">{{.CommentDislikes}}</span>
+                        </div> 
+                    </form>      
+                </div>
+                <div class="date_post flex">
+                    <p class="date_post_p">{{.CommentDateString}}</p>
+                    <div class="suppri">
+                        <form method="POST">
+                            <button class="btn-sup" id="btn-sup" name="SuprimerCommentaire" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                        </form>    
                     </div> 
-                    <div class="jaimepas flex">
-                        <button class="btn-dislike" type="submit" name="CommentDislikes" value={{.CommentID}}><img src="/static/img/icon/broken-heart.png"></button>
-                        <span class="nbr_dislike">{{.CommentDislikes}}</span>
-                    </div> 
-                </form>      
-            </div>
-            <div class="suppri">
-                <form method="POST">
-                    <button class="btn-sup" id="btn-sup" name="SuprimerCommentaire" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
-                </form>    
+                </div>
             </div>
         </div> 
         {{end}}

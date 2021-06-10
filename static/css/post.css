@@ -254,12 +254,6 @@ body {
 }
 
 
-.suppri {
-    /* margin-left: 1.5vw; */
-}
-
-
-
 .date_post{
     width: 20%;
     float: right;
@@ -289,8 +283,13 @@ body {
     margin-top: 1vh;
 }
 
-.img_avatar_comment img{
-    width: 32px;
+.img_avatar_comment {
+    margin-bottom: 1vh;
+}
+.img_avatar_comment img {
+    width: 80px;
+    border: solid 2px whitesmoke;
+    border-radius: 20px;
 }
 
 /* 
