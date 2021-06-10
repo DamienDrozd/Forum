@@ -220,24 +220,6 @@ body {
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
-.btn-rep {
-    background-color: rgb(147, 63, 252);
-    font-family: 'Lobster', cursive;
-    border: solid 0.2px whitesmoke;
-    border-radius: 50px;
-    color: whitesmoke;
-    padding: 12px;
-    font-size: 20px;
-    cursor: pointer;
-    margin-bottom: 0.4vh;
-    margin-left: 3vh;
-}
-
-.btn-rep:hover {
-    background-color: rgb(255, 231, 17);
-    color: rgb(219, 65, 38);
-    box-shadow: 0 0 10px 0 rgb(255 255 255);
-}
 
 .btn-sup {
     background-color: transparent;
@@ -252,7 +234,6 @@ body {
     border: 1px solid rgb(0,0,0, 0.8);
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
-
 
 .date_post{
     width: 20%;
