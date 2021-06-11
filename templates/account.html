@@ -42,12 +42,16 @@
                 <div class="img_user flex">
                     <img src={{.Avatar}} alt="avatar">
                 </div>
+                <div class="role_user flex">
+                    <label for="Role"> Rôle : </label>
+                    <p>{{.Role}}</p>
+                </div>
             </div>
             <div class="right padding">
                 <div class="info flex">
                     <h1>Information</h1>
                 </div>
-                <div class="user_name">
+                <div class="user_name flex">
                     <label for="Username"> Pseudo : </label>
                     <br>
                     <p> {{.Username}}</p>             
@@ -56,11 +60,6 @@
                     <label for="Email"> E-mail : </label>
                     <br>
                     <p>{{.Email}}</p>
-                </div>
-                <div class="role_user">
-                    <label for="Role"> Role : </label>
-                    <br>
-                    <p>{{.Role}}</p>
                 </div>
 
             </div>

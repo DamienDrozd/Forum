@@ -101,7 +101,7 @@ body {
 -----------------------------------------------------------------------------------------------------------------
 */
 .main_content {
-    background-color: rgb(0,0,0, 0.8);
+    background-color: #232323;
     box-shadow: 0 0 20px 0 rgb(255, 255, 255);
     width: 70%;
     position: relative;
@@ -129,20 +129,54 @@ body {
 -----------------------------------------------------------------------------------------------------------------
 */
 
+.userinfo label {
+    font-size: 22px ;
+    font-family: 'Lobster', cursive;
+}
+
 .left {
     width: 15%;
     border-right: solid 1px whitesmoke;
+}
+
+.role_user p{
+    margin-left: 3%;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.img_user {
+    margin-bottom: 1vh;
+}
+
+.img_user img {
+    width: 80px;
+    border: solid 2px whitesmoke;
+    border-radius: 20px;
 }
 
 .right {
     width: 85%;
 }
 
-.img_user {
-    margin-bottom: 1vh;
+.info {
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    margin-bottom: 2.5vh;
 }
-.img_user img {
-    width: 80px;
-    border: solid 2px whitesmoke;
-    border-radius: 20px;
+
+.info h1 {
+    font-family: 'Lobster', cursive;
+    font-weight: 500;
+}
+
+.user_name {
+    margin-top: -0.5vh;
+    justify-content: flex-start;
+}
+
+.user_name p {
+    margin-left: 1vw;
+    font-size: 20px;
+    font-style: italic;
 }
