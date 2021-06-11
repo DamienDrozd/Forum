@@ -101,7 +101,7 @@ body {
 -----------------------------------------------------------------------------------------------------------------
 */
 .main_content {
-    background-color: #232323;
+    background-color: rgba(0, 0, 0, 0.856);
     box-shadow: 0 0 20px 0 rgb(255, 255, 255);
     width: 70%;
     position: relative;
@@ -212,7 +212,26 @@ body {
 ---------------------------------------------ContentPost------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
-
 .postinfo {
     overflow-y: scroll;
+}
+
+.postinfo a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.post_de_user {
+    background-color: #232323;
+    border: 1px solid whitesmoke;
+    border-radius: 40px;
+    width: 60%;
+}
+
+.like img{
+    width: 20px;
+}
+.dislike img{
+    width: 20px;
+
 }
