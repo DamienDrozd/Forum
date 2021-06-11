@@ -371,19 +371,67 @@ body {
     align-items: center;
 }
 
+.author {
+    width: 100%;
+}
+
 .footer {
     background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
     width: 94vw;
-    height: 25vh;
+    height: 30vh;
     border-radius: 100px;
     margin-left: 3vw;
     margin-top: 3vh;
     font-family: 'Lobster', cursive;
     color: whitesmoke;
 }
+
+.Admin_modo {
+    margin-top: 2vh;
+}
+
+.ADMIN {
+    background-color: rgb(233, 89, 89);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 14px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 1vh;
+    margin-top: 2vh;
+}
+
+.ADMIN:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+.MODO {
+    background-color: rgb(63, 66, 252);
+    font-family: 'Lobster', cursive;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 14px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 2vh;
+}
+
+.MODO:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
 
 .footergithub {
     background-color: #232323;
@@ -392,6 +440,11 @@ body {
     border-radius: 50%;
     color: whitesmoke;
     margin-top: 2vh;
+}
+
+.footergithub:hover{
+    border: 1px solid rgb(0,0,0, 0.8);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
 
 .footergithub img {
@@ -430,6 +483,7 @@ body {
 }
 
 .footerlink:hover {
+    background-color: rgb(147, 63, 252);
     color: tomato;
 }
 
