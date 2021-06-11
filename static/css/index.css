@@ -321,6 +321,7 @@ body {
 
 .post_ {
     text-align: justify;
+    overflow-wrap: anywhere;
 }
 
 .categorie_post{
