@@ -69,15 +69,31 @@
         {{range .PostList}}
             <div class="postinfo">
                 <a href="{{.PostURL}}">Voir le poste</a>
-                <form method="post">
-                    <p>Nom du post{{.PostName}}</p>
-                    <p>Catégorie du post : {{.PostCategory}}</p>
-                    <p>Date du post : {{.PostDateString}}</p>
-                    <p>Description : {{.PostDescription}}</p>
-                    <p>URL : {{.PostURL}}</p>
-                    <p>Likes : {{.PostLikes}}</p>
-                    <p>Dislikes : {{.PostDislikes}}</p>
-                    <p>Description : {{.PostDescription}}</p>
+                <form method="post" class="">
+                    <div class="post_de_user">
+                        <div class="nom_post">
+                            <p>Titre du Poste : {{.PostName}}</p>
+                        </div>
+                        <div class="post_content">
+                            <p>Description : {{.PostDescription}}</p>
+                        </div>
+                        <div class="post_categorie">
+                            <p>Catégorie du post : {{.PostCategory}}</p>
+                        </div>
+                        <div class="like&dislike flex">
+                            <div class="like">
+                                <span><img src="/static/img/icon/heart.png"> {{.PostLikes}}</span>
+                            </div>
+                            <div class="dislike">
+                                <span><img src="/static/img/icon/broken-heart.png"> {{.PostDislikes}}</span>
+                            </div>
+                        </div>
+                        <div class="date_post">
+                            <p>{{.PostDateString}}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- <p>Description : {{.PostDescription}}</p> -->
                     <button type="submit" name="delete_post" value={{.PostID}}>delete post</button>
                     <p>Comments : </p>
                     {{range .TabComment}}
