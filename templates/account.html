@@ -67,29 +67,34 @@
             <h1>Vos postes</h1>
         </div>
         {{range .PostList}}
+        <!-- posts user -->
             <div class="postinfo">
                 <form method="post" class="">
                     <a href="{{.PostURL}}" class="link flex">
-                        <div class="post_de_user">
+                        <div class="post_de_user padding">
                             <div class="nom_post flex">
-                                <p>Titre du Poste : {{.PostName}}</p>
+                                <div class="flex">
+                                    <label for="T-post"> Titre : </label>
+                                    <p>{{.PostName}}</p>
+                                </div>
+                                <div class="date_post">
+                                    <p>{{.PostDateString}}</p>
+                                </div>
                             </div>
                             <div class="post_content flex">
-                                <p>Description : {{.PostDescription}}</p>
+                                <label for="C-post"> Poste : </label>
+                                <p>{{.PostDescription}}</p>
                             </div>
-                            <div class="post_categorie">
-                                <p>Catégorie du post : {{.PostCategory}}</p>
-                            </div>
-                            <div class="like_dislike flex">
-                                <div class="like">
-                                    <span><img src="/static/img/icon/heart.png"> {{.PostLikes}}</span>
+                            <div class="post_categorie flex">
+                                <p>#{{.PostCategory}}</p>
+                                <div class="like_dislike flex">
+                                    <div class="like">
+                                        <span><img src="/static/img/icon/heart.png"> {{.PostLikes}}</span>
+                                    </div>
+                                    <div class="dislike">
+                                        <span><img src="/static/img/icon/broken-heart.png"> {{.PostDislikes}}</span>
+                                    </div>
                                 </div>
-                                <div class="dislike">
-                                    <span><img src="/static/img/icon/broken-heart.png"> {{.PostDislikes}}</span>
-                                </div>
-                            </div>
-                            <div class="date_post">
-                                <p>{{.PostDateString}}</p>
                             </div>
                             <button type="submit" name="delete_post" value={{.PostID}}>delete post</button>
                         </div>

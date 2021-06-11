@@ -225,7 +225,42 @@ body {
     background-color: #232323;
     border: 1px solid whitesmoke;
     border-radius: 40px;
-    width: 60%;
+    width: 70%;
+}
+
+.nom_post {
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.nom_post label {
+    font-size: 22px ;
+    font-family: 'Lobster', cursive;
+}
+
+.nom_post p {
+    margin-left: 1vw;
+    font-size: 17px;
+}
+
+.post_content {
+    padding: 10px;
+    margin-top: -0.5vh;
+}
+.post_content label {
+    font-size: 22px ;
+    font-family: 'Lobster', cursive;
+}
+
+.post_content p {
+    margin-left: 1vw;
+    font-size: 17px;
+    overflow-wrap: anywhere ;
+}
+
+.post_categorie {
+    justify-content: space-between;
 }
 
 .like img{

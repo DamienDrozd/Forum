@@ -174,8 +174,11 @@ body {
     margin-right: 3vw;
     margin-top: 1.5vh;
     margin-bottom: 2vh;
+    overflow-wrap: anywhere ;
 }
 
+.post_post p {
+}
 .categories_post{
     display: flex;
     justify-content: flex-start;
