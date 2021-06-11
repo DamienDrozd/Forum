@@ -323,7 +323,8 @@ body {
 */
 
 .commentaire {
-    height: 20vh;
+    margin-bottom: 2vh;
+    height: 24vh;
     overflow-y: scroll;
 }
 
