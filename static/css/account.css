@@ -1,0 +1,218 @@
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: whitesmoke; 
+    background-color : #232323;
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 1;
+}
+
+* {
+  margin: 0;
+}
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.navbar {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 6vh;
+    
+} 
+
+#forum_tittle{
+    margin-left: 1vw;
+} 
+#forum_tittle {
+    font-size: 25px;
+}
+
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 35px;
+    font-weight: 900;
+} 
+
+#menu {
+    display: flex;
+    align-items: center;
+}
+
+#menu a {
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#menu a:hover {
+    color: tomato;
+}
+.Deconnexion {
+    font-family: 'Lobster', cursive;
+    background: none;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: 1vw;
+}
+
+.Deconnexion:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+
+.Inscription {
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+}
+
+.Inscription:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Content style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+.main_content {
+    background-color: #232323;
+    box-shadow: 0 0 20px 0 rgb(255, 255, 255);
+    width: 70%;
+    position: relative;
+    top: -4%;
+    left: 15%;
+    border-radius: 40px;
+    color: whitesmoke;
+    z-index: 1;
+
+}
+
+.padding {
+    padding: 25px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listepost-T {
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    margin-bottom: 2.5vh;
+    margin-left: 4vw;
+    margin-right: 3.5vw;
+}
+.listepost-T h1{
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Content bottom------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.userinfo label {
+    font-size: 22px ;
+    font-family: 'Lobster', cursive;
+}
+
+.left {
+    width: 15%;
+    border-right: solid 1px whitesmoke;
+}
+
+.role_user p{
+    margin-left: 3%;
+    font-style: italic;
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+.img_user {
+    margin-bottom: 1vh;
+}
+
+.img_user img {
+    width: 90px;
+    border: solid 2px whitesmoke;
+    border-radius: 20px;
+}
+
+.right {
+    width: 85%;
+    margin-bottom: 3vh;
+}
+
+.info {
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    margin-bottom: 2.5vh;
+}
+
+.info h1 {
+    font-family: 'Lobster', cursive;
+    font-weight: 500;
+}
+
+.user_name {
+    margin-top: -0.5vh;
+    justify-content: flex-start;
+}
+
+.user_name p {
+    margin-left: 1vw;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.user_email {
+    margin-top: 0.5vh;
+    justify-content: flex-start;
+}
+
+.user_email p {
+    margin-left: 1vw;
+    font-size: 18px;
+    font-style: italic;
+}
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------ContentPost------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.postinfo {
+    overflow-y: scroll;
+}
