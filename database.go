@@ -3,8 +3,6 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"io"
-	"io/ioutil"
 	"log"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -372,13 +370,6 @@ func InsertImagetoDB(image Image) error {
 		fmt.Println(err)
 	}
 
-	out, _ := ioutil.TempFile("temp-images", "upload-*.png")
-	defer out.Close()
-	io.Copy(out, image.Image)
-
-	fmt.Println(out)
-	fmt.Println(image.Image)
-
-	add.Exec(out, image.PostID)
+	add.Exec(image.Image, image.PostID)
 	return nil
 }

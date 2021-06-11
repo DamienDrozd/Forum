@@ -77,19 +77,19 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 		erroutput += "Vous devez être connecté pour ajouter un post"
 	}
 
-	var AddImage Image
+	// var AddImage Image
 
-	file, handler, _ := r.FormFile("file")
+	// file, handler, _ := r.FormFile("file")
 
-	AddImage.Image = file
+	// AddImage.Image = file
 
-	fmt.Printf("Uploaded File: %+v\n", handler.Filename)
-	fmt.Printf("File Size: %+v\n", handler.Size)
-	fmt.Printf("MIME Header: %+v\n", handler.Header)
+	// fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+	// fmt.Printf("File Size: %+v\n", handler.Size)
+	// fmt.Printf("MIME Header: %+v\n", handler.Header)
 
-	AddImage.PostID = ReadPosttoDB()[len(ReadPosttoDB())-1].PostID + 1
+	// AddImage.PostID = ReadPosttoDB()[len(ReadPosttoDB())-1].PostID + 1
 
-	InsertImagetoDB(AddImage)
+	// InsertImagetoDB(AddImage)
 
 	newpost.PostName = r.FormValue("Titre_sujet")
 	newpost.PostCategory = r.FormValue("categorie")
@@ -622,6 +622,7 @@ func post(w http.ResponseWriter, r *http.Request) {
 -------------------------------------- User Page----------------------------------------------
 ----------------------------------------------------------------------------------------------*/
 func user(w http.ResponseWriter, r *http.Request) {
+
 	timestart := time.Now()
 
 	var user User
@@ -642,6 +643,37 @@ func user(w http.ResponseWriter, r *http.Request) {
 		if cookie.Name == "Role" {
 			user.Role = cookie.Value
 		}
+	}
+
+	deco := r.FormValue("Deconnexion")
+
+	if deco == "run" {
+		c, _ := r.Cookie("Username")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Email")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Avatar")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Role")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		user = User{}
 	}
 
 	if user.ID == 0 {
