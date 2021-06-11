@@ -106,22 +106,34 @@
                     <div class="listeCom-P flex">
                         <h2>Les commentaires</h2>
                     </div>
-                    {{range .TabComment}}
-                        <div>
-                            <p>{{.CommentMessage}}</p>
-                            <p></p>
-                            <div class="like_dislike flex">
-                                <div class="like">
-                                    <span><img src="/static/img/icon/heart.png"> {{.CommentLikes}}</span>
-                                </div>
-                                <div class="dislike">
-                                    <span><img src="/static/img/icon/broken-heart.png"> {{.CommentDislikes}}</span>
+                    <!-- les commentaires -->
+                    <div class="commentaire scroller">
+                        {{range .TabComment}}
+                            <div class="flex">
+                                <div class="post__comment flex padding">
+                                    <div class="post_comment_descrip flex">
+                                        <p>{{.CommentMessage}}</p>
+                                    </div>
+                                    <div class="date_ld_sup flex margin3vw">
+                                        <div class="date_comment">
+                                            <p>{{.CommentDateString}}</p>
+                                        </div>
+                                        <div class="like_dislike flex">
+                                            <div class="like">
+                                                <span><img src="/static/img/icon/heart.png"> {{.CommentLikes}}</span>
+                                            </div>
+                                            <div class="dislike">
+                                                <span><img src="/static/img/icon/broken-heart.png"> {{.CommentDislikes}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="suppost">
+                                            <button class="btn-sup"type="submit" name="delete_comment" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <p>{{.CommentDateString}}</p>
-                            <button class="btn-sup"type="submit" name="delete_comment" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
-                        </div>
-                    {{end}}
+                        {{end}}
+                    </div>
                 </form>
             </div>
         {{end}}

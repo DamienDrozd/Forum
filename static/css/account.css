@@ -321,3 +321,33 @@ body {
 ---------------------------------------------CommentPost------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
+
+.commentaire {
+    height: 20%;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-button {
+    /* width: 10px; */
+    /* width: 300px; */
+    /* height: 100px; */
+    /* overflow-y: scroll; */
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+}
+
+.post__comment{
+    background-color: #232323;
+    border: 1px solid whitesmoke;
+    border-radius: 40px;
+    width: 50%;
+    margin-bottom: 2vh;
+}
+
+.post_comment_descrip {
+    margin-bottom: 1vh;
+}
+
+.date_ld_sup {
+    justify-content: space-between;
+}
