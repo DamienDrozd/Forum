@@ -72,7 +72,7 @@
                 <form method="post" class="">
                     <a href="{{.PostURL}}" class="link flex">
                         <div class="post_de_user padding">
-                            <div class="nom_post flex">
+                            <div class="nom_post flex margin3vw">
                                 <div class="flex">
                                     <label for="T-post"> Titre : </label>
                                     <p>{{.PostName}}</p>
@@ -81,11 +81,11 @@
                                     <p>{{.PostDateString}}</p>
                                 </div>
                             </div>
-                            <div class="post_content">
+                            <div class="post_content margin3vw">
                                 <label for="C-post"> Poste : </label>
                                 <p>{{.PostDescription}}</p>
                             </div>
-                            <div class="post_categorie flex">
+                            <div class="post_categorie flex margin3vw">
                                 <div class="Catego">
                                     <p>#{{.PostCategory}}</p>
                                 </div>
@@ -103,7 +103,9 @@
                             </div>
                         </div>
                     </a>
-                    <p>Comments : </p>
+                    <div class="listeCom-P flex">
+                        <h2>Les commentaires</h2>
+                    </div>
                     {{range .TabComment}}
                         <div>
                             <p>{{.CommentMessage}}</p>
@@ -117,7 +119,7 @@
                                 </div>
                             </div>
                             <p>{{.CommentDateString}}</p>
-                            <button type="submit" name="delete_comment" value={{.CommentID}}>delete comment</button>
+                            <button class="btn-sup"type="submit" name="delete_comment" value={{.CommentID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
                         </div>
                     {{end}}
                 </form>

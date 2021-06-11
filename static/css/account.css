@@ -113,6 +113,11 @@ body {
 
 }
 
+.margin3vw {
+    margin-right: 3vw;
+    margin-left: 3vw;
+}
+
 .padding {
     padding: 25px;
 }
@@ -131,6 +136,20 @@ body {
     margin-right: 3.5vw;
 }
 .listepost-T h1{
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+}
+
+.listeCom-P {
+    width: 50%;
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    margin-bottom: 2.5vh;
+    margin-left: 18vw;
+    margin-right: 3.5vw;
+    margin-top: 2vh;
+}
+.listeCom-P h2{
     font-family: 'Lobster', cursive;
     font-weight: 400;
 }
@@ -212,9 +231,6 @@ body {
 ---------------------------------------------ContentPost------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 */
-.postinfo {
-    overflow-y: scroll;
-}
 
 .postinfo a {
     text-decoration: none;
@@ -259,6 +275,7 @@ body {
     margin-bottom: 1vh;
     font-size: 17px;
     overflow-wrap: anywhere ;
+    text-align: justify;
 }
 
 .post_categorie {
@@ -298,3 +315,9 @@ body {
     border: 1px solid rgb(0,0,0, 0.8);
     box-shadow: 0 0 10px 0 rgb(255 255 255);
 }
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------CommentPost------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
