@@ -37,21 +37,30 @@
 
     
     <div class="main_content">
-        <div class="post flex padding">
+        <div class="userinfo flex padding">
             <div class="left padding">
                 <div class="img_user flex">
                     <img src={{.Avatar}} alt="avatar">
                 </div>
             </div>
             <div class="right padding">
-                <div class="user_name ">
-                    <p>Pseudo : {{.Username}}</p>             
+                <div class="info flex">
+                    <h1>Information</h1>
+                </div>
+                <div class="user_name">
+                    <label for="Username"> Pseudo : </label>
+                    <br>
+                    <p> {{.Username}}</p>             
                 </div>
                 <div class="user_email">
-                    <p>Email : {{.Email}}</p>
+                    <label for="Email"> E-mail : </label>
+                    <br>
+                    <p>{{.Email}}</p>
                 </div>
                 <div class="role_user">
-                    <p>Role : {{.Role}}</p>
+                    <label for="Role"> Role : </label>
+                    <br>
+                    <p>{{.Role}}</p>
                 </div>
 
             </div>
