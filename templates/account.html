@@ -63,9 +63,11 @@
                 </div>
             </div>
         </div>
-        <p>Liste de posts de l'utilisateur : </p>
+        <div class="listepost-T flex">
+            <h1>Vos postes</h1>
+        </div>
         {{range .PostList}}
-            <div>
+            <div class="postinfo">
                 <form method="post">
                     <p>Nom du post{{.PostName}}</p>
                     <p>Catégorie du post : {{.PostCategory}}</p>
@@ -90,6 +92,10 @@
                 </form>
             </div>
         {{end}}
+
+        <div class="listepost-T flex">
+            <h1>Vos Commentaires</h1>
+        </div>
 
             <div>
                 PostLiked: 
