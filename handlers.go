@@ -636,6 +636,37 @@ func user(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	deco := r.FormValue("Deconnexion")
+
+	if deco == "run" {
+		c, _ := r.Cookie("Username")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Email")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Avatar")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("ID")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		c, _ = r.Cookie("Role")
+		if c != nil {
+			c.MaxAge = -1 // delete cookie
+			http.SetCookie(w, c)
+		}
+		user = User{}
+	}
+
 	if user.ID == 0 {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
