@@ -68,6 +68,7 @@
         </div>
         {{range .PostList}}
             <div class="postinfo">
+                <a href="{{.PostURL}}">Voir le poste</a>
                 <form method="post">
                     <p>Nom du post{{.PostName}}</p>
                     <p>Catégorie du post : {{.PostCategory}}</p>
@@ -88,15 +89,15 @@
                             <button type="submit" name="delete_comment" value={{.CommentID}}>delete comment</button>
                         </div>
                     {{end}}
-            
                 </form>
             </div>
         {{end}}
 
         <div class="listepost-T flex">
-            <h1>Vos Commentaires</h1>
+            <h1>Vos Likes et Dislikes</h1>
         </div>
 
+        <div>
             <div>
                 PostLiked: 
                 {{range .PostLiked}}
@@ -128,7 +129,7 @@
                 </div>
                 {{end}}
             </div>
-            
+        </div> 
         
         
     </div>
