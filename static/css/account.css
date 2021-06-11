@@ -1,0 +1,128 @@
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: whitesmoke; 
+    background-color : #232323;
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 1;
+}
+
+* {
+  margin: 0;
+}
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.navbar {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 6vh;
+    
+} 
+
+#forum_tittle{
+    margin-left: 1vw;
+} 
+#forum_tittle {
+    font-size: 25px;
+}
+
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 35px;
+    font-weight: 900;
+} 
+
+#menu {
+    display: flex;
+    align-items: center;
+}
+
+#menu a {
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#menu a:hover {
+    color: tomato;
+}
+.Deconnexion {
+    font-family: 'Lobster', cursive;
+    background: none;
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+    color: whitesmoke;
+    padding: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: 1vw;
+}
+
+.Deconnexion:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+
+.Inscription {
+    border: solid 0.2px whitesmoke;
+    border-radius: 50px;
+}
+
+.Inscription:hover {
+    background-color: rgb(255, 231, 17);
+    color: rgb(219, 65, 38);
+    border-radius: 50px;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Content style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+.main_content {
+    background-color: rgb(0,0,0, 0.8);
+    box-shadow: 0 0 20px 0 rgb(255, 255, 255);
+    width: 70%;
+    position: relative;
+    top: -4%;
+    left: 15%;
+    border-radius: 40px;
+    color: whitesmoke;
+    z-index: 1;
+
+}
+
+.padding {
+    padding: 25px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 30px;
+}
