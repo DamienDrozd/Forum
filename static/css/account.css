@@ -345,6 +345,83 @@ body {
 }
 
 
+/* 
+-----------------------------------------------------------------------------------------------------------------
+-------------------------------------Liked/Disliked Post---------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.Post_liked_disliked {
+    justify-content: space-between;
+}
+
+.Post_liked {
+    width: 50%;
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    margin-bottom: 2.5vh;
+    margin-right: 10vw;
+    margin-top: -2vh;
+}
+.Post_disliked {
+    width: 50%;
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    margin-bottom: 2.5vh;
+    margin-left:  3.5vw;
+    margin-top: -2vh;
+}
+.T-PL h2{
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*----------------Scrollbar-----------------*/
 ::-webkit-scrollbar {

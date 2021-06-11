@@ -138,40 +138,64 @@
             </div>
         {{end}}
 
-        <div class="listepost-T flex">
+        <div class="listepost-T flex margin3vw">
             <h1>Vos Likes et Dislikes</h1>
         </div>
-
-        <div>
-            <div>
-                PostLiked: 
-                {{range .PostLiked}}
-                <div>
-                    <p>Nom du post{{.PostName}}</p>
-                    <p>Catégorie du post : {{.PostCategory}}</p>
-                    <p>Date du post : {{.PostDateString}}</p>
-                    <p>Description : {{.PostDescription}}</p>
-                    <p>URL : {{.PostURL}}</p>
-                    <p>Likes : {{.PostLikes}}</p>
-                    <p>Dislikes : {{.PostDislikes}}</p>
-                    <p>Description : {{.PostDescription}}</p>
+        <!-- likeetdislikespost -->
+        <div class="Post_liked_disliked flex padding margin3vw">
+            <div class="Post_liked">
+                <div class="T-PL flex">
+                    <h2>Postes que vous aimez : </h2>
                 </div>
+                {{range .PostLiked}}
+                    <a href="{{.PostURL}}" class="link flex">
+                        <div class="Post-liked-p padding">
+                            <div class="nom_post flex margin3vw">
+                                <div class="flex">
+                                    <label for="T-post"> Titre : </label>
+                                    <p>{{.PostName}}</p>
+                                </div>
+                                <div class="date_post">
+                                    <p>{{.PostDateString}}</p>
+                                </div>
+                            </div>
+                            <div class="post_content margin3vw">
+                                <label for="C-post"> Poste : </label>
+                                <p>{{.PostDescription}}</p>
+                            </div>
+                            <div class="Catego">
+                                <p>#{{.PostCategory}}</p>
+                            </div>
+                        </div>
+                    </a>
                 {{end}}
                 
             </div>
-            <div>
-                PostDisliked: 
-                {{range .PostDisliked}}
-                <div>
-                    <p>Nom du post{{.PostName}}</p>
-                    <p>Catégorie du post : {{.PostCategory}}</p>
-                    <p>Date du post : {{.PostDateString}}</p>
-                    <p>Description : {{.PostDescription}}</p>
-                    <p>URL : {{.PostURL}}</p>
-                    <p>Likes : {{.PostLikes}}</p>
-                    <p>Dislikes : {{.PostDislikes}}</p>
-                    <p>Description : {{.PostDescription}}</p>
+            <div class="Post_disliked">
+                <div class="T-PL flex">
+                    <h2>Postes que vous n'aimez pas : </h2>
                 </div>
+                {{range .PostDisliked}}
+                    <a href="{{.PostURL}}" class="link flex">     
+                        <div class="Post-liked-p padding">
+                            <div class="nom_post flex margin3vw">
+                                <div class="flex">
+                                    <label for="T-post"> Titre : </label>
+                                    <p>{{.PostName}}</p>
+                                </div>
+                                <div class="date_post">
+                                    <p>{{.PostDateString}}</p>
+                                </div>
+                            </div>
+                            <div class="post_content margin3vw">
+                                <label for="C-post"> Poste : </label>
+                                <p>{{.PostDescription}}</p>
+                            </div>
+                            <div class="Catego">
+                                <p>#{{.PostCategory}}</p>
+                            </div>
+                        </div>            
+                    </a>
                 {{end}}
             </div>
         </div> 
