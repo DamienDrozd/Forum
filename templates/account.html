@@ -81,12 +81,14 @@
                                     <p>{{.PostDateString}}</p>
                                 </div>
                             </div>
-                            <div class="post_content flex">
+                            <div class="post_content">
                                 <label for="C-post"> Poste : </label>
                                 <p>{{.PostDescription}}</p>
                             </div>
                             <div class="post_categorie flex">
-                                <p>#{{.PostCategory}}</p>
+                                <div class="Catego">
+                                    <p>#{{.PostCategory}}</p>
+                                </div>
                                 <div class="like_dislike flex">
                                     <div class="like">
                                         <span><img src="/static/img/icon/heart.png"> {{.PostLikes}}</span>
@@ -95,8 +97,10 @@
                                         <span><img src="/static/img/icon/broken-heart.png"> {{.PostDislikes}}</span>
                                     </div>
                                 </div>
+                                <div class="suppost">
+                                    <button class="btn-sup" type="submit" name="delete_post" value={{.PostID}}><img src="/static/img/icon/supprimer.png" alt="supprimer"></button>
+                                </div>
                             </div>
-                            <button type="submit" name="delete_post" value={{.PostID}}>delete post</button>
                         </div>
                     </a>
                     <p>Comments : </p>
