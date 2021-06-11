@@ -140,3 +140,21 @@ body {
     font-size: 20px;
 
 }
+
+/*----------------Scrollbar-----------------*/
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid #232323;
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 12px;
+    background-color: rgb(147, 63, 252);
+    border-radius: 10px;
+}
+/*------------------------------------------*/

@@ -323,17 +323,8 @@ body {
 */
 
 .commentaire {
-    height: 20%;
+    height: 20vh;
     overflow-y: scroll;
-}
-
-::-webkit-scrollbar-button {
-    /* width: 10px; */
-    /* width: 300px; */
-    /* height: 100px; */
-    /* overflow-y: scroll; */
-    scrollbar-color: rebeccapurple green;
-    scrollbar-width: thin;
 }
 
 .post__comment{
@@ -351,3 +342,23 @@ body {
 .date_ld_sup {
     justify-content: space-between;
 }
+
+
+
+/*----------------Scrollbar-----------------*/
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid #232323;
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 12px;
+    background-color: rgb(147, 63, 252);
+    border-radius: 10px;
+}
+/*------------------------------------------*/
