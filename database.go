@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -54,6 +56,13 @@ const CategoryTab = `
 	CREATE TABLE IF NOT EXISTS category (
 		categoryid				INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
 		categoryname			TEXT NOT NULL UNIQUE
+	)`
+
+const ImageTab = `
+	CREATE TABLE IF NOT EXISTS image (
+		imageid				INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+		image				BLOB NOT NULL, 
+		postid				INTEGER NOT NULL
 	)`
 
 func createDB(tab string) error {
@@ -353,4 +362,23 @@ func ValidatePosttoDB(PostID int) {
 	stmt, _ := db.Prepare("update post set validated=? where postid=?")
 
 	stmt.Exec("true", PostID)
+}
+
+func InsertImagetoDB(image Image) error {
+
+	add, err := db.Prepare("INSERT INTO image (image, postid) VALUES (?, ?)")
+	defer add.Close()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	out, _ := ioutil.TempFile("temp-images", "upload-*.png")
+	defer out.Close()
+	io.Copy(out, image.Image)
+
+	fmt.Println(out)
+	fmt.Println(image.Image)
+
+	add.Exec(out, image.PostID)
+	return nil
 }

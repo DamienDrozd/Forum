@@ -16,6 +16,7 @@ func main() {
 	createDB(UserTab)
 	createDB(CommentTab)
 	createDB(CategoryTab)
+	createDB(ImageTab)
 
 	// Serving templates files
 	filesServer := http.FileServer(http.Dir("./static"))

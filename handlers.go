@@ -8,6 +8,8 @@ import (
 	"text/template"
 	"time"
 
+	_ "image/png"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -75,13 +77,19 @@ func newPost(w http.ResponseWriter, r *http.Request) {
 		erroutput += "Vous devez être connecté pour ajouter un post"
 	}
 
-	// file, fileHeader, err := r.FormFile("file")
-	// if err != nil {
-	// 	http.Error(w, err.Error(), http.StatusBadRequest)
-	// 	return
-	// }
-	// fmt.Println(file)
-	// fmt.Println(fileHeader)
+	var AddImage Image
+
+	file, handler, _ := r.FormFile("file")
+
+	AddImage.Image = file
+
+	fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+	fmt.Printf("File Size: %+v\n", handler.Size)
+	fmt.Printf("MIME Header: %+v\n", handler.Header)
+
+	AddImage.PostID = ReadPosttoDB()[len(ReadPosttoDB())-1].PostID + 1
+
+	InsertImagetoDB(AddImage)
 
 	newpost.PostName = r.FormValue("Titre_sujet")
 	newpost.PostCategory = r.FormValue("categorie")
@@ -786,6 +794,30 @@ func admin(w http.ResponseWriter, r *http.Request) {
 
 func moderator(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
+
+	var user User
+
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			user.Username = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			user.Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			user.ID, _ = strconv.Atoi(cookie.Value)
+		}
+		if cookie.Name == "Email" {
+			user.Email = cookie.Value
+		}
+		if cookie.Name == "Role" {
+			user.Role = cookie.Value
+		}
+	}
+
+	if user.Role != "admin" && user.Role != "modo" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
 
 	uploadpost, _ := strconv.Atoi(r.FormValue("uploadpost"))
 	deletepost, _ := strconv.Atoi(r.FormValue("deletepost"))

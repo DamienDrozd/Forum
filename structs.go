@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"mime/multipart"
+	"time"
+)
 
 /*--------------------------------------------------------------------------------------------
 -------------------------------------- Type Struct -------------------------------------------
@@ -69,4 +72,10 @@ type Category struct {
 	CategoryID     int
 	CategoryName   string
 	CategoryNumber int
+}
+
+type Image struct {
+	ImageID int
+	Image   multipart.File
+	PostID  int
 }
