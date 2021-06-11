@@ -177,8 +177,6 @@ body {
     overflow-wrap: anywhere ;
 }
 
-.post_post p {
-}
 .categories_post{
     display: flex;
     justify-content: flex-start;
