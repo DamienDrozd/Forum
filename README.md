@@ -11,8 +11,6 @@ Forum consists in creating a web forum that allows to :
 The Forum Project started on Thursday May 20, and the submission date was set for Sunday June 13 at 11:59 pm.
 
 
-
-
 ## How to execute the program ?
 
 ```console
@@ -30,7 +28,6 @@ blablab :
 *   Likes and Dislikes
 *   Filter
 *   Docker
-
 
 
 ## Docker
