@@ -1,7 +1,5 @@
 # Forum
 
-the link fo our website : https://forum-golang-dacd.netlify.app/
-
 ## Objectives :
 
 Forum consists in creating a web forum that allows to :
