@@ -22,17 +22,42 @@
             </div>
         </nav>
     </header>
-
-    <div style="width:100%; color:whitesmoke;" >
-        <form method="post">
-        {{range .TabUser}}
-            <p>username : {{.Username}}</p>
-            <p>Avatar : {{.Avatar}}</p>
-            <p>Email : {{.Email}}</p>
-            <p>Role : {{.Role}}</p>
-            <button type="submit" name="promote" value={{.ID}}>promote</button>
-            <button type="submit" name="demote" value={{.ID}}>demote</button>
-        {{end}}
+    <div class="M-Title flex">
+        <h2>Listes des utilisateurs : </h2> 
+    </div>
+    <div class="bg">
+        <form method="post" class="adminform">
+            <div class="carduser flex">
+                {{range .TabUser}}
+                    <div class="userinfo flex padding">
+                        <div class="left padding">
+                            <div class="img_user flex">
+                                <img src={{.Avatar}} alt="avatar">
+                            </div>
+                            <div class="role_user flex">
+                                <label for="Role"> Rôle : </label>
+                                <p>{{.Role}}</p>
+                            </div>
+                        </div>
+                        <div class="right padding">
+                            <div class="user_name flex">
+                                <label for="Username"> Pseudo : </label>
+                                <br>
+                                <p> {{.Username}}</p>             
+                            </div>
+                            <div class="user_email flex">
+                                <label for="Email"> E-mail : </label>
+                                <br>
+                                <p>{{.Email}}</p>
+                            </div>
+                            <div class="btnpromote flex padding">
+                                <button class="btnpromotion" type="submit" name="promote" value={{.ID}}>Promouvoir</button>
+                                <button class="btndemote" type="submit" name="demote" value={{.ID}}>Rétrograder</button>
+                            </div>
+                        </div>
+                    </div>
+                {{end}}
+            </div>
 
             <div class="category">
                 <label for="username"> add category : </label>
@@ -44,9 +69,12 @@
             <p>{{.CategoryName}}</p>
             <button type="submit" name="deletecategory" value={{.CategoryID}}>deletecategory</button>
         {{end}}
-
-
         </form>
+    </div>
+    <div class="flex" style="margin-top: 3vh; margin-bottom: 2vh;">
+        <div class="returnbtn flex">
+            <a class="flex" href="/index">Retour</a>
+        </div>
     </div>
 </body>
 </html>
