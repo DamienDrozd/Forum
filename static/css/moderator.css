@@ -1,0 +1,150 @@
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: whitesmoke; 
+    background-color : #232323;
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 1;
+}
+
+* {
+  margin: 0;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.navbar {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 6vh;
+    
+} 
+
+#forum_tittle{
+    margin-left: 1vw;
+} 
+
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 60px;
+    font-weight: 200;
+}
+
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Post style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.bg {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1000px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    grid-column-gap: 4vw;
+    grid-row-gap: 5vh;
+    /* background-color: #232323; */
+}
+
+
+.card__post {
+    background-color: whitesmoke;
+    color: #232323;
+    width: 100%;
+    border-radius: 40px;
+}
+
+.card__post .avatar img {
+    width: 32px;
+    border: solid 2px black;
+    border-radius: 20px;
+}
+
+.cardPost {
+    padding: 20px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+    border-bottom: 1px solid;
+}
+
+.left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_post{
+    margin-left: 1vh;
+}
+
+.user_post p {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.date_heure_post {
+    margin-left: 3vw;
+}
+
+.post_ {
+    text-align: justify;
+    overflow-wrap: anywhere;
+}
+
+.categorie_post{
+    margin-top: 1vh;
+}
+
+.C-post{
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.nb_like_post {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin-top: 1vh;
+}
+
+.coeur{
+    display: flex;
+    align-items: center;
+}
+
+.com{
+    display: flex;
+    align-items: center;
+}
+.nbcoeur{
+    margin-left: 8px;
+}
+.nbcom{
+    margin-left: 8px;
+}

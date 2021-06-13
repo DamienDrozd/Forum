@@ -8,57 +8,69 @@
         <title>Projet Forum</title>
         <link rel="icon" href="/static/img/icon/forum.png">
         <!-- fontstyle -->
+        <link rel="stylesheet" href="/static/css/moderator.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/static/css/index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap" rel="stylesheet">   
     </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div id="forum_tittle">
+                <a href="/index">Modérateur</a>
+            </div>
+        </nav>
+    </header>
 
     <div style="width:100%; color:whitesmoke;" >
         affichage des posts a valider: 
     </div>
-        {{range .TabList}}
-            <div class="card__post" >
-                <div class="cardPost">
-                    <div class="avatar">
-                        <div class="left-side">
-                            <div class="img_avatar">
-                                <img src={{.UserAvatar}} alt="avatar">
+        <div class="bg">
+
+            {{range .TabList}}
+                <div class="card__post" >
+                    <div class="cardPost">
+                        <div class="avatar">
+                            <div class="left-side">
+                                <div class="img_avatar">
+                                    <img src={{.UserAvatar}} alt="avatar">
+                                </div>
+                                <div class="user_post">
+                                    <p>{{.UserName}}</p>
+                                </div>
                             </div>
-                            <div class="user_post">
-                                <p>{{.UserName}}</p>
+                            <div class="date_heure_post">
+                                <p>{{.PostDateString}}</p>
                             </div>
                         </div>
-                        <div class="date_heure_post">
-                            <p>{{.PostDateString}}</p>
+                        <div class="Poste">
+                            <div class="title_post">
+                                <h2>{{.PostName}}</h2>
+                                <br>
+                            </div>
+                            <div class="post_">
+                                <p>{{.PostDescription}}</p>
+                                <br>
+                            </div>
                         </div>
-                    </div>
-                    <div class="Poste">
-                        <div class="title_post">
-                            <h2>{{.PostName}}</h2>
+                        <div class="categorie_post">
+                            <p class="C-post">{{.PostCategory}}</p>
                             <br>
                         </div>
-                        <div class="post_">
-                            <p>{{.PostDescription}}</p>
-                            <br>
-                        </div>
+                        {{.Validated}}
+                        <form method="post">
+                            <div>
+                                <button type="submit" name="uploadpost" value={{.PostID}}>uploadpost</button>
+                            </div>
+                            <div>
+                                <button type="submit" name="deletepost" value={{.PostID}}>deletepost</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="categorie_post">
-                        <p class="C-post">{{.PostCategory}}</p>
-                        <br>
-                    </div>
-                    {{.Validated}}
-                    <form method="post">
-                        <div>
-                            <button type="submit" name="uploadpost" value={{.PostID}}>uploadpost</button>
-                        </div>
-                        <div>
-                            <button type="submit" name="deletepost" value={{.PostID}}>deletepost</button>
-                        </div>
-                    </form>
                 </div>
-            </div>
-        {{end}}
+            {{end}}
+        </div>
     </div>
 </body>
 </html>
