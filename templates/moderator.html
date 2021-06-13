@@ -23,11 +23,10 @@
         </nav>
     </header>
 
-    <div style="width:100%; color:whitesmoke;" >
-        affichage des posts a valider: 
+    <div class="M-Title flex">
+        <h2>Listes des postes à valider : </h2> 
     </div>
         <div class="bg">
-
             {{range .TabList}}
                 <div class="card__post" >
                     <div class="cardPost">
@@ -55,21 +54,26 @@
                             </div>
                         </div>
                         <div class="categorie_post">
-                            <p class="C-post">{{.PostCategory}}</p>
+                            <p class="C-post">#{{.PostCategory}}</p>
                             <br>
                         </div>
                         {{.Validated}}
-                        <form method="post">
+                        <form method="post" class="formcheck flex">
                             <div>
-                                <button type="submit" name="uploadpost" value={{.PostID}}>uploadpost</button>
+                                <button class="btn-sup" id="btn-sup" type="submit" name="uploadpost" value={{.PostID}}><img style="width: 30px;"src="/static/img/icon/check.png" alt="validé"></button>
                             </div>
                             <div>
-                                <button type="submit" name="deletepost" value={{.PostID}}>deletepost</button>
+                                <button class="btn-sup" id="btn-sup" type="submit" name="deletepost" value={{.PostID}}><img style="width: 25px;"src="/static/img/icon/croix.png" alt="validé"></button>
                             </div>
                         </form>
                     </div>
                 </div>
             {{end}}
+        </div>
+        <div class="flex" style="margin-top: 3vh; margin-bottom: 2vh;">
+            <div class="returnbtn flex">
+                <a class="flex" href="/index">Retour</a>
+            </div>
         </div>
     </div>
 </body>
