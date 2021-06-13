@@ -1,0 +1,49 @@
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: whitesmoke; 
+    background-color : #232323;
+    background-image: url("https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 1;
+}
+
+* {
+  margin: 0;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Navbar style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+.navbar {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 6vh;
+    
+} 
+
+
+#forum_tittle a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 60px;
+    font-weight: 200;
+}
