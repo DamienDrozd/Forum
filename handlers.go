@@ -818,6 +818,30 @@ func admin(w http.ResponseWriter, r *http.Request) {
 func moderator(w http.ResponseWriter, r *http.Request) {
 	timestart := time.Now()
 
+	var user User
+
+	for _, cookie := range r.Cookies() {
+		if cookie.Name == "Username" {
+			user.Username = cookie.Value
+		}
+		if cookie.Name == "Avatar" {
+			user.Avatar = cookie.Value
+		}
+		if cookie.Name == "ID" {
+			user.ID, _ = strconv.Atoi(cookie.Value)
+		}
+		if cookie.Name == "Email" {
+			user.Email = cookie.Value
+		}
+		if cookie.Name == "Role" {
+			user.Role = cookie.Value
+		}
+	}
+
+	if user.Role != "admin" && user.Role != "modo" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
+
 	uploadpost, _ := strconv.Atoi(r.FormValue("uploadpost"))
 	deletepost, _ := strconv.Atoi(r.FormValue("deletepost"))
 
