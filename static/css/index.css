@@ -5,6 +5,7 @@ body {
   font-family: 'Montserrat Alternates', sans-serif;
   color: #232323; 
   background-color : #232323;
+  width: 100vw;
 }
 
 * {
