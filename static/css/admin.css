@@ -65,7 +65,7 @@ body {
     font-family: 'Lobster', cursive;
     font-weight: 300;
     font-size: 25px;
-    margin-top: -2vh;
+    margin-top: 2vh;
     margin-bottom: 4vh;
 }
 
@@ -80,6 +80,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-column-gap: 4vw;
     grid-row-gap: 5vh;
+    overflow-y: scroll;
+    height: 30vh;
 }
 
 .userinfo {
@@ -190,9 +192,43 @@ body {
     border-radius: 50px;
 }
 
+/* 
+-----------------------------------------------------------------------------------------------------------------
+---------------------------------------------Categorie style -------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+*/
 
+.category {
+    border-bottom: 1px solid whitesmoke;
+    justify-content: space-between;
+    border-radius: 30px;
+}
 
+.category:hover {
+    background-color: rgb(147, 63, 252);
+    border-radius: 30px;
+}
+.bg2 {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #232323;
+    border-radius: 30px;
+}
 
+.btn-sup {
+    background-color: transparent;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    margin-left: 1.5vw;
+}
+
+.btn-sup:hover {
+    border: 1px solid rgb(0,0,0, 0.8);
+    box-shadow: 0 0 10px 0 rgb(255 255 255);
+}
 
 
 

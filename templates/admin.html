@@ -58,17 +58,30 @@
                     </div>
                 {{end}}
             </div>
-
-            <div class="category">
-                <label for="username"> add category : </label>
-                <input type="text" placeholder="add category" name="category">
+            <br>
+            <div class="M-Title flex">
+                <h2>Listes des catégories : </h2> 
             </div>
-            <button type="submit" class="signupbtn">ADD CATEGORY</button>
+            <div class="bg2">
+                <div style="height: 23vh; overflow-y: scroll;">
+                    {{range .CategoryList}}
+                        <div class="category flex padding">
+                            <div class="categoname">
+                                <p>#{{.CategoryName}}</p>
+                            </div>
+                            <div class="supcatego">
+                                <button class="btn-sup" type="submit" name="deletecategory" value={{.CategoryID}}><img style="width: 25px;"src="/static/img/icon/croix.png" alt="croix"></button>
+                            </div>
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+            <div class="addcatego">
+                <label for="username"> Ajouter une catégorie : </label>
+                <input type="text" placeholder="Entrez une nouvelle catégorie" name="category">
+            </div>
+            <button type="submit" class="signupbtn">Ajouter</button>
 
-        {{range .CategoryList}}
-            <p>{{.CategoryName}}</p>
-            <button type="submit" name="deletecategory" value={{.CategoryID}}>deletecategory</button>
-        {{end}}
         </form>
     </div>
     <div class="flex" style="margin-top: 3vh; margin-bottom: 2vh;">
