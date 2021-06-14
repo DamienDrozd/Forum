@@ -56,9 +56,8 @@ const CategoryTab = `
 		categoryname			TEXT NOT NULL UNIQUE
 	)`
 
-func createDB(tab string) error {
+func createDB(tab string) error { // Create a database if the database don't exist
 
-	// fmt.Println("test")
 	stmt, err := db.Prepare(tab)
 	if err != nil {
 		return err
@@ -69,62 +68,44 @@ func createDB(tab string) error {
 }
 
 func selectAllFromTable(db *sql.DB, table string) *sql.Rows {
+	// Select all elements from a table and return them
 	query := "SELECT * FROM " + table
 	result, _ := db.Query(query)
 	return result
-}
-
-func SendMail(MailType string, comment Comment, post Post) {
-	if MailType == "NewLike" {
-
-	}
-	if MailType == "NewDislike" {
-
-	}
-	if MailType == "NewComment" {
-
-	}
-
 }
 
 //----------------------Lecture----------------------------
 
 func ReadCommenttoDB(PostID int) []Comment {
 
-	//----------------------------------------------------Provisoire---------------------------------------
-
+	//return the list of all comment in the forum stored in the database
 	rows := selectAllFromTable(db, "comments")
-	// fmt.Println(rows)
 
 	var tab []Comment
 
 	for rows.Next() {
-		var u Comment
+		var u Comment // the comments are stored in u
 		err := rows.Scan(&u.CommentID, &u.CommentMessage, &u.CommentLikes, &u.CommentDislikes, &u.CommentDate, &u.CommentDateString, &u.PostID, &u.UserID, &u.UserName, &u.UserAvatar)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		tab = append(tab, u)
+		tab = append(tab, u) // Append in tab eatch comment
 	}
 
 	var tabcomment []Comment
 
 	for i := range tab {
-		// fmt.Println(tab[i].PostID, PostID)
 		if tab[i].PostID == PostID {
-			tabcomment = append(tabcomment, tab[i])
+			tabcomment = append(tabcomment, tab[i]) // put in tab comment eatch tab linked to the PostID
 		}
 	}
 
 	return tabcomment
 
-	// return tab
-
 }
 
-func ReadUsertoDB() []User {
-
+func ReadUsertoDB() []User { //return the list of all users in the forum stored in the database
 	rows := selectAllFromTable(db, "users")
 	// fmt.Println(rows)
 
@@ -144,7 +125,7 @@ func ReadUsertoDB() []User {
 
 }
 
-func ReadPosttoDB() []Post {
+func ReadPosttoDB() []Post { //return the list of all Posts in the forum stored in the database
 
 	rows := selectAllFromTable(db, "post")
 	// fmt.Println(rows)
@@ -165,7 +146,7 @@ func ReadPosttoDB() []Post {
 
 }
 
-func ReadCategorytoDB() []Category {
+func ReadCategorytoDB() []Category { //return the list of all categories in the forum stored in the database
 
 	rows := selectAllFromTable(db, "category")
 	// fmt.Println(rows)
@@ -185,9 +166,24 @@ func ReadCategorytoDB() []Category {
 	return tab
 }
 
-//----------------------écriture----------------------------
+//----------------------Insert an element in the tab----------------------------
 
-func InsertPosttoDB(newpost Post) error {
+func InsertCommenttoDB(comment Comment) error { // Insert a comment in the database
+
+	add, err := db.Prepare("INSERT INTO comments (commentmessage, commentlikes, commentdislikes, commentdate, commentdatestring, postid, userid, username, useravatar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+	defer add.Close()
+	if err != nil {
+		return err
+	}
+
+	//add the elements from comment in the database
+
+	add.Exec(comment.CommentMessage, comment.CommentLikes, comment.CommentDislikes, comment.CommentDate, comment.CommentDateString, comment.PostID, comment.UserID, comment.UserName, comment.UserAvatar)
+	return nil
+
+}
+
+func InsertPosttoDB(newpost Post) error { // Insert a post in the database
 
 	// fmt.Println(newpost)
 
@@ -204,8 +200,7 @@ func InsertPosttoDB(newpost Post) error {
 
 }
 
-// !! A récupérer à partir de la requete http !!
-func InsertUsertoDB(user User) error {
+func InsertUsertoDB(user User) error { // Insert a user in the database
 
 	user.Avatar = "https://i.redd.it/wellr7jjiv011.jpg"
 	add, err := db.Prepare("INSERT INTO users (username, password, email, avatar, role) VALUES (?, ?, ?, ?, ?)")
@@ -220,20 +215,7 @@ func InsertUsertoDB(user User) error {
 	return nil
 }
 
-func InsertCommenttoDB(comment Comment) error {
-
-	add, err := db.Prepare("INSERT INTO comments (commentmessage, commentlikes, commentdislikes, commentdate, commentdatestring, postid, userid, username, useravatar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
-	defer add.Close()
-	if err != nil {
-		return err
-	}
-
-	add.Exec(comment.CommentMessage, comment.CommentLikes, comment.CommentDislikes, comment.CommentDate, comment.CommentDateString, comment.PostID, comment.UserID, comment.UserName, comment.UserAvatar)
-	return nil
-
-}
-
-func InsertCategorytoDB(category Category) error {
+func InsertCategorytoDB(category Category) error { // Insert a category in the database
 
 	add, err := db.Prepare("INSERT INTO category (categoryname) VALUES (?)")
 	defer add.Close()
@@ -245,7 +227,9 @@ func InsertCategorytoDB(category Category) error {
 	return nil
 }
 
-func AddLiketoPosttoDB(typeadd string, nb int, PostID int) {
+//--------------------------------Edit Tab in database------------------------------------------------
+
+func AddLiketoPosttoDB(typeadd string, nb int, PostID int) { // Add a like to a post in the db
 
 	if typeadd == "likes" {
 
@@ -263,7 +247,7 @@ func AddLiketoPosttoDB(typeadd string, nb int, PostID int) {
 
 }
 
-func AddLiketoCommenttoDB(typeadd string, nb int, CommentID int) {
+func AddLiketoCommenttoDB(typeadd string, nb int, CommentID int) { // Add a like to a comment in the db
 
 	if typeadd == "likes" {
 
@@ -281,36 +265,7 @@ func AddLiketoCommenttoDB(typeadd string, nb int, CommentID int) {
 
 }
 
-func DeletePosttoDB(PostID int) {
-	TabComment := ReadCommenttoDB(PostID)
-
-	for i := range TabComment {
-		DeleteCommenttoDB(TabComment[i].CommentID)
-	}
-
-	stmt, _ := db.Prepare("DELETE FROM post WHERE postid=?;")
-
-	stmt.Exec(PostID)
-
-}
-
-func DeleteCommenttoDB(CommentID int) {
-
-	stmt, _ := db.Prepare("DELETE FROM comments WHERE commentid=?;")
-
-	stmt.Exec(CommentID)
-
-}
-
-func DeleteCategorytoDB(CategoryID int) {
-
-	stmt, _ := db.Prepare("DELETE FROM category WHERE categoryid=?;")
-
-	stmt.Exec(CategoryID)
-
-}
-
-func PromoteUsertoDB(user User, typeadd string) {
+func PromoteUsertoDB(user User, typeadd string) { // Promote a user in the db
 
 	if typeadd == "promote" {
 
@@ -349,8 +304,39 @@ func PromoteUsertoDB(user User, typeadd string) {
 
 }
 
-func ValidatePosttoDB(PostID int) {
+func ValidatePosttoDB(PostID int) { // Validate a post in the db
 	stmt, _ := db.Prepare("update post set validated=? where postid=?")
 
 	stmt.Exec("true", PostID)
+}
+
+//------------------------------Delete Element to database-----------------------------------------------
+
+func DeletePosttoDB(PostID int) { // Delete a post in the db
+	TabComment := ReadCommenttoDB(PostID)
+
+	for i := range TabComment {
+		DeleteCommenttoDB(TabComment[i].CommentID)
+	}
+
+	stmt, _ := db.Prepare("DELETE FROM post WHERE postid=?;")
+
+	stmt.Exec(PostID)
+
+}
+
+func DeleteCommenttoDB(CommentID int) { // Delete a comment in the DB
+
+	stmt, _ := db.Prepare("DELETE FROM comments WHERE commentid=?;")
+
+	stmt.Exec(CommentID)
+
+}
+
+func DeleteCategorytoDB(CategoryID int) { // Delete a category in the db
+
+	stmt, _ := db.Prepare("DELETE FROM category WHERE categoryid=?;")
+
+	stmt.Exec(CategoryID)
+
 }
