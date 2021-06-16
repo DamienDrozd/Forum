@@ -56,6 +56,20 @@ const CategoryTab = `
 		categoryname			TEXT NOT NULL UNIQUE
 	)`
 
+const LikePostTab = `	
+	CREATE TABLE IF NOT EXISTS postlikes (
+		postid			INTEGER NOT NULL,
+		userid			INTEGER NOT NULL,
+		type			TEXT	NOT NULL
+		)`
+
+const LikeCommentTab = `
+	CREATE TABLE IF NOT EXISTS commentlikes (
+		commentid		INTEGER NOT NULL,
+		userid			INTEGER NOT NULL,
+		type			TEXT	NOT NULL
+)`
+
 func createDB(tab string) error { // Create a database if the database don't exist
 
 	stmt, err := db.Prepare(tab)
@@ -340,3 +354,28 @@ func DeleteCategorytoDB(CategoryID int) { // Delete a category in the db
 	stmt.Exec(CategoryID)
 
 }
+
+// func InsertPostLiketoDB(like PostLike) error {
+// 	add, err := db.Prepare("INSERT INTO postlikes (postid, userid, type) VALUES (?, ?, ?)")
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	add.Exec(like.PostID, like.UserID, like.Type)
+// 	add.Close()
+// 	return nil
+// }
+
+// func postslikes() []PostLike {
+// 	rows := selectAllFromTable(db, "postlikes")
+// 	var result []PostLike
+// 	for rows.Next() {
+// 		var post PostLike
+// 		err := rows.Scan(&post.PostID, &post.UserID, &post.Type)
+// 		if err != nil {
+// 			log.fatal(err)
+// 		}
+// 		result = append(result, post)
+// 	}
+// 	return result
+// }

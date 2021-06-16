@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	_ "github.com/mattn/go-sqlite3"
+	"golang.org/x/time/rate"
 )
 
 func main() {
@@ -16,29 +17,31 @@ func main() {
 	createDB(UserTab)
 	createDB(CommentTab)
 	createDB(CategoryTab)
-
+	createDB(LikePostTab)
+	createDB(LikeCommentTab)
 	// Serving templates files
+	mux := http.NewServeMux()
 	filesServer := http.FileServer(http.Dir("./static"))
-	http.Handle("/static/", http.StripPrefix("/static/", filesServer))
+	mux.Handle("/static/", http.StripPrefix("/static/", filesServer))
 
 	// Index handler
-	http.HandleFunc("/", indexHandler)
+	mux.HandleFunc("/", indexHandler)
 	// Login Handler
-	http.HandleFunc("/login", login)
+	mux.HandleFunc("/login", login)
 	// Register Handler
-	http.HandleFunc("/register", register)
+	mux.HandleFunc("/register", register)
 	// Post Handler
-	http.HandleFunc("/post", post)
+	mux.HandleFunc("/post", post)
 	// Index Handler
-	http.HandleFunc("/index", indexHandler)
+	mux.HandleFunc("/index", indexHandler)
 	// Newpost Handler
-	http.HandleFunc("/newpost", newPost)
+	mux.HandleFunc("/newpost", newPost)
 	// user Handler
-	http.HandleFunc("/user", user)
+	mux.HandleFunc("/user", user)
 	// admin Handler
-	http.HandleFunc("/admin", admin)
+	mux.HandleFunc("/admin", admin)
 	// moderator Handler
-	http.HandleFunc("/moderator", moderator)
+	mux.HandleFunc("/moderator", moderator)
 
 	fmt.Println("Server is starting...")
 	fmt.Print("\n")
@@ -48,5 +51,18 @@ func main() {
 	fmt.Print("\n")
 
 	// Starting serveur
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServeTLS(":8080", "localhost.crt", "localhost.key", limit(mux))
+}
+
+var limiter = rate.NewLimiter(3, 7)
+
+func limit(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if limiter.Allow() == false {
+			http.Error(w, http.StatusText(429), http.StatusTooManyRequests)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }
