@@ -45,7 +45,7 @@ func main() {
 
 	fmt.Println("Server is starting...")
 	fmt.Print("\n")
-	fmt.Println("Go on http://localhost:8080/")
+	fmt.Println("Go on https://localhost:8080/")
 	fmt.Print("\n")
 	fmt.Println("To shut down the server press CTRL + C")
 	fmt.Print("\n")
