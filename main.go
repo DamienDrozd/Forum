@@ -50,12 +50,14 @@ func main() {
 	fmt.Println("To shut down the server press CTRL + C")
 	fmt.Print("\n")
 
-	// Starting serveur
+	// Starting serveur in https with ssl certificat and key
 	http.ListenAndServeTLS(":8080", "localhost.crt", "localhost.key", limit(mux))
 }
 
+//3 token por sec and max burst to 7
 var limiter = rate.NewLimiter(3, 7)
 
+// func to limit http request
 func limit(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if limiter.Allow() == false {
